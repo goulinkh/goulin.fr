@@ -59,7 +59,7 @@ export function LangaugeSelector() {
         )}
         <div
           className={clsx(
-            'origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none dark:bg-gray-900 dark:text-gray-500 dark:border dark:border-gray-700 dark:focus:ring-offset-gray-800',
+            'origin-top-right overflow-hidden absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none dark:bg-gray-900 dark:text-gray-500 dark:border dark:border-gray-700 dark:focus:ring-offset-gray-800',
             {
               'transition ease-out duration-100 transform opacity-100 scale-100': !hidden,
               'transition ease-in duration-75 transform opacity-0 scale-95 pointer-events-none': hidden,

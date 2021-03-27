@@ -51,6 +51,9 @@ module.exports = {
       height: {
         fit: 'fit-content',
       },
+      animation: {
+        'bounce-slow': 'bounce 10s linear infinite',
+      },
     },
   },
   variants: {},
