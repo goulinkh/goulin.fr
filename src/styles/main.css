@@ -1,0 +1,33 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@import url('/fonts/Poppins-Regular.ttf');
+@import url('/fonts/Poppins-Bold.ttf');
+@import url('/fonts/JetBrainsMono-Regular.ttf');
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 400;
+  src: url('public/fonts/Poppins-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 600;
+  src: url('public/fonts/Poppins-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-weight: 400;
+  src: url('public/fonts/JetBrainsMono-Regular.ttf') format('truetype');
+}
+
+.container {
+  @apply w-full;
+  @apply mx-auto;
+  @apply px-6;
+  @apply sm:px-0;
+}
