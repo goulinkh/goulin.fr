@@ -24,10 +24,25 @@
   font-weight: 400;
   src: url('public/fonts/JetBrainsMono-Regular.ttf') format('truetype');
 }
+body {
+  @apply dark:bg-gray-900;
+  @apply dark:text-gray-100;
+}
 
 .container {
   @apply w-full;
   @apply mx-auto;
   @apply px-6;
   @apply sm:px-0;
+}
+.glass-bg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+html.light .glass-bg {
+  background-image: url(/images/glass-bg.jpg);
+}
+html.dark .glass-bg {
+  background-image: url(/images/glass-bg-dark.jpg);
 }

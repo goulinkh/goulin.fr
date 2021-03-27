@@ -1,9 +1,32 @@
+import { useContext, useEffect } from 'react';
+
 import { appWithTranslation } from 'next-i18next';
 import { AppProps } from 'next/app';
+import { ThemeContext, ThemeProvider } from 'src/context/theme';
 
 import '../styles/main.css';
 
-// eslint-disable-next-line react/jsx-props-no-spreading
-const MyApp = ({ Component, pageProps }: AppProps) => <Component {...pageProps} />;
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  const { theme } = useContext(ThemeContext);
+  useEffect(() => {
+    if (process.browser) {
+      if (theme === 'dark') {
+        document.querySelector('html')?.classList.add('dark');
+        document.querySelector('html')?.classList.remove('light');
+      } else {
+        document.querySelector('html')?.classList.remove('dark');
+        document.querySelector('html')?.classList.add('light');
+      }
+    }
+  }, [theme]);
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <Component {...pageProps} />;
+};
 
-export default appWithTranslation(MyApp);
+const App = (props: any) => (
+  <ThemeProvider>
+    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+    <MyApp {...props} />
+  </ThemeProvider>
+);
+export default appWithTranslation(App);
