@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": "true",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "build-stats": "ANALYZE=true npm run build",
@@ -18,11 +18,11 @@
     "next-i18next": "^8.1.2",
     "next-seo": "^4.17.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "@svgr/webpack": "^5.5.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.4",
-    "@svgr/webpack": "^5.5.0",
     "@tailwindcss/jit": "^0.1.10",
     "@types/node": "^14.14.19",
     "@types/react": "^17.0.0",
