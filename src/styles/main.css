@@ -34,7 +34,7 @@ body {
   @apply w-full;
   @apply mx-auto;
   @apply px-6;
-  @apply sm:px-0;
+  @apply max-w-screen-2xl;
 }
 .glass-bg {
   background-position: center;

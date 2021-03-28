@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import clsx from 'clsx';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { Logo } from 'src/components/Logo';
 
@@ -10,8 +11,9 @@ import { ToggleDarkMode } from './ToggleDarkMode';
 
 export function Header({ className }: { className?: string }) {
   const { t } = useTranslation('common');
+  const router = useRouter();
   const navItems = [
-    { link: '/about', text: t('about') },
+    // { link: '/about  ', text: t('about') },
     { link: '/contact', text: t('contact') },
   ];
   const [burgerMenu, setBurgerMenu] = useState(false);
@@ -27,7 +29,13 @@ export function Header({ className }: { className?: string }) {
         <div className="h-full flex-row items-center space-x-10 hidden lg:flex">
           {navItems.map((n) => (
             <Link key={n.link} href={n.link}>
-              <span className="font-bold cursor-pointer hover:opacity-60">{n.text}</span>
+              <span
+                className={clsx('font-bold cursor-pointer hover:opacity-60', {
+                  'text-indigo-500': router.route === n.link,
+                })}
+              >
+                {n.text}
+              </span>
             </Link>
           ))}
         </div>

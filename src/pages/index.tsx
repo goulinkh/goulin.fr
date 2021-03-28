@@ -9,40 +9,30 @@ import StarSVG from 'public/icons/star.svg';
 import UrlSVG from 'public/icons/url.svg';
 import YoutubeSVG from 'public/icons/youtube.svg';
 import initialProjects from 'public/projects.json';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import rallax from 'rallax.js';
 import { Footer } from 'src/components/Footer';
 import { Header } from 'src/components/Header';
 import { Meta } from 'src/layout/Meta';
 
+const ProjectLink = ({
+  children,
+  ...props
+}:
+| {
+  children: ReactElement;
+}
+| React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => (
+  <a
+    {...props}
+    className="transition transform p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400"
+  >
+    {children}
+  </a>
+);
+
 const Index = ({ projects }: { projects: any }) => {
   const { t } = useTranslation('home-page');
   const { t: commonT } = useTranslation('common');
-  if (process.browser) {
-    rallax('.parallax-rocket', { speed: 0.25 });
-    rallax('.parallax-lightning', { speed: 0.17 });
-    rallax('.parallax-lamp', { speed: 0.15 });
-    rallax('.parallax-finance', { speed: 0.1 });
-    rallax('.parallax-shopping', { speed: 0.1 });
-  }
-  const ProjectLink = ({
-    children,
-    ...props
-  }:
-  | {
-    children: ReactElement;
-  }
-  | React.DetailedHTMLProps<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  HTMLAnchorElement
-  >) => (
-    <a
-      {...props}
-      className="transition transform p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400"
-    >
-      {children}
-    </a>
-  );
+
   return (
     <>
       <Meta description={commonT('description')} />
@@ -61,38 +51,38 @@ const Index = ({ projects }: { projects: any }) => {
               layout="fill"
               objectFit="contain"
             />
-            <div className="parallax-rocket absolute top-4 left-4 z-10">
+            <div className="parallax-rocket absolute top-3/4 right-11 xl:right-4 z-10">
               <img
                 src="/images/rocket.png"
-                className="animate-bounce-slow w-28 lg:w-36 h-auto "
+                className="animate-bounce-slow w-20 xl:w-36 h-auto "
                 alt="Rocket"
               />
             </div>
             <div className="parallax-lightning absolute top-1/2 left-12 z-10">
               <img
                 src="/images/lightning.png"
-                className="animate-bounce-slow w-28 lg:w-36 h-auto  "
+                className="animate-bounce-slow w-20 xl:w-36 h-auto  "
                 alt="Lightning"
               />
             </div>
-            <div className="parallax-finance absolute top-3/4 -left-6 lg:-left-14">
+            <div className="parallax-finance absolute top-3/4 -left-6 xl:-left-14">
               <img
                 src="/images/finance-card.png"
-                className="animate-bounce-slow h-40 lg:h-56 w-auto "
+                className="animate-bounce-slow h-32 xl:h-56 w-auto "
                 alt="Finance"
               />
             </div>
-            <div className="parallax-shopping  absolute -top-10 right-0">
+            <div className="parallax-shopping absolute -top-10 right-0">
               <img
                 src="/images/shopping-card.png"
-                className="animate-bounce-slow w-40 lg:w-56 h-auto"
+                className="animate-bounce-slow w-32 xl:w-56 h-auto"
                 alt="Shopping"
               />
             </div>
-            <div className="parallax-lamp  absolute top-3/4 right-11 lg:right-4 z-10">
+            <div className="parallax-lamp absolute top-4 left-4 z-10">
               <img
                 src="/images/lamp.png"
-                className="animate-bounce-slow w-36 lg:w-52 h-auto"
+                className="animate-bounce-slow w-36 xl:w-52 h-auto"
                 alt="Lamp"
               />
             </div>
@@ -106,17 +96,13 @@ const Index = ({ projects }: { projects: any }) => {
             key={project.title}
             className="flex flex-col dark:border-gray-600 border-b last:border-b-0 py-3 px-5 space-y-2"
           >
-            <div className="h-12 flex lg:flex-row flex-col items-center justify-between ">
+            <div className=" flex lg:flex-row flex-col items-center mx-auto lg:justify-between lg:mx-0 ">
               <div className="h-full flex flex-row items-center space-x-5">
-                <div className="w-20 h-full relative flex flex-row items-center justify-center">
-                  {project.image && <Image src={project.image} objectFit="contain" layout="fill" />}
+                <div className="w-20 h-full flex flex-row items-center justify-center">
+                  {project.image && <img src={project.image} alt={project.title} loading="lazy" />}
                   {project.inProgress && (
                     <span className="relative inline-flex rounded-md shadow-sm">
-                      <span className="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-300 dark:bg-purple-400" />
-                      </span>
-                      <span className="text-center text-sm p-2 bg-opacity-50 bg-indigo-400 text-indigo-700 dark:text-indigo-300 rounded-lg">
+                      <span className="animate-pulse text-center text-sm p-2 bg-opacity-50 bg-indigo-400 text-indigo-700 dark:text-indigo-300 rounded-lg whitespace-nowrap">
                         {commonT('in-progress')}
                       </span>
                     </span>
