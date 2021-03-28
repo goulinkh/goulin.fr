@@ -116,7 +116,7 @@ const Index = ({ projects }: { projects: any }) => {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-300 dark:bg-purple-400" />
                       </span>
-                      <span className="text-sm p-2 bg-opacity-50 bg-indigo-400 text-indigo-700 dark:text-indigo-300 rounded-lg">
+                      <span className="text-center text-sm p-2 bg-opacity-50 bg-indigo-400 text-indigo-700 dark:text-indigo-300 rounded-lg">
                         {commonT('in-progress')}
                       </span>
                     </span>
