@@ -25,6 +25,7 @@
   src: url('public/fonts/JetBrainsMono-Regular.ttf') format('truetype');
 }
 body {
+  @apply bg-gray-100;
   @apply dark:bg-gray-900;
   @apply dark:text-gray-100;
 }

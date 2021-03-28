@@ -1,0 +1,39 @@
+[
+  {
+    "name": "podcast-cli",
+    "title": "Podcast-cli",
+    "url": {
+      "github": "goulinkh/podcast-cli",
+      "youtube": "https://youtu.be/2bYl_v3OX_E"
+    },
+    "image": "https://github.com/goulinkh/podcast-cli/raw/master/resources/img/logo.png",
+    "type": "CLI App"
+  },
+  {
+    "name": "ecommerce-demo",
+    "title": "E-commerce demo",
+    "url": {
+      "github": "goulinkh/ecommerce-frontend",
+      "demo": "http://ecommerce.goulin.fr"
+    },
+    "image": "/images/beans.png",
+    "type": "Fullstack App"
+  },
+  {
+    "name": "rooms-finder",
+    "title": "Rooms finder",
+    "url": {
+      "github": "goulinkh/rooms-finder",
+      "demo": "https://rooms-finder.goulin.fr"
+    },
+    "image": "/images/rooms-finder.png",
+    "type": "Fullstack App"
+  },
+  {
+    "name": "analytics",
+    "title": "Analytics",
+    "url": {},
+    "type": "Distributed fullstack App",
+    "inProgress": true
+  }
+]

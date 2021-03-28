@@ -8,7 +8,7 @@ import { Logo } from 'src/components/Logo';
 import { LangaugeSelector } from './LanguageSelector';
 import { ToggleDarkMode } from './ToggleDarkMode';
 
-export function Header() {
+export function Header({ className }: { className?: string }) {
   const { t } = useTranslation('common');
   const navItems = [
     { link: '/about', text: t('about') },
@@ -16,7 +16,12 @@ export function Header() {
   ];
   const [burgerMenu, setBurgerMenu] = useState(false);
   return (
-    <div className="w-full h-14 border-b border-gray-200 dark:bg-gray-900 dark:bg-opacity-75 dark:text-gray-50 dark:border-gray-700">
+    <div
+      className={clsx(
+        'sticky top-0 w-full h-14 border-b border-gray-200 dark:bg-gray-900 bg-opacity-75 bg-gray-100 dark:text-gray-50 dark:border-gray-700 z-20',
+        className,
+      )}
+    >
       <div className="h-full container flex flex-row items-center justify-between">
         <Logo />
         <div className="h-full flex-row items-center space-x-10 hidden lg:flex">
@@ -52,9 +57,9 @@ export function Header() {
         </div>
         <div
           className={clsx(
-            'left-0 top-0 fixed bg-gray-800 w-screen h-screen transition-all ease-out duration-200 transform z-10',
+            'left-0 top-0 fixed bg-gray-800 text-gray-200 w-screen h-screen transition-all ease-out duration-200 transform z-20',
             {
-              'opacity-100 scale-100 block ': burgerMenu,
+              'opacity-100 scale-100 block': burgerMenu,
               'opacity-0 scale-0 pointer-events-none': !burgerMenu,
             },
           )}
@@ -63,14 +68,14 @@ export function Header() {
             <div className="w-full flex flex-row items-center justify-between">
               <Logo />
               <button
-                className="lg:hidden rounded-full transition-all transform hover:scale-y-110"
+                className="lg:hidden rounded-full transition-all transform hover:scale-110 hover:text-gray-400"
                 type="button"
                 onClick={() => {
                   setBurgerMenu(false);
                 }}
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-8"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
