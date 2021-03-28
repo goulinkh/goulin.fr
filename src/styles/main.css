@@ -12,17 +12,20 @@
   font-family: 'Poppins';
   font-weight: 400;
   src: url('public/fonts/Poppins-Regular.ttf') format('truetype');
+  font-display: swap;
 }
 @font-face {
   font-family: 'Poppins';
   font-weight: 600;
   src: url('public/fonts/Poppins-Bold.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'JetBrainsMono';
   font-weight: 400;
   src: url('public/fonts/JetBrainsMono-Regular.ttf') format('truetype');
+  font-display: swap;
 }
 body {
   @apply bg-gray-100;
