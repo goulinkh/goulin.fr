@@ -18,7 +18,7 @@ export function Header({ className }: { className?: string }) {
   return (
     <div
       className={clsx(
-        'sticky top-0 w-full h-14 border-b border-gray-200 dark:bg-gray-900 bg-opacity-75 bg-gray-100 dark:text-gray-50 dark:border-gray-700 z-20',
+        'sticky top-0 w-full h-14 border-b border-gray-200 dark:bg-gray-900 bg-opacity-75 bg-gray-100 dark:text-gray-50 dark:border-gray-700 dark:bg-opacity-75 z-20',
         className,
       )}
     >
