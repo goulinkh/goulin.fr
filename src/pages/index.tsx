@@ -98,7 +98,7 @@ const Index = ({ projects }: { projects: any }) => {
         </section>
       </div>
       <h2 className="container text-3xl font-bold mt-40 lg:mt-20 text-center">{t('oss')}</h2>
-      <section className="container mx-2 bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg shadow-lg w-[900px] max-w-3xl lg:mx-auto my-10 py-4">
+      <section className="container mx-2 bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg shadow-lg w-[900px] max-w-3xl lg:mx-auto my-10 py-4 px-0">
         {projects.map((project: any) => (
           <div
             key={project.title}
