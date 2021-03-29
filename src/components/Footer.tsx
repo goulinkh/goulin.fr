@@ -18,14 +18,14 @@ export function Footer() {
             href="https://github.com/goulinkh/goulin.fr"
           >
             <GithubSVG className="w-5" />
-            <span>{t('view-source')}</span>
+            <span className="transition hover:underscore">{t('view-source')}</span>
           </a>
           <a
             className="flex flex-row space-x-2 transition hover:text-indigo-500"
             href="https://twitter.com/GoulinKH"
           >
             <TwitterSVG className="w-5" />
-            <span>Twitter</span>
+            <span className="transition hover:underscore">Twitter</span>
           </a>
         </div>
       </div>
