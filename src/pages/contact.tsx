@@ -164,10 +164,10 @@ function Contact() {
             <button
               type="submit"
               className={clsx(
-                'font-bold text-lg rounded-lg bg-indigo-500 text-gray-100 p-3 shadow-sm accent-shadow transition dark:bg-indigo-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-400  dark:focus:ring-offset-gray-800 max-w-[350px] w-full',
+                'font-bold text-lg rounded-lg  bg-gradient-to-r from-indigo-600 to-indigo-500 text-gray-100 p-3 shadow-sm accent-shadow transition dark:bg-indigo-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-400  dark:focus:ring-offset-gray-800 max-w-[350px] w-full',
                 {
                   'cursor-default': loading,
-                  'hover:bg-indigo-600 dark:hover:bg-indigo-700': !loading,
+                  'hover:from-indigo-700 hover:to-indigo-600 dark:hover:bg-indigo-700': !loading,
                 },
               )}
               disabled={loading}

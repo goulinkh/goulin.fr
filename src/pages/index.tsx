@@ -4,6 +4,7 @@ import { GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
+import Link from 'next/link';
 import GithubSVG from 'public/icons/github.svg';
 import StarSVG from 'public/icons/star.svg';
 import UrlSVG from 'public/icons/url.svg';
@@ -43,6 +44,13 @@ const Index = ({ projects }: { projects: any }) => {
             <h1 className="text-5xl font-bold">{t('profession')}</h1>
             <h2 className="text-3xl text-indigo-500 font-bold">{t('greeting-message')}</h2>
             <p className="text-opacity-80 leading-8">{t('about-me')}</p>
+            <Link href="/contact">
+              <div className="pt-11">
+                <span className="font-bold text-lg rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-500 text-gray-100 py-3 px-12 w-fit mx-4 shadow-sm accent-shadow dark:bg-indigo-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-400  dark:focus:ring-offset-gray-800 hover:bg-indigo-600 dark:hover:bg-indigo-700 hover:from-indigo-700 hover:to-indigo-600 cursor-pointer ">
+                  {commonT('contact')}
+                </span>
+              </div>
+            </Link>
           </div>
           <div className="relative lg:my-40 anim">
             <Image

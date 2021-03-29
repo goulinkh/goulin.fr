@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import clsx from 'clsx';
-import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { Logo } from 'src/components/Logo';
@@ -10,11 +9,10 @@ import { LangaugeSelector } from './LanguageSelector';
 import { ToggleDarkMode } from './ToggleDarkMode';
 
 export function Header({ className }: { className?: string }) {
-  const { t } = useTranslation('common');
   const router = useRouter();
-  const navItems = [
+  const navItems: { link: string; text: string }[] = [
     // { link: '/about  ', text: t('about') },
-    { link: '/contact', text: t('contact') },
+    // { link: '/contact', text: t('contact') },
   ];
   const [burgerMenu, setBurgerMenu] = useState(false);
   return (

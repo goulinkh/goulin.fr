@@ -1,19 +1,8 @@
 import sgMail from '@sendgrid/mail';
 import { NextApiHandler } from 'next';
+import escapeHtml from 'src/utils/escapeHtml';
 
 sgMail.setApiKey(process.env.EMAIL_API_KEY as string);
-
-function escapeHtml(text: string) {
-  return text.replace(
-    /["&<>]/g,
-    (a) => ({
-      '"': '&quot;',
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-    }[a]),
-  );
-}
 
 const Hello: NextApiHandler = async (req, res) => {
   // ReCAPTACH verification
