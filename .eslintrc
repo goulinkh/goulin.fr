@@ -12,6 +12,7 @@
     "react/require-default-props": "off", // Allow non-defined react props as undefined
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/no-autofocus": "off",
     "import/order": [
       "error",
       {

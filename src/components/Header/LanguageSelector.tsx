@@ -12,8 +12,16 @@ export function LangaugeSelector() {
   const { i18n } = useTranslation();
   const router = useRouter();
   const languages = [
-    { lang: 'en', logo: <EnglishSVG className="w-7 h-auto mx-auto rounded" /> },
-    { lang: 'fr', logo: <FrenchSVG className="w-7 h-auto mx-auto rounded" /> },
+    {
+      lang: 'en',
+      text: 'English',
+      logo: <EnglishSVG className="w-6 h-6 rounded-full" />,
+    },
+    {
+      lang: 'fr',
+      text: 'Français',
+      logo: <FrenchSVG className="w-6 h-6 rounded-full" />,
+    },
   ];
   const availableLanguages = languages.filter((l) => l.lang !== i18n.language);
   const currentLanguage = languages.find((l) => l.lang === i18n.language);
@@ -25,7 +33,7 @@ export function LangaugeSelector() {
         <div>
           <button
             type="button"
-            className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-400 dark:bg-gray-900 dark:text-gray-500 dark:border-gray-700 dark:hover:bg-gray-800 dark:focus:ring-offset-gray-800"
+            className="inline-flex items-center justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-400 dark:bg-gray-900 dark:text-gray-500 dark:border-gray-700 dark:hover:bg-gray-800 dark:focus:ring-offset-gray-800"
             id="options-menu"
             aria-expanded="true"
             aria-haspopup="true"
@@ -59,7 +67,7 @@ export function LangaugeSelector() {
         )}
         <div
           className={clsx(
-            'origin-top-right overflow-hidden absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none dark:bg-gray-900 dark:text-gray-500 dark:border dark:border-gray-700 dark:focus:ring-offset-gray-800',
+            'origin-top-right overflow-hidden absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none dark:bg-gray-900 dark:text-gray-500 dark:border dark:border-gray-700 dark:focus:ring-offset-gray-800',
             {
               'transition ease-out duration-100 transform opacity-100 scale-100': !hidden,
               'transition ease-in duration-75 transform opacity-0 scale-95 pointer-events-none': hidden,
@@ -69,12 +77,13 @@ export function LangaugeSelector() {
           aria-orientation="vertical"
           aria-labelledby="options-menu"
         >
-          <div role="none">
+          <div role="none" className="w-full">
             {availableLanguages.map((l) => (
               <Link key={l.lang} href={router.asPath} locale={l.lang}>
-                <span className="block cursor-pointer p-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800">
+                <div className="w-full cursor-pointer p-2 inline-flex flex-row justify-start items-center space-x-4 px-5 hover:bg-gray-100 hover:text-indigo-500 dark:hover:bg-gray-800 ">
                   {l.logo}
-                </span>
+                  <span className="text-sm ">{l.text}</span>
+                </div>
               </Link>
             ))}
           </div>

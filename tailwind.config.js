@@ -44,6 +44,9 @@ module.exports = {
           800: '#161B22',
           900: '#0C1014',
         },
+        indigo: {
+          900: '#00004E',
+        },
       },
       width: {
         fit: 'fit-content',

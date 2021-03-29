@@ -1,0 +1,10 @@
+{
+  "contact-me": "Contactez-moi",
+  "contact-message": "Vouillez remplire le formulaire ci-dessous, et je serai ravi de vous contacter.",
+  "name": "Votre nom",
+  "mail": "Votre adresse mail",
+  "message": "Votre message",
+  "send": "Envoyer",
+  "mail-message": "Ou, contactez-moi directement sur cette adresse:",
+  "fail-title": "Echec d'envoie de votre message"
+}

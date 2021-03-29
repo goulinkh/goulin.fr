@@ -8,7 +8,7 @@ export function Logo() {
     <Link href="/">
       <span
         className={clsx(
-          'px-3 py-1 rounded-lg text-lg shadow-lg text-white font-mono cursor-pointer transition-transform transform hover:scale-105',
+          'px-3 py-1 rounded-lg text-lg shadow-lg text-white font-mono cursor-pointer transition-transform transform hover:scale-105 whitespace-nowrap',
           styles['animate-bg'],
         )}
       >

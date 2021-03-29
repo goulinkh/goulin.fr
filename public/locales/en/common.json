@@ -11,5 +11,8 @@
   "footer-title": "About this place",
   "footer-description": "Welcome to my personal website! I'm Goulin, a software engineer from France.",
   "social-title": "Social stuff",
-  "view-source": "View source on Github"
+  "view-source": "View source on Github",
+  "loading": "Loading",
+  "go-home": "Go to home page",
+  "cancel": "Cancel"
 }

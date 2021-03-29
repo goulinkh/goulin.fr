@@ -11,5 +11,8 @@
   "footer-title": "À propos de ce site",
   "footer-description": "Bienvenue sur mon site personnel! C'est Goulin, je suis un développeur logiciel.",
   "social-title": "Réseaux sociaux",
-  "view-source": "Afficher la source de ce site sur Github"
+  "view-source": "Afficher la source de ce site sur Github",
+  "loading": "En cours de chargement",
+  "go-home": "Aller à la page d'accueil",
+  "cancel": "Annuler"
 }

@@ -30,7 +30,7 @@ export function Header({ className }: { className?: string }) {
           {navItems.map((n) => (
             <Link key={n.link} href={n.link}>
               <span
-                className={clsx('font-bold cursor-pointer hover:opacity-60', {
+                className={clsx('font-mono cursor-pointer hover:opacity-60', {
                   'text-indigo-500': router.route === n.link,
                 })}
               >
