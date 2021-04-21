@@ -30,9 +30,11 @@
     "type": "Fullstack App"
   },
   {
-    "name": "analytics",
-    "title": "Analytics",
-    "url": {},
+    "name": "astatus",
+    "title": "astatus",
+    "url": {
+      "demo": "https://www.astatus.io/"
+    },
     "type": "Distributed fullstack App",
     "inProgress": true
   }
