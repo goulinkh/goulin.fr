@@ -6,7 +6,7 @@
   "podcast-cli": "Une en ligne de commande pour écouter des podcasts dans le terminal.",
   "ecommerce-demo": "Une application fullstack de ecommerce en utilisant Nextjs, Prisma et Strapi CMS.",
   "rooms-finder": "Un service RESTFul avec un simple frontend qui permet aux étudiant de l'université Paul Sabatier à trouver des salles vides pour réviser en groupe.",
-  "analytics": "Un outil d'analyse auto-hébergée tout-en-un.",
+  "astatus": "Un outil de monitoring avec un tableau de bord pour le uptime.",
   "in-progress": "En cours",
   "footer-title": "À propos de ce site",
   "footer-description": "Bienvenue sur mon site personnel! C'est Goulin, je suis un développeur logiciel.",
