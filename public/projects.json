@@ -28,14 +28,5 @@
     },
     "image": "/images/rooms-finder.png",
     "type": "Fullstack App"
-  },
-  {
-    "name": "astatus",
-    "title": "astatus",
-    "url": {
-      "demo": "https://www.astatus.io/"
-    },
-    "type": "Distributed fullstack App",
-    "inProgress": true
   }
 ]
