@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import clsx from 'clsx';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { Logo } from 'src/components/Logo';
@@ -10,17 +11,20 @@ import { ToggleDarkMode } from './ToggleDarkMode';
 
 export function Header({ className }: { className?: string }) {
   const router = useRouter();
+  const { t } = useTranslation('common');
+
   const navItems: { link: string; text: string }[] = [
-    // { link: '/about  ', text: t('about') },
-    // { link: '/contact', text: t('contact') },
+    { link: '/blogs', text: t('blog') },
+    { link: '/contact', text: t('contact') },
   ];
   const [burgerMenu, setBurgerMenu] = useState(false);
   return (
     <div
       className={clsx(
-        'sticky top-0 w-full h-14 border-b border-gray-200 dark:bg-gray-900 bg-opacity-75 bg-gray-100 dark:text-gray-50 dark:border-gray-700 dark:bg-opacity-75 z-20',
+        'sticky top-0 w-full h-12 lg:h-14 border-b border-gray-200 dark:bg-gray-900 bg-opacity-75 bg-gray-100 dark:text-gray-50 dark:border-gray-700 dark:bg-opacity-75 z-20',
         className,
       )}
+      style={{ backdropFilter: 'blur(10px)' }}
     >
       <div className="h-full container flex flex-row items-center justify-between">
         <Logo />
@@ -28,9 +32,12 @@ export function Header({ className }: { className?: string }) {
           {navItems.map((n) => (
             <Link key={n.link} href={n.link}>
               <span
-                className={clsx('font-mono cursor-pointer hover:opacity-60', {
-                  'text-indigo-500': router.route === n.link,
-                })}
+                className={clsx(
+                  'font-mono cursor-pointer hover:opacity-60',
+                  router.route === n.link
+                    ? 'text-indigo-500'
+                    : 'text-indigo-900 dark:text-indigo-100',
+                )}
               >
                 {n.text}
               </span>
@@ -63,7 +70,7 @@ export function Header({ className }: { className?: string }) {
         </div>
         <div
           className={clsx(
-            'left-0 top-0 fixed bg-gray-800 text-gray-200 w-screen h-screen transition-all ease-out duration-200 transform z-20',
+            'left-0 top-0 fixed bg-gray-800 text-gray-200 w-screen h-screen transition-all ease-out duration-100 transform z-20',
             {
               'opacity-100 scale-100 block': burgerMenu,
               'opacity-0 scale-0 pointer-events-none': !burgerMenu,
@@ -97,7 +104,7 @@ export function Header({ className }: { className?: string }) {
             <div className="w-full flex-col flex my-10">
               {navItems.map((n) => (
                 <Link key={n.link} href={n.link}>
-                  <span className="font-bold cursor-pointer hover:opacity-60 py-6 border-gray-600 border-b last:border-b-0">
+                  <span className="font-bold cursor-pointer hover:opacity-60 py-6 text-gray-300 border-gray-600 border-b last:border-b-0">
                     {n.text}
                   </span>
                 </Link>

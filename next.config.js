@@ -3,7 +3,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 const withTM = require('next-transpile-modules')(['react-spring']);
-
+const withMDX = require('@next/mdx')()
 const baseUrl = '';
 
 module.exports = withTM(

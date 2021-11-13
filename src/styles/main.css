@@ -36,16 +36,18 @@
   font-display: swap;
 }
 body {
-  @apply bg-gray-100;
+  @apply bg-indigo-100;
+  @apply text-indigo-900;
   @apply dark:bg-gray-900;
-  @apply dark:text-gray-100;
+  @apply dark:text-indigo-100;
 }
 
 .container {
   @apply w-full;
   @apply mx-auto;
   @apply px-6;
-  @apply max-w-screen-2xl;
+  @apply max-w-screen-md;
+  @apply lg:max-w-screen-xl;
 }
 .glass-bg {
   background-position: center;

@@ -13,19 +13,27 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx . --fix"
   },
   "dependencies": {
+    "@next/mdx": "^12.0.3",
     "@sendgrid/mail": "^7.4.2",
     "@svgr/webpack": "^5.5.0",
+    "@tailwindcss/typography": "^0.4.1",
     "clsx": "^1.1.1",
+    "glob": "^7.2.0",
+    "gray-matter": "^4.0.3",
     "next": "^10.0.4",
     "next-i18next": "^8.1.2",
     "next-seo": "^4.17.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-google-recaptcha-v3": "^1.8.0"
+    "react-google-recaptcha-v3": "^1.8.0",
+    "remark": "^12.0.1",
+    "remark-html": "^12.0.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.4",
     "@tailwindcss/jit": "^0.1.10",
+    "@types/glob": "^7.2.0",
+    "@types/mdx-js__react": "^1.5.5",
     "@types/node": "^14.14.19",
     "@types/react": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.11.1",

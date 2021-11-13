@@ -2,6 +2,7 @@
   "about": "À propos",
   "contact": "Contact",
   "home": "Accueil",
+  "blog": "Blog",
   "description": "La page personnel de Goulin Khoge.",
   "podcast-cli": "Une en ligne de commande pour écouter des podcasts dans le terminal.",
   "ecommerce-demo": "Une application fullstack de ecommerce en utilisant Nextjs, Prisma et Strapi CMS.",

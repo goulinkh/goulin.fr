@@ -37,75 +37,75 @@ const Index = ({ projects }: { projects: any }) => {
   return (
     <>
       <Meta description={commonT('description')} />
-      <div className="glass-bg lg:max-h-screen h-[1000px] flex flex-col justify-start items-center">
-        <Header className="flex-none" />
-        <section className="container main grid lg:grid-cols-2 lg:grid-rows-none grid-rows-2 flex-grow">
-          <div className="h-full flex flex-col justify-center space-y-3">
+      <Header className="flex-none" />
+      <div className="glass-bg lg:max-h-screen py-10 h-fit lg:py-0 lg:h-[1000px] flex flex-col justify-start items-center">
+        <section className="container main grid grid-rows-1 lg:grid-cols-2 lg:grid-rows-none flex-grow">
+          <div className="h-full flex flex-col justify-center space-y-6">
             <h1 className="text-5xl font-bold">{t('profession')}</h1>
             <h2 className="text-3xl text-indigo-500 font-bold">{t('greeting-message')}</h2>
             <p className="text-opacity-80 leading-8">{t('about-me')}</p>
             <Link href="/contact">
-              <div className="pt-11">
+              <div className="lg:pt-11 m-0">
                 <span className="font-bold text-lg rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-500 text-gray-100 py-3 px-12 w-fit mx-4 shadow-sm accent-shadow dark:bg-indigo-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-400  dark:focus:ring-offset-gray-800 hover:bg-indigo-600 dark:hover:bg-indigo-700 hover:from-indigo-700 hover:to-indigo-600 cursor-pointer ">
                   {commonT('contact')}
                 </span>
               </div>
             </Link>
           </div>
-          <div className="relative lg:my-40 anim">
+          <div className="hidden lg:block lg:my-40 relative">
             <Image
               src="/images/personal-photo.png"
               alt="Personal photo"
               layout="fill"
               objectFit="contain"
             />
-            <div className="parallax-rocket absolute top-3/4 right-11 xl:right-4 z-10">
+            <div className="absolute top-3/4 right-4 z-10">
               <img
                 src="/images/rocket.png"
-                className="animate-bounce-slow w-20 xl:w-36 h-auto "
+                className="animate-bounce-slow w-24 h-auto "
                 alt="Rocket"
               />
             </div>
-            <div className="parallax-lightning absolute top-1/2 left-12 z-10">
+            <div className="absolute top-1/4 left-12 z-10">
               <img
                 src="/images/lightning.png"
-                className="animate-bounce-slow w-20 xl:w-36 h-auto  "
+                className="animate-bounce-slow w-20 h-auto  "
                 alt="Lightning"
               />
             </div>
-            <div className="parallax-finance absolute top-3/4 -left-6 xl:-left-14">
+            <div className="absolute top-3/4 -left-7">
               <img
                 src="/images/finance-card.png"
-                className="animate-bounce-slow h-32 xl:h-56 w-auto "
+                className="animate-bounce-slow h-32 w-auto "
                 alt="Finance"
               />
             </div>
-            <div className="parallax-shopping absolute -top-10 right-0">
+            <div className="absolute -top-10 right-0">
               <img
                 src="/images/shopping-card.png"
-                className="animate-bounce-slow w-32 xl:w-56 h-auto"
+                className="animate-bounce-slow w-32 h-auto"
                 alt="Shopping"
               />
             </div>
-            <div className="parallax-lamp absolute top-4 left-4 z-10">
+            <div className="absolute -top-1/4 left-4 z-10">
               <img
                 src="/images/lamp.png"
-                className="animate-bounce-slow w-36 xl:w-52 h-auto"
+                className="animate-bounce-slow w-32 h-auto"
                 alt="Lamp"
               />
             </div>
           </div>
         </section>
       </div>
-      <h2 className="container text-3xl font-bold mt-40 lg:mt-20 text-center">{t('oss')}</h2>
+      <h2 className="container text-3xl font-bold mt-10 lg:mt-20 text-center">{t('oss')}</h2>
       <section className="container mx-2 bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg shadow-lg w-[900px] max-w-3xl lg:mx-auto my-10 py-4 px-0">
         {projects.map((project: any) => (
           <div
             key={project.title}
             className="flex flex-col dark:border-gray-600 border-b last:border-b-0 py-3 px-5 space-y-2"
           >
-            <div className=" flex lg:flex-row flex-col items-center mx-auto lg:justify-between lg:mx-0 ">
-              <div className="h-full flex flex-row items-center space-x-5">
+            <div className=" flex lg:flex-row flex-col items-start md:items-center md:mx-auto lg:justify-between lg:mx-0 ">
+              <div className="h-full flex flex-col md:flex-row items-start md:items-center md:space-x-5">
                 <div className="w-20 h-full flex flex-row items-center justify-center">
                   {project.image && <img src={project.image} alt={project.title} loading="lazy" />}
                   {project.inProgress && (
@@ -159,14 +159,14 @@ const Index = ({ projects }: { projects: any }) => {
 
 export default Index;
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  let ps = initialProjects as any;
-  ps = await Promise.all(
-    ps.map(async (project: any) => {
-      if (!project.url.github) return { ...project, starsCount: -1 };
-      const repo = await (await fetch(`https://api.github.com/repos/${project.url.github}`)).json();
-      return { ...project, starsCount: repo.stargazers_count || -1, github: repo.html_url };
-    }),
-  );
+  const ps = initialProjects as any;
+  // ps = await Promise.all(
+  //   ps.map(async (project: any) => {
+  //     if (!project.url.github) return { ...project, starsCount: -1 };
+  //     const repo = await (await fetch(`https://api.github.com/repos/${project.url.github}`)).json();
+  //     return { ...project, starsCount: repo.stargazers_count || -1, github: repo.html_url };
+  //   }),
+  // );
   return {
     props: {
       ...(await serverSideTranslations(locale as string, ['home-page', 'common'])),

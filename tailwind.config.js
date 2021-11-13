@@ -45,7 +45,6 @@ module.exports = {
           900: '#0C1014',
         },
         indigo: {
-          900: '#00004E',
         },
       },
       width: {
@@ -58,7 +57,8 @@ module.exports = {
         'bounce-slow': 'bounce 10s linear infinite',
       },
     },
+    
   },
   variants: {},
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
