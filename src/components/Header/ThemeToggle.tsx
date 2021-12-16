@@ -9,7 +9,10 @@ const ThemeToggle = () => {
     theme === "dark" ? setTheme("light") : setTheme("dark");
   };
   return (
-    <button onClick={handleToggleClick}>
+    <button
+      onClick={handleToggleClick}
+      className="p-1 rounded opacity-75 hover:opacity-100 dark:hover:bg-white/10 hover:bg-black/5"
+    >
       {theme === "dark" ? (
         <SunIcon className="h-6" />
       ) : (

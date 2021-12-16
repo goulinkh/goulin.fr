@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply dark:bg-gray-900 bg-gray-100;
+  @apply dark:text-gray-100 text-gray-900;
+}
+
+.max-w-container {
+  @apply max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-5xl;
+  @apply px-4 md:px-0;
+}
+
+.blurry {
+  @apply bg-white/75 dark:bg-black/40 dark:text-gray-200 border border-black/5 dark:border-white/20 backdrop-blur;
+  /* Firefox */
+  @-moz-document url-prefix() {
+    & {
+      @apply dark:bg-black/90;
+    }
+  }
+}
+
+.blurry.blurry-2 {
+  @apply bg-gray-100/75 dark:bg-gray-900/70;
+  /* Firefox */
+  @-moz-document url-prefix() {
+    & {
+      @apply bg-gray-100 dark:bg-gray-900;
+    }
+  }
+}
