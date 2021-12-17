@@ -1,28 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
+import { BlogPost } from "../utils/blogs";
 
-const blog = {
-  title: "Static website, simple, yet power full",
-  description:
-    "Over engineering things is a common thing that we think about, but what about if we actually simplify some fundamentals in web.",
-  cover: "image01.png",
-};
+type Props = { blogPost: BlogPost };
 
-const BlogCard = () => {
+const BlogCard: React.FC<Props> = ({ blogPost }) => {
   return (
-    <Link passHref href="/">
+    <Link passHref href={`/blog/${blogPost.slug}`}>
       <a className="rounded-2xl isolate overflow-hidden transition-shadow hover:shadow-lg">
         <div className="relative h-60 w-full overflow-hidden">
           <Image
-            src="/assets/blogs/images/image01.png"
-            alt="Goulin's personal photo"
+            src={`/assets/blogs/images/${blogPost.cover}`}
+            alt="Article's cover photo"
             layout="fill"
             objectFit="cover"
           />
         </div>
         <article className="blurry blurry-2 rounded-2xl flex flex-col flex-nowrap gap-3 -mt-5 py-8 px-4 relative z-10">
-          <h1 className="text-xl">{blog.title}</h1>
-          <p className="opacity-75">{blog.description}</p>
+          <h1 className="text-xl">{blogPost.title}</h1>
+          <p className="opacity-75">{blogPost.description}</p>
         </article>
       </a>
     </Link>

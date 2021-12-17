@@ -1,9 +1,13 @@
-import { LocationMarkerIcon } from "@heroicons/react/outline";
-import type { NextPage } from "next";
+import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
+import type { GetStaticProps, NextPage } from "next";
 import BlogCard from "../components/BlogCard";
 import Header from "../components/Header";
+import { BlogPost, getAllPosts } from "../utils/blogs";
 
-const Home: NextPage = () => {
+type Props = {
+  latestBlogPosts: BlogPost[];
+};
+const Home: NextPage<Props> = ({ latestBlogPosts }) => {
   return (
     <>
       <Header />
@@ -15,11 +19,14 @@ const Home: NextPage = () => {
         <p>Software engineer, manga/manhwa/manhua fan & gravel bike rider</p>
       </section>
       <section className="max-w-container mx-auto py-16 ">
-        <h2 className="text-2xl mb-6">My latest blogs</h2>
+        <div className="flex items-center mb-6">
+          <PencilAltIcon className="h-6 mr-2" />
+          <h2 className="text-2xl">My latest blogs</h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 2x:grid-cols-3 gap-5">
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
+          {latestBlogPosts.map((blogPost, i) => (
+            <BlogCard key={i} blogPost={blogPost} />
+          ))}
         </div>
       </section>
     </>
@@ -27,3 +34,17 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+export const getStaticProps: GetStaticProps<{ latestBlogPosts: BlogPost[] }> =
+  async (_) => {
+    let posts = getAllPosts();
+    posts = posts.sort(
+      (p1, p2) =>
+        new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()
+    );
+    // Latest 4 blog posts
+    return {
+      props: {
+        latestBlogPosts: posts.slice(0, 4),
+      },
+    };
+  };

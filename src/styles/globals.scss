@@ -8,6 +8,7 @@ body,
 .default {
   @apply dark:bg-gray-900 bg-gray-100;
   @apply dark:text-gray-100 text-gray-900;
+  @apply transition-colors;
 }
 
 .max-w-container {
