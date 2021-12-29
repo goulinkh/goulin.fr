@@ -14,7 +14,7 @@ const ThemeToggle = () => {
     <>
       <button
         onClick={handleToggleClick}
-        className="p-1 rounded opacity-75 hover:opacity-100 dark:hover:bg-white/10 hover:bg-black/5"
+        className="btn"
         ref={setTriggerRef}
       >
         {theme === "dark" ? (

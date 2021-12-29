@@ -1,13 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Ubuntu:wght@400;700&display=swap");
 
 @import "./popper.scss";
-
+.dark {
+  color-scheme: dark;
+}
 body,
 .default {
-  @apply dark:bg-gray-900 bg-gray-100;
-  @apply dark:text-gray-100 text-gray-900;
+  @apply dark:bg-zinc-900 bg-zinc-100;
+  @apply dark:text-zinc-100 text-zinc-900;
   @apply transition-colors;
 }
 
@@ -17,7 +20,7 @@ body,
 }
 
 .blurry {
-  @apply bg-white/75 dark:bg-black/40 dark:text-gray-200 border border-black/5 dark:border-white/20 backdrop-blur;
+  @apply bg-white/75 dark:bg-black/40 dark:text-zinc-200 border border-black/5 dark:border-white/20 backdrop-blur;
   /* Firefox */
   @-moz-document url-prefix() {
     & {
@@ -27,11 +30,20 @@ body,
 }
 
 .blurry.blurry-2 {
-  @apply bg-gray-100/75 dark:bg-gray-900/70;
+  @apply bg-zinc-100/75 dark:bg-zinc-900/70;
   /* Firefox */
   @-moz-document url-prefix() {
     & {
-      @apply bg-gray-100 dark:bg-gray-900;
+      @apply bg-zinc-100 dark:bg-zinc-900;
     }
   }
+}
+
+.btn {
+  @apply p-1 rounded opacity-75 hover:opacity-100 dark:hover:bg-white/10 hover:bg-black/5;
+}
+
+code::after,
+code::before {
+  content: "" !important;
 }

@@ -26,7 +26,7 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
               className="ml-auto mr-7 p-1 rounded opacity-75 hover:opacity-100 dark:hover:bg-white/10 hover:bg-black/5"
               ref={setTriggerRef}
             >
-              <RssIcon className="h-5" />
+              <RssIcon className="h-6" />
             </a>
           </Link>
         </div>

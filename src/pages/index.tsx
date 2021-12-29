@@ -11,12 +11,21 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
   return (
     <>
       <Header />
-      <section className="max-w-container mx-auto py-16 text-center space-y-4 flex flex-col">
-        <h1 className="text-3xl">Goulin Khoge</h1>
-        <div className="opacity-75 flex items-center justify-center">
+      <section className="max-w-container mx-auto py-16 space-y-4 flex flex-col relative isolate">
+        <h1 className="text-3xl backdrop-blur-sm mx-auto w-fit">
+          Goulin Khoge
+        </h1>
+        <div className="opacity-75 flex items-center justify-center backdrop-blur-sm mx-auto w-fit">
           <LocationMarkerIcon className="h-5 w-5 mr-2" /> France, Toulouse
         </div>
-        <p>Software engineer, manga/manhwa/manhua fan & gravel bike rider</p>
+        <p className="backdrop-blur-sm mx-auto w-fit">
+          Software engineer, manga/manhwa/manhua fan & gravel bike rider
+        </p>
+        <div
+          className="absolute top-0 w-full h-full text-cyan-800 -z-10
+         bg-repeat-round opacity-5 invert-0 dark:invert"
+          style={{ backgroundImage: "url('/assets/svg/pattern.svg')" }}
+        ></div>
       </section>
       <section className="max-w-container mx-auto py-16 ">
         <div className="flex items-center mb-6">
