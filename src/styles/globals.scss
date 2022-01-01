@@ -9,8 +9,8 @@
 }
 body,
 .default {
-  @apply dark:bg-zinc-900 bg-zinc-100;
-  @apply dark:text-zinc-100 text-zinc-900;
+  @apply dark:bg-zinc-800 bg-zinc-200;
+  @apply dark:text-zinc-200 text-zinc-800;
   @apply transition-colors;
 }
 
@@ -30,11 +30,11 @@ body,
 }
 
 .blurry.blurry-2 {
-  @apply bg-zinc-100/75 dark:bg-zinc-900/70;
+  @apply bg-zinc-200/75 dark:bg-zinc-800/70 border-gray-300 dark:border-gray-600;
   /* Firefox */
   @-moz-document url-prefix() {
     & {
-      @apply bg-zinc-100 dark:bg-zinc-900;
+      @apply bg-zinc-200 dark:bg-zinc-800;
     }
   }
 }

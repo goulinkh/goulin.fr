@@ -10,7 +10,7 @@ type Props = { blogPost: BlogPost };
 const BlogCard: React.FC<Props> = ({ blogPost }) => {
   return (
     <Link passHref href={`/blog/${blogPost.slug}`}>
-      <a className="rounded-2xl isolate overflow-hidden transition-shadow hover:shadow-lg">
+      <a className="rounded-2xl isolate overflow-hidden transition-shadow hover:shadow-lg dark:hover:shadow-2xl">
         <div className="relative h-60 w-full overflow-hidden">
           <BlogCover
             cover={blogPost.cover}
