@@ -1,7 +1,8 @@
 import { Feed } from "feed";
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import matter from "gray-matter";
-import p, { join } from "path";
+import p, { join, resolve } from "path";
+import { getPlaiceholder } from "plaiceholder";
 
 const blogsPath = join(process.cwd(), "blogs");
 export type BlogPost = {
@@ -11,9 +12,10 @@ export type BlogPost = {
   title: string;
   publishDate: string;
   description: string;
+  coverPreviewBlurData: string;
 };
 
-function resolvePost(path: string): BlogPost {
+async function resolvePost(path: string): Promise<BlogPost> {
   const slug = p.basename(path).replace(/\.mdx$/, "");
 
   const rawContent = readFileSync(path, { encoding: "utf-8" });
@@ -24,6 +26,9 @@ function resolvePost(path: string): BlogPost {
   };
   const frontmatter: BlogPost = {
     cover: data["cover"] || fail("cover"),
+    coverPreviewBlurData: await generateBlurImageData(
+      join(`/assets/blogs/images/${data["cover"]}`)
+    ),
     description: data["description"] || fail("description"),
     path: p.basename(path),
     publishDate: String(data["publishDate"]) || fail("publishDate"),
@@ -33,24 +38,30 @@ function resolvePost(path: string): BlogPost {
   return frontmatter;
 }
 
-export function getAllPosts(): BlogPost[] {
+async function generateBlurImageData(imageSrc: string) {
+  return (await getPlaiceholder(imageSrc)).base64;
+}
+
+export async function getAllPosts(): Promise<BlogPost[]> {
   const paths = readdirSync(blogsPath);
-  const posts = paths.map((path) => resolvePost(join(blogsPath, path)));
+  const posts = await Promise.all(
+    paths.map(async (path) => await resolvePost(join(blogsPath, path)))
+  );
   return posts;
 }
 
-export function getBlogPost(slug: string): BlogPost {
+export async function getBlogPost(slug: string): Promise<BlogPost> {
   const path = join(blogsPath, slug + ".mdx");
-  return resolvePost(path);
+  return await resolvePost(path);
 }
 
-export function generateFeed() {
+export async function generateFeed() {
   const me = {
     name: "Goulin Khoge",
     email: "contact@goulin.fr",
     link: "https://goulin.fr",
   };
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   const feed = new Feed({
     title: "Goulin Khoge's personal blogs",
     description:

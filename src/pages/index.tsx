@@ -1,6 +1,7 @@
 import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
 import type { GetStaticProps, NextPage } from "next";
 import BlogCard from "../components/BlogCard";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { BlogPost, getAllPosts } from "../utils/blogs";
 
@@ -45,7 +46,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
 export default Home;
 export const getStaticProps: GetStaticProps<{ latestBlogPosts: BlogPost[] }> =
   async (_) => {
-    let posts = getAllPosts();
+    let posts = await getAllPosts();
     posts = posts.sort(
       (p1, p2) =>
         new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()

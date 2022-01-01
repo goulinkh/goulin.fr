@@ -1,4 +1,11 @@
-import { CheckIcon, ClipboardIcon, LinkIcon } from "@heroicons/react/outline";
+import {
+  CalendarIcon,
+  CheckIcon,
+  ClipboardIcon,
+  CodeIcon,
+  LinkIcon,
+  UserIcon,
+} from "@heroicons/react/outline";
 import clsx from "clsx";
 import { MDXContent } from "mdx/types";
 import { GetStaticProps } from "next";
@@ -10,6 +17,7 @@ import {
   atomOneDark,
   atomOneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import BlogCover from "../../components/BlogCover";
 import Header from "../../components/Header";
 import { userPreferencesContext } from "../../context/userPreferences";
 import { BlogPost, getAllPosts, getBlogPost } from "../../utils/blogs";
@@ -60,17 +68,27 @@ const CodeCopyPastBtn: React.FC<{ content: string }> = ({ content }) => {
   );
 };
 
+const CodeLanguage: React.FC<{ language: string }> = ({ language }) => {
+  return (
+    <div className="absolute bottom-4 right-5 font-mono text-sm text-sky-500 dark:text-sky-400 flex items-center space-x-1 pointer-events-none">
+      <CodeIcon className="w-4" /> <span>{language}</span>
+    </div>
+  );
+};
+
 const Code: React.FC<any> = ({ className, ...props }) => {
   const [theme] = useContext(userPreferencesContext).theme;
   const match = /language-(\w+)/.exec(className || "");
   const inlineCode = !className;
   const codeToShow = inlineCode ? props.children : props.children.slice(0, -1);
-  return match ? (
+  const language = match?.[1];
+  return language ? (
     <div className="relative group">
       <CodeCopyPastBtn content={props.children} />
+      <CodeLanguage language={language} />
       <SyntaxHighlighter
         className="!p-4 not-prose !font-mono rounded-lg shadow border border-gray-200 dark:border-gray-600"
-        language={match[1]}
+        language={language}
         PreTag={inlineCode ? "pre" : "span"}
         CodeTag={inlineCode ? "code" : "span"}
         {...props}
@@ -91,8 +109,8 @@ const HeadingWrapper: React.FC<{ children: React.ReactNode }> = ({
 };
 const HeadingAnchor: React.FC<{ id: string }> = ({ id }) => {
   return (
-    <div className="flex absolute -left-6 h-full w-full opacity-0 group-hover:opacity-100 transition-opacity">
-      <a className="flex" href={"#" + id}>
+    <div className="hidden md:flex items-center absolute -left-7 h-full w-full opacity-0 group-hover:opacity-100 transition-opacity">
+      <a className="flex h-fit btn" href={"#" + id}>
         <LinkIcon className="w-4" />
       </a>
     </div>
@@ -115,18 +133,41 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
 
   return (
     <>
-      <Header />
+      <Header takeSpace={false} />
+      <div className="relative w-full h-72 -z-10">
+        <BlogCover
+          cover={post.cover}
+          coverBlurData={post.coverPreviewBlurData}
+        />
+      </div>
       <section
-        className="prose prose-zinc dark:prose-invert max-w-container mx-auto py-16 
-      prose-h1:text-sky-700 dark:prose-h1:text-sky-400
-      prose-h2:text-zinc-700 dark:prose-h2:text-zinc-400
-      prose-h3:text-zinc-700 dark:prose-h3:text-zinc-400
-      prose-h4:text-zinc-700 dark:prose-h4:text-zinc-400
-      prose-h5:text-zinc-700 dark:prose-h5:text-zinc-400
-      prose-h6:text-zinc-700 dark:prose-h6:text-zinc-400
-      prose-code:text-sky-800 dark:prose-code:text-sky-200
-      "
+        className="prose prose-zinc dark:prose-invert max-w-container mx-auto py-10
+        prose-h1:text-sky-700 dark:prose-h1:text-sky-400
+        prose-h2:text-zinc-700 dark:prose-h2:text-zinc-400
+        prose-h3:text-zinc-700 dark:prose-h3:text-zinc-400
+        prose-h4:text-zinc-700 dark:prose-h4:text-zinc-400
+        prose-h5:text-zinc-700 dark:prose-h5:text-zinc-400
+        prose-h6:text-zinc-700 dark:prose-h6:text-zinc-400
+        prose-code:text-sky-800 dark:prose-code:text-sky-200
+        "
       >
+        <p className="flex items-center space-x-3 text-sm opacity-75">
+          <div className="flex items-center space-x-1">
+            <CalendarIcon className="w-4" />
+            <span>
+              {new Date(post.publishDate).toLocaleDateString("en", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+          </div>
+          <span>•</span>
+          <div className="flex items-center space-x-1">
+            <UserIcon className="w-4" />
+            <span>Written by Goulin Khoge</span>
+          </div>
+        </p>
         <Content
           components={{
             pre: React.Fragment as any,
@@ -136,7 +177,7 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
               const id = content.replace(/(-|\/|,|\s)/gi, "-");
               return (
                 <HeadingWrapper>
-                  <HeadingAnchor id={id} />
+                  {/* <HeadingAnchor id={id} /> */}
                   <h1 id={id}>{content}</h1>
                 </HeadingWrapper>
               );
@@ -203,7 +244,7 @@ export default BlogPostPage;
 export const getStaticProps: GetStaticProps<{ post: BlogPost }> = async (
   context
 ) => {
-  const post = getBlogPost((context.params as { slug: string }).slug);
+  const post = await getBlogPost((context.params as { slug: string }).slug);
 
   return {
     props: { post },
@@ -211,7 +252,7 @@ export const getStaticProps: GetStaticProps<{ post: BlogPost }> = async (
 };
 
 export async function getStaticPaths() {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   return {
     paths: posts.map((post) => {
       return {

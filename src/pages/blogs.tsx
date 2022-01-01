@@ -54,7 +54,7 @@ export default Blogs;
 export const getStaticProps: GetStaticProps<{ allBlogPosts: BlogPost[] }> =
   async (_) => {
     generateFeed();
-    let posts = getAllPosts();
+    let posts = await getAllPosts();
 
     posts = posts.sort(
       (p1, p2) =>
