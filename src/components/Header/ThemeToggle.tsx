@@ -1,7 +1,7 @@
 import { MoonIcon, SunIcon } from "@heroicons/react/outline";
 import { useContext } from "react";
-import { userPreferencesContext } from "../../context/userPreferences";
 import { usePopperTooltip } from "react-popper-tooltip";
+import { userPreferencesContext } from "../../context/userPreferences";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useContext(userPreferencesContext).theme;

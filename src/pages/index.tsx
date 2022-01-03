@@ -1,7 +1,6 @@
 import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
 import type { GetStaticProps, NextPage } from "next";
 import BlogCard from "../components/BlogCard";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { BlogPost, getAllPosts } from "../utils/blogs";
 
@@ -12,7 +11,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
   return (
     <>
       <Header />
-      <section className="max-w-container mx-auto py-16 space-y-4 flex flex-col relative isolate">
+      <section className="max-w-container mx-auto my-16 space-y-4 flex flex-col relative isolate">
         <h1 className="text-3xl backdrop-blur-sm mx-auto w-fit">
           Goulin Khoge
         </h1>
@@ -28,7 +27,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
           style={{ backgroundImage: "url('/assets/svg/pattern.svg')" }}
         ></div>
       </section>
-      <section className="max-w-container mx-auto py-16 ">
+      <section className="max-w-container mx-auto my-16 ">
         <div className="flex items-center mb-6">
           <PencilAltIcon className="h-6 mr-2" />
           <h2 className="text-2xl">My latest blogs</h2>

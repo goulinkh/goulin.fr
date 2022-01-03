@@ -1,13 +1,8 @@
-import React, { ReactElement } from "react";
 import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentInitialProps,
-  DocumentContext,
+  DocumentContext, DocumentInitialProps, Head, Html, Main,
+  NextScript
 } from "next/document";
-import Footer from "../components/Footer";
+import React, { ReactElement } from "react";
 
 export default class MyDocument extends Document {
   static async getInitialProps(
@@ -25,7 +20,6 @@ export default class MyDocument extends Document {
         <Head></Head>
         <body>
           <Main />
-          <Footer />
           <NextScript />
         </body>
       </Html>

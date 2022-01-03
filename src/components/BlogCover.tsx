@@ -1,10 +1,14 @@
 import Image from "next/image";
+import RandomGradient from "./RandomGradient";
 
-const BlogCover: React.FC<{ cover: string; coverBlurData: string }> = ({
-  cover,
-  coverBlurData,
-}) => {
-  return (
+type Props = {
+  cover: string | null;
+  coverBlurData: string;
+  slug: string;
+};
+
+const BlogCover: React.FC<Props> = ({ cover, coverBlurData, slug }) => {
+  return cover ? (
     <Image
       src={`/assets/blogs/images/${cover}`}
       alt="Article's cover photo"
@@ -13,6 +17,8 @@ const BlogCover: React.FC<{ cover: string; coverBlurData: string }> = ({
       blurDataURL={coverBlurData}
       placeholder="blur"
     />
+  ) : (
+    <RandomGradient unique={slug} />
   );
 };
 

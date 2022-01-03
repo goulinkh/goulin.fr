@@ -1,13 +1,12 @@
-import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
+import { LocationMarkerIcon } from "@heroicons/react/outline";
 import type { NextPage } from "next";
-import BlogCard from "../components/BlogCard";
 import Header from "../components/Header";
 
 const About: NextPage = () => {
   return (
     <>
       <Header />
-      <section className="max-w-container mx-auto py-16 text-center space-y-4 flex flex-col">
+      <section className="max-w-container mx-auto my-16 text-center space-y-4 flex flex-col">
         <h1 className="text-3xl">Goulin Khoge</h1>
         <div className="opacity-75 flex items-center justify-center">
           <LocationMarkerIcon className="h-5 w-5 mr-2" /> France, Toulouse

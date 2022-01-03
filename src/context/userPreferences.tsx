@@ -1,9 +1,9 @@
 import React, {
-  createContext,
-  FC,
-  ReactNode,
-  useEffect,
-  useState,
+    createContext,
+    FC,
+    ReactNode,
+    useEffect,
+    useState
 } from "react";
 
 type Theme = "light" | "dark";

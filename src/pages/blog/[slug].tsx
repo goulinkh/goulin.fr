@@ -4,7 +4,8 @@ import {
   ClipboardIcon,
   CodeIcon,
   LinkIcon,
-  UserIcon,
+  PencilAltIcon,
+  UserIcon
 } from "@heroicons/react/outline";
 import clsx from "clsx";
 import { MDXContent } from "mdx/types";
@@ -15,8 +16,9 @@ import { usePopperTooltip } from "react-popper-tooltip";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {
   atomOneDark,
-  atomOneLight,
+  atomOneLight
 } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import BlogCard from "../../components/BlogCard";
 import BlogCover from "../../components/BlogCover";
 import Header from "../../components/Header";
 import { userPreferencesContext } from "../../context/userPreferences";
@@ -118,6 +120,7 @@ const HeadingAnchor: React.FC<{ id: string }> = ({ id }) => {
 };
 
 const BlogPostPage = ({ post }: { post: BlogPost }) => {
+  console.log(`post `, post);
   const Content = dynamic(
     () => import(`../../../blogs/${post.path}`)
   ) as MDXContent;
@@ -138,10 +141,11 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
         <BlogCover
           cover={post.cover}
           coverBlurData={post.coverPreviewBlurData}
+          slug={post.slug}
         />
       </div>
       <section
-        className="prose prose-zinc dark:prose-invert max-w-container mx-auto py-10
+        className="prose prose-zinc dark:prose-invert max-w-container mx-auto my-16
         prose-h1:text-sky-700 dark:prose-h1:text-sky-400
         prose-h2:text-zinc-700 dark:prose-h2:text-zinc-400
         prose-h3:text-zinc-700 dark:prose-h3:text-zinc-400
@@ -235,6 +239,19 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
           }}
         />
       </section>
+      {post.relatedPosts.length && (
+        <section className="max-w-container mx-auto my-16">
+          <div className="flex items-center mb-6">
+            <PencilAltIcon className="h-6 mr-2" />
+            <h2 className="text-2xl">Related blog posts</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 2x:grid-cols-3 gap-5">
+            {post.relatedPosts.slice(0, 4).map((blogPost, i) => (
+              <BlogCard key={i} blogPost={blogPost} small />
+            ))}
+          </div>
+        </section>
+      )}
     </>
   );
 };

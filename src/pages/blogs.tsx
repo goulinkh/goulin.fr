@@ -15,7 +15,7 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
   return (
     <>
       <Header />
-      <section className="max-w-container mx-auto py-16 ">
+      <section className="max-w-container mx-auto my-16 ">
         <div className="flex content-between items-center mb-6">
           <div className="flex items-center w-fit">
             <PencilAltIcon className="h-6 mr-2" />

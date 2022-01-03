@@ -1,18 +1,21 @@
 import { Feed } from "feed";
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import matter from "gray-matter";
-import p, { join, resolve } from "path";
+import p, { join } from "path";
 import { getPlaiceholder } from "plaiceholder";
+import { deepClone } from "./common";
 
 const blogsPath = join(process.cwd(), "blogs");
 export type BlogPost = {
-  cover: string;
+  cover: string | null;
   path: string;
   slug: string;
   title: string;
   publishDate: string;
   description: string;
   coverPreviewBlurData: string;
+  tags: string[];
+  relatedPosts: BlogPost[];
 };
 
 async function resolvePost(path: string): Promise<BlogPost> {
@@ -25,15 +28,19 @@ async function resolvePost(path: string): Promise<BlogPost> {
     process.exit(1);
   };
   const frontmatter: BlogPost = {
-    cover: data["cover"] || fail("cover"),
-    coverPreviewBlurData: await generateBlurImageData(
-      join(`/assets/blogs/images/${data["cover"]}`)
-    ),
+    cover: data["cover"] || null,
+    coverPreviewBlurData: data["cover"]
+      ? await generateBlurImageData(
+          join(`/assets/blogs/images/${data["cover"]}`)
+        )
+      : "",
     description: data["description"] || fail("description"),
     path: p.basename(path),
     publishDate: String(data["publishDate"]) || fail("publishDate"),
     slug,
     title: data["title"] || fail("title"),
+    tags: (data["tags"] || "").split(",").map((tag: string) => tag.trim()),
+    relatedPosts: [],
   };
   return frontmatter;
 }
@@ -47,12 +54,32 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   const posts = await Promise.all(
     paths.map(async (path) => await resolvePost(join(blogsPath, path)))
   );
+  const tags: { [key: string]: BlogPost[] } = {};
+  posts.forEach((post) =>
+    post.tags.forEach((tag) => {
+      if (!tags[tag]) tags[tag] = [];
+      tags[tag].push(post);
+    })
+  );
+  posts.forEach((post) =>
+    Object.keys(tags).forEach((tag) =>
+      post.relatedPosts.push(
+        ...tags[tag]
+          .filter(
+            (relatedPost) =>
+              relatedPost !== post &&
+              !post.relatedPosts.find((p) => relatedPost.slug === p.slug)
+          )
+          .map((newRelatedPost) => deepClone(newRelatedPost))
+      )
+    )
+  );
   return posts;
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost> {
-  const path = join(blogsPath, slug + ".mdx");
-  return await resolvePost(path);
+  const allPosts = await getAllPosts();
+  return allPosts.filter((post) => post.slug === slug)[0];
 }
 
 export async function generateFeed() {
