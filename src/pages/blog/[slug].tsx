@@ -11,6 +11,7 @@ import clsx from "clsx";
 import { MDXContent } from "mdx/types";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { usePopperTooltip } from "react-popper-tooltip";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -20,6 +21,7 @@ import {
 } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import BlogCard from "../../components/BlogCard";
 import BlogCover from "../../components/BlogCover";
+import BlogPostComments from "../../components/BlogPostComments";
 import Header from "../../components/Header";
 import { userPreferencesContext } from "../../context/userPreferences";
 import { BlogPost, getAllPosts, getBlogPost } from "../../utils/blogs";
@@ -120,7 +122,7 @@ const HeadingAnchor: React.FC<{ id: string }> = ({ id }) => {
 };
 
 const BlogPostPage = ({ post }: { post: BlogPost }) => {
-  console.log(`post `, post);
+  const [theme] = useContext(userPreferencesContext).theme;
   const Content = dynamic(
     () => import(`../../../blogs/${post.path}`)
   ) as MDXContent;
@@ -136,6 +138,9 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
 
   return (
     <>
+      <Head>
+        <title>{post.title}</title>
+      </Head>
       <Header takeSpace={false} />
       <div className="relative w-full h-72 -z-10">
         <BlogCover
@@ -147,9 +152,9 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
       <section
         className="prose prose-zinc dark:prose-invert max-w-container mx-auto my-16
         prose-h1:text-sky-700 dark:prose-h1:text-sky-400
-        prose-h2:text-zinc-700 dark:prose-h2:text-zinc-400
-        prose-h3:text-zinc-700 dark:prose-h3:text-zinc-400
-        prose-h4:text-zinc-700 dark:prose-h4:text-zinc-400
+        prose-h2:text-zinc-700 dark:prose-h2:text-zinc-300
+        prose-h3:text-zinc-700 dark:prose-h3:text-zinc-300
+        prose-h4:text-zinc-700 dark:prose-h4:text-zinc-300
         prose-h5:text-zinc-700 dark:prose-h5:text-zinc-400
         prose-h6:text-zinc-700 dark:prose-h6:text-zinc-400
         prose-code:text-sky-800 dark:prose-code:text-sky-200
@@ -239,7 +244,10 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
           }}
         />
       </section>
-      {post.relatedPosts.length && (
+      <section>
+        <BlogPostComments />
+      </section>
+      {post.relatedPosts.length ? (
         <section className="max-w-container mx-auto my-16">
           <div className="flex items-center mb-6">
             <PencilAltIcon className="h-6 mr-2" />
@@ -251,7 +259,7 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
             ))}
           </div>
         </section>
-      )}
+      ) : null}
     </>
   );
 };

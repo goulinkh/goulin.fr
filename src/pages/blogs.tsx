@@ -1,5 +1,6 @@
 import { PencilAltIcon, RssIcon } from "@heroicons/react/outline";
 import type { GetStaticProps, NextPage } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { usePopperTooltip } from "react-popper-tooltip";
 import BlogCard from "../components/BlogCard";
@@ -14,6 +15,9 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
     usePopperTooltip();
   return (
     <>
+      <Head>
+        <title>Blog posts - Goulin Khoge</title>
+      </Head>
       <Header />
       <section className="max-w-container mx-auto my-16 ">
         <div className="flex content-between items-center mb-6">

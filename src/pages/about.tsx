@@ -1,10 +1,14 @@
 import { LocationMarkerIcon } from "@heroicons/react/outline";
 import type { NextPage } from "next";
+import Head from "next/head";
 import Header from "../components/Header";
 
 const About: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>About me - Goulin Khoge</title>
+      </Head>
       <Header />
       <section className="max-w-container mx-auto my-16 text-center space-y-4 flex flex-col">
         <h1 className="text-3xl">Goulin Khoge</h1>

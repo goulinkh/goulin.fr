@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Link from "next/link";
+import Link from "../common/Link";
 import Avatar from "./Avatar";
 import ThemeToggle from "./ThemeToggle";
 
@@ -16,13 +16,10 @@ const Header: React.FC<{ takeSpace?: boolean }> = ({ takeSpace = true }) => {
           <nav className="flex items-center flex-wrap sm:flex-nowrap">
             <Avatar />
             <span className="pl-10"></span>
-            <Link passHref href="/blogs">
-              <a className="p-1 opacity-75 hover:opacity-100">Blogs</a>
+            <Link href="/blogs" className="mr-5">
+              Blogs
             </Link>
-            <span className="pl-5"></span>
-            <Link passHref href="/about">
-              <a className="p-1 opacity-75 hover:opacity-100">About</a>
-            </Link>
+            <Link href="/about">About</Link>
             <div className="flex ml-auto items-center">
               <ThemeToggle />
             </div>
