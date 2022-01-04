@@ -1,0 +1,8 @@
+Sitemap: https://goulin.fr/api/posts-sitemap
+
+User-agent: *
+Allow: /*
+
+Disallow: /api/*
+Disallow: /assets/*
+Disallow: /images/*

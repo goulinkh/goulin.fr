@@ -1,10 +1,11 @@
 import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
 import type { GetStaticProps, NextPage } from "next";
-import Head from "next/head";
 import { usePopperTooltip } from "react-popper-tooltip";
 import BlogCard from "../components/BlogCard";
+import Description from "../components/head/Description";
+import Title from "../components/head/Title";
 import Header from "../components/Header";
-import { BlogPost, getAllPosts } from "../utils/blogs";
+import { allPosts, BlogPost } from "../utils/blogs";
 
 type Props = {
   latestBlogPosts: BlogPost[];
@@ -15,10 +16,8 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
 
   return (
     <>
-      <Head>
-        <title>Goulin Khoge</title>
-      </Head>
-
+      <Title />
+      <Description />
       <Header />
       <section className="max-w-container mx-auto py-16 space-y-4 flex flex-col relative isolate">
         <h1 className="text-3xl backdrop-blur-sm mx-auto w-fit">
@@ -30,7 +29,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
         <p className="backdrop-blur-sm mx-auto w-fit">
           <span ref={popper1.setTriggerRef}>Software engineer,</span>{" "}
           <span ref={popper2.setTriggerRef}>coffee hobbyist</span>, manga fan &
-          a gravel bike rider
+          a gravel bike rider.
         </p>
         {popper1.visible && (
           <div
@@ -104,7 +103,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
 export default Home;
 export const getStaticProps: GetStaticProps<{ latestBlogPosts: BlogPost[] }> =
   async (_) => {
-    let posts = await getAllPosts();
+    let posts = await allPosts;
     posts = posts.sort(
       (p1, p2) =>
         new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()

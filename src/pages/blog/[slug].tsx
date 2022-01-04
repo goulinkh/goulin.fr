@@ -22,9 +22,11 @@ import {
 import BlogCard from "../../components/BlogCard";
 import BlogCover from "../../components/BlogCover";
 import BlogPostComments from "../../components/BlogPostComments";
+import Description from "../../components/head/Description";
+import Title from "../../components/head/Title";
 import Header from "../../components/Header";
 import { userPreferencesContext } from "../../context/userPreferences";
-import { BlogPost, getAllPosts, getBlogPost } from "../../utils/blogs";
+import { allPosts, BlogPost, getBlogPost } from "../../utils/blogs";
 import { copyTextToClipboard } from "../../utils/common";
 
 const CodeCopyPastBtn: React.FC<{ content: string }> = ({ content }) => {
@@ -138,6 +140,9 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
 
   return (
     <>
+      <Title title={post.title} />
+      <Description description={post.description} />
+
       <Head>
         <title>{post.title}</title>
       </Head>
@@ -277,7 +282,7 @@ export const getStaticProps: GetStaticProps<{ post: BlogPost }> = async (
 };
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts();
+  const posts = await allPosts;
   return {
     paths: posts.map((post) => {
       return {

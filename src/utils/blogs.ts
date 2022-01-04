@@ -50,8 +50,8 @@ async function resolvePost(path: string): Promise<BlogPost> {
 async function generateBlurImageData(imageSrc: string) {
   return (await getPlaiceholder(imageSrc)).base64;
 }
-
-export async function getAllPosts(): Promise<BlogPost[]> {
+export const allPosts = getAllPosts();
+async function getAllPosts(): Promise<BlogPost[]> {
   const paths = readdirSync(blogsPath);
   const posts = await Promise.all(
     paths.map(async (path) => await resolvePost(join(blogsPath, path)))
