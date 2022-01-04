@@ -16,6 +16,7 @@ export type BlogPost = {
   coverPreviewBlurData: string;
   tags: string[];
   relatedPosts: BlogPost[];
+  topic: "tech" | "cycling" | "coffee";
 };
 
 async function resolvePost(path: string): Promise<BlogPost> {
@@ -41,6 +42,7 @@ async function resolvePost(path: string): Promise<BlogPost> {
     title: data["title"] || fail("title"),
     tags: (data["tags"] || "").split(",").map((tag: string) => tag.trim()),
     relatedPosts: [],
+    topic: data["topic"],
   };
   return frontmatter;
 }
