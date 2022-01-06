@@ -11,7 +11,6 @@ import clsx from "clsx";
 import { GetStaticProps } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import Head from "next/head";
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { usePopperTooltip } from "react-popper-tooltip";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -22,9 +21,8 @@ import {
 import BlogCard from "../../components/BlogCard";
 import BlogCover from "../../components/BlogCover";
 import BlogPostComments from "../../components/BlogPostComments";
-import Description from "../../components/head/Description";
-import Title from "../../components/head/Title";
 import Header from "../../components/Header";
+import SEO from "../../components/SEO";
 import { userPreferencesContext } from "../../context/userPreferences";
 import { allPosts, BlogPost, getBlogPost } from "../../utils/blogs";
 import { copyTextToClipboard } from "../../utils/common";
@@ -139,12 +137,11 @@ const BlogPostPage = ({
   });
   return (
     <>
-      <Title title={post.title} />
-      <Description description={post.description} />
-
-      <Head>
-        <title>{post.title}</title>
-      </Head>
+      <SEO
+        title={post.title}
+        cover={post.cover ? post.cover : undefined}
+        description={post.description}
+      />
       <Header takeSpace={false} />
       <div className="relative w-full h-72 -z-10">
         <BlogCover

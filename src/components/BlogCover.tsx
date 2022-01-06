@@ -10,7 +10,7 @@ type Props = {
 const BlogCover: React.FC<Props> = ({ cover, coverBlurData, slug }) => {
   return cover ? (
     <Image
-      src={`/assets/blogs/images/${cover}`}
+      src={cover}
       alt="Article's cover photo"
       layout="fill"
       objectFit="cover"

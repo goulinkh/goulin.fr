@@ -2,9 +2,8 @@ import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
 import type { GetStaticProps, NextPage } from "next";
 import { usePopperTooltip } from "react-popper-tooltip";
 import BlogCard from "../components/BlogCard";
-import Description from "../components/head/Description";
-import Title from "../components/head/Title";
 import Header from "../components/Header";
+import SEO from "../components/SEO";
 import { allPosts, BlogPost } from "../utils/blogs";
 
 type Props = {
@@ -16,8 +15,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
 
   return (
     <>
-      <Title />
-      <Description />
+      <SEO />
       <Header />
       <section className="max-w-container mx-auto py-16 space-y-4 flex flex-col relative isolate">
         <h1 className="text-3xl backdrop-blur-sm mx-auto w-fit">

@@ -1,14 +1,12 @@
 import { LocationMarkerIcon } from "@heroicons/react/outline";
 import type { NextPage } from "next";
-import Description from "../components/head/Description";
-import Title from "../components/head/Title";
 import Header from "../components/Header";
+import SEO from "../components/SEO";
 
 const About: NextPage = () => {
   return (
     <>
-      <Title title="About me" />
-      <Description />
+      <SEO title="About me" />
 
       <Header />
       <section className="max-w-container mx-auto my-16 text-center space-y-4 flex flex-col">

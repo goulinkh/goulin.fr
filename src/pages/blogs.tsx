@@ -3,9 +3,8 @@ import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { usePopperTooltip } from "react-popper-tooltip";
 import BlogCard from "../components/BlogCard";
-import Description from "../components/head/Description";
-import Title from "../components/head/Title";
 import Header from "../components/Header";
+import SEO from "../components/SEO";
 import { allPosts, BlogPost, generateFeed } from "../utils/blogs";
 
 type Props = {
@@ -17,8 +16,7 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
     usePopperTooltip();
   return (
     <>
-      <Title title="Blog Posts" />
-      <Description />
+      <SEO title="Blog Posts" />
 
       <Header />
       <section className="max-w-container mx-auto my-16 ">

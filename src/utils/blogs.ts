@@ -30,7 +30,7 @@ async function resolvePost(path: string): Promise<BlogPost> {
     process.exit(1);
   };
   const frontmatter: BlogPost = {
-    cover: data["cover"] || null,
+    cover: "/assets/blogs/images/" + data["cover"] || null,
     coverPreviewBlurData: data["cover"]
       ? await generateBlurImageData(
           join(`/assets/blogs/images/${data["cover"]}`)
@@ -50,7 +50,7 @@ async function resolvePost(path: string): Promise<BlogPost> {
 }
 
 export async function generateBlurImageData(imageSrc: string) {
-  console.log(`imageSrc`, imageSrc)
+  console.log(`imageSrc`, imageSrc);
   return (await getPlaiceholder(imageSrc)).base64;
 }
 export const allPosts = getAllPosts();
