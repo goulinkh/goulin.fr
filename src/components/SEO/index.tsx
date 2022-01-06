@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 import { useEffect, useState } from "react";
 import Favicon from "./Favicon";
 type Props = { title?: string; cover?: string; description?: string };
@@ -11,7 +12,10 @@ const SEO: React.FC<Props> = ({ title, cover, description }) => {
   useEffect(() => {
     setLocation(location);
   }, []);
-  title = title ? `${title} - Goulin Khoge` : "Goulin Khoge's personal page";
+  const titleTag = title
+    ? `${title} - Goulin Khoge`
+    : "Goulin Khoge's personal page";
+  title = title ? `${title} - Goulin Khoge` : "Goulin Khoge";
   description =
     description ||
     "Software engineer, coffee hobbyist, manga fan & a gravel bike rider.";
@@ -33,16 +37,21 @@ const SEO: React.FC<Props> = ({ title, cover, description }) => {
 
         <meta property="title" content={title} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={title} />
+        <meta property="og:title" content={titleTag} />
         <meta property="og:url" content={location.href} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
+        <meta name="twitter:title" content={titleTag} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
       </Head>
+      <Script
+        defer
+        data-domain="goulin.fr"
+        src="https://insights.api.goulin.fr/js/insights.js"
+      />
       <Favicon />
     </>
   );
