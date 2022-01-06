@@ -21,7 +21,7 @@ export default function BlogPostComments() {
   // Inject styling classes and remove the default style
   useEffect(() => {
     if (!utterancesEl) return;
-    utterancesEl.classList.add("max-w-container");
+    utterancesEl.classList.add("w-full", "max-w-full");
     utterancesEl.removeAttribute("style");
     // const iframe = utterancesEl.querySelector(".utterances-frame");
   }, [utterancesEl]);

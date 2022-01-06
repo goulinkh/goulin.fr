@@ -44,7 +44,7 @@ async function resolvePost(path: string): Promise<BlogPost> {
     tags: (data["tags"] || "").split(",").map((tag: string) => tag.trim()),
     relatedPosts: [],
     topic: data["topic"],
-    content,
+    content: `# ${data["title"]}\n${content}`,
   };
   return frontmatter;
 }

@@ -5,7 +5,7 @@ import {
   CodeIcon,
   LinkIcon,
   PencilAltIcon,
-  UserIcon
+  UserIcon,
 } from "@heroicons/react/outline";
 import clsx from "clsx";
 import { GetStaticProps } from "next";
@@ -16,7 +16,7 @@ import { usePopperTooltip } from "react-popper-tooltip";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {
   atomOneDark,
-  atomOneLight
+  atomOneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import BlogCard from "../../components/BlogCard";
 import BlogCover from "../../components/BlogCover";
@@ -161,23 +161,6 @@ const BlogPostPage = ({
         prose-code:text-sky-800 dark:prose-code:text-sky-200
         "
       >
-        <div className="flex items-center space-x-3 text-sm opacity-75">
-          <div className="flex items-center space-x-1">
-            <CalendarIcon className="w-4" />
-            <span>
-              {new Date(post.publishDate).toLocaleDateString("en", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-          </div>
-          <span>•</span>
-          <div className="flex items-center space-x-1">
-            <UserIcon className="w-4" />
-            <span>Written by Goulin Khoge</span>
-          </div>
-        </div>
         <MDXRemote
           {...source}
           components={{
@@ -246,7 +229,24 @@ const BlogPostPage = ({
           }}
         />
       </section>
-      <section>
+      <section className="max-w-container mx-auto">
+        <div className="flex items-center space-x-3 text-xs md:text-sm opacity-75 my-6">
+          <div className="flex items-center space-x-1">
+            <UserIcon className="w-4" />
+            <span>Written by Goulin Khoge</span>
+          </div>
+          <span>•</span>
+          <div className="flex items-center space-x-1">
+            <CalendarIcon className="w-4" />
+            <span>
+              {new Date(post.publishDate).toLocaleDateString("en", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+          </div>
+        </div>
         <BlogPostComments />
       </section>
       {post.relatedPosts.length ? (
