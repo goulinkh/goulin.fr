@@ -16,6 +16,7 @@ const ThemeToggle = () => {
         onClick={handleToggleClick}
         className="btn"
         ref={setTriggerRef}
+        aria-label={`Switch to the ${theme === "dark" ? "light" : "dark"} theme`}
       >
         {theme === "dark" ? (
           <SunIcon className="h-6" />
@@ -26,7 +27,9 @@ const ThemeToggle = () => {
       {visible && (
         <div
           ref={setTooltipRef}
-          {...getTooltipProps({ className: "tooltip-container default blurry blurry-2" })}
+          {...getTooltipProps({
+            className: "tooltip-container default blurry blurry-2",
+          })}
         >
           Switch to {theme === "dark" ? "light" : "dark"} theme
         </div>

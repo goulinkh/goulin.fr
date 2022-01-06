@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="max-w-container mx-auto">
       <div className="my-16 items-center grid grid-cols-1 lg:grid-cols-2 gap-4">
         <p>Built with ♡ using NextJS, Tailwind, MDX & Vercel</p>
-        <ul className="flex items-center space-x-3 justify-end">
+        <ul className="flex items-center space-x-3 lg:justify-end">
           <li>
             <Link href="https://github.com/goulinkh">Github</Link>
           </li>

@@ -8,9 +8,9 @@ import {
   UserIcon
 } from "@heroicons/react/outline";
 import clsx from "clsx";
-import { MDXContent } from "mdx/types";
 import { GetStaticProps } from "next";
-import dynamic from "next/dynamic";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { usePopperTooltip } from "react-popper-tooltip";
@@ -28,7 +28,6 @@ import Header from "../../components/Header";
 import { userPreferencesContext } from "../../context/userPreferences";
 import { allPosts, BlogPost, getBlogPost } from "../../utils/blogs";
 import { copyTextToClipboard } from "../../utils/common";
-
 const CodeCopyPastBtn: React.FC<{ content: string }> = ({ content }) => {
   const successShowTime = 2000;
   const { getTooltipProps, setTooltipRef, setTriggerRef, visible } =
@@ -123,12 +122,13 @@ const HeadingAnchor: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
-const BlogPostPage = ({ post }: { post: BlogPost }) => {
-  const [theme] = useContext(userPreferencesContext).theme;
-  const Content = dynamic(
-    () => import(`../../../blogs/${post.path}`)
-  ) as MDXContent;
-
+const BlogPostPage = ({
+  post,
+  source,
+}: {
+  post: BlogPost;
+  source: MDXRemoteSerializeResult;
+}) => {
   // Anchor doesn't scroll
   useEffect(() => {
     setTimeout(() => {
@@ -137,7 +137,6 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
       window.location.hash = hash;
     }, 600);
   });
-
   return (
     <>
       <Title title={post.title} />
@@ -165,7 +164,7 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
         prose-code:text-sky-800 dark:prose-code:text-sky-200
         "
       >
-        <p className="flex items-center space-x-3 text-sm opacity-75">
+        <div className="flex items-center space-x-3 text-sm opacity-75">
           <div className="flex items-center space-x-1">
             <CalendarIcon className="w-4" />
             <span>
@@ -181,8 +180,9 @@ const BlogPostPage = ({ post }: { post: BlogPost }) => {
             <UserIcon className="w-4" />
             <span>Written by Goulin Khoge</span>
           </div>
-        </p>
-        <Content
+        </div>
+        <MDXRemote
+          {...source}
           components={{
             pre: React.Fragment as any,
             code: Code as any,
@@ -277,7 +277,7 @@ export const getStaticProps: GetStaticProps<{ post: BlogPost }> = async (
   const post = await getBlogPost((context.params as { slug: string }).slug);
 
   return {
-    props: { post },
+    props: { post, source: await serialize(post.content) },
   };
 };
 

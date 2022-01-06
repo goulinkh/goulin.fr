@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
-import Favicon from "../components/Favicon";
 import Footer from "../components/Footer";
+import Favicon from "../components/head/Favicon";
 import { UserPreferencesProvider } from "../context/userPreferences";
 import "../styles/globals.scss";
 

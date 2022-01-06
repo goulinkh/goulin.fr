@@ -5,7 +5,7 @@ import { allPosts } from "../../utils/blogs";
 const routes = ["/", "/about", "/blogs"];
 
 // List of posts
-export default async function (req: NextApiRequest, res: NextApiResponse) {
+export default async function postsSitemap (req: NextApiRequest, res: NextApiResponse) {
   try {
     const smStream = new SitemapStream({
       hostname: `https://${req.headers.host}`,

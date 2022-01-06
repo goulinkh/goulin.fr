@@ -1,9 +1,9 @@
 import React, {
-    createContext,
-    FC,
-    ReactNode,
-    useEffect,
-    useState
+  createContext,
+  FC,
+  ReactNode,
+  useEffect,
+  useState
 } from "react";
 
 type Theme = "light" | "dark";
@@ -29,11 +29,8 @@ export const DEFAULT_THEME: Theme = "light";
 export const UserPreferencesProvider: FC<Props> = ({ children }) => {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
-  const [hasMounted, setHasMounted] = useState(false);
-
   /* Theme */
   useEffect(() => {
-    setHasMounted(true);
     if (
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&
@@ -51,9 +48,6 @@ export const UserPreferencesProvider: FC<Props> = ({ children }) => {
     );
     localStorage.theme = theme;
   }, [theme]);
-  if (!hasMounted) {
-    return null;
-  }
   return (
     <userPreferencesContext.Provider value={{ theme: [theme, setTheme] }}>
       {children}

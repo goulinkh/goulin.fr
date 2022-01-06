@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
-import { userPreferencesContext } from "../context/userPreferences";
+import { userPreferencesContext } from "../../context/userPreferences";
 
 const Favicon = () => {
   const [angle, setAngle] = useState(0);

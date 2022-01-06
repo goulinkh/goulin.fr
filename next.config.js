@@ -1,30 +1,23 @@
-const remarkFrontmatter = require("remark-frontmatter");
-const { remarkMdxFrontmatter } = require("remark-mdx-frontmatter");
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx$/,
+});
 
 /** @type {import('next').NextConfig} */
-module.exports = {
+module.exports = withMDX({
   reactStrictMode: true,
   // Prefer loading of ES Modules over CommonJS
   experimental: { esmExternals: true },
   // Support MDX files as pages:
-  pageExtensions: ["md", "mdx", "tsx", "ts", "jsx", "js"],
-  // Support loading `.md`, `.mdx`:
-  webpack(config, options) {
-    config.module.rules.push({
-      test: /\.mdx?$/,
-      use: [
-        // The default `babel-loader` used by Next:
-        options.defaultLoaders.babel,
-        {
-          loader: "@mdx-js/loader",
-          /** @type {import('@mdx-js/loader').Options} */
-          options: {
-            remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
-          },
-        },
-      ],
-    });
+  pageExtensions: ["tsx", "ts", "jsx", "js"],
+  webpack: (config, { isServer }) => {
+    // Fixes npm packages that depend on `fs` module
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+        path: false,
+      };
+    }
 
     return config;
   },
-};
+});

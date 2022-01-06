@@ -17,13 +17,14 @@ export type BlogPost = {
   tags: string[];
   relatedPosts: BlogPost[];
   topic: "tech" | "cycling" | "coffee";
+  content: string;
 };
 
 async function resolvePost(path: string): Promise<BlogPost> {
   const slug = p.basename(path).replace(/\.mdx$/, "");
 
   const rawContent = readFileSync(path, { encoding: "utf-8" });
-  const { data } = matter(rawContent);
+  const { data, content } = matter(rawContent);
   const fail = (field: string) => {
     console.error(`missing ${field} field for blog ${slug}`);
     process.exit(1);
@@ -43,11 +44,13 @@ async function resolvePost(path: string): Promise<BlogPost> {
     tags: (data["tags"] || "").split(",").map((tag: string) => tag.trim()),
     relatedPosts: [],
     topic: data["topic"],
+    content,
   };
   return frontmatter;
 }
 
-async function generateBlurImageData(imageSrc: string) {
+export async function generateBlurImageData(imageSrc: string) {
+  console.log(`imageSrc`, imageSrc)
   return (await getPlaiceholder(imageSrc)).base64;
 }
 export const allPosts = getAllPosts();
