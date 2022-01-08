@@ -50,7 +50,6 @@ async function resolvePost(path: string): Promise<BlogPost> {
 }
 
 export async function generateBlurImageData(imageSrc: string) {
-  console.log(`imageSrc`, imageSrc);
   return (await getPlaiceholder(imageSrc)).base64;
 }
 export const allPosts = getAllPosts();
@@ -103,7 +102,6 @@ export async function generateFeed() {
     link: "https://goulin.fr",
     language: "en",
     updated: new Date(),
-    generator: "Feed & NextJS on Vercel",
     feedLinks: {
       atom: "https://goulin.fr/rss/atom.xml",
       rss: "https://goulin.fr/rss/feed.xml",
@@ -119,7 +117,7 @@ export async function generateFeed() {
       date: new Date(post.publishDate),
       description: post.description,
       author: [me],
-      image: `https://goulin.fr/assets/blogs/images/${post.cover}`,
+      image: post.cover ? "https://goulin.fr" + post.cover : undefined,
       content: post.description,
     });
   });
