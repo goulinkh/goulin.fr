@@ -11,13 +11,16 @@ type Theme =
   | "photon-dark"
   | "boxy-light"
   | "gruvbox-dark";
+const commentTheme: { dark: Theme; light: Theme } = {
+  dark: "photon-dark",
+  light: "github-light",
+};
 export default function BlogPostComments() {
   const [utterancesEl, setUtterancesEl] = useState<Element | null>(null);
   const [theme] = useContext(userPreferencesContext).theme;
-  const [commentTheme, setCommentTheme] = useState<Theme>(
-    theme === "dark" ? "photon-dark" : "github-light"
+  const [scriptIsLoading, setScriptIsLoading] = useState<Promise<void> | null>(
+    null
   );
-
   // Inject styling classes and remove the default style
   useEffect(() => {
     if (!utterancesEl) return;
@@ -27,21 +30,17 @@ export default function BlogPostComments() {
   }, [utterancesEl]);
 
   useEffect(() => {
-    setCommentTheme(theme === "dark" ? "photon-dark" : "github-light");
+    // remove the existing element and create a new one with the new theme
+    if (scriptIsLoading) {
+      scriptIsLoading.then(() => {
+        document.querySelectorAll(".utterances").forEach((e) => e.remove());
+        setUtterancesEl(null);
+        setScriptIsLoading(renderUtterances());
+      });
+    } else setScriptIsLoading(renderUtterances());
   }, [theme]);
 
-  // Starts the client whenever it's stopped
-  useEffect(() => {
-    // remove the existing element and create a new one with the new theme
-    if (utterancesEl) {
-      utterancesEl.remove();
-      setUtterancesEl(null);
-    }
-
-    renderUtterances().then((el) => setUtterancesEl(el));
-  }, [commentTheme]);
-
-  const renderUtterances = (): Promise<Element> =>
+  const renderUtterances = (): Promise<void> =>
     new Promise((s) => {
       let script = document.createElement("script");
       let anchor = document.getElementById("utterances");
@@ -52,11 +51,14 @@ export default function BlogPostComments() {
       script.setAttribute("repo", "goulinkh/goulin.fr");
       script.setAttribute("issue-term", "title");
       script.setAttribute("label", "blog Comments");
-      script.setAttribute("theme", commentTheme);
+      script.setAttribute("theme", commentTheme[theme]);
       anchor?.appendChild(script);
       setInterval(() => {
         const utterancesDivEl = document.querySelector(".utterances");
-        if (utterancesDivEl) s(utterancesDivEl);
+        if (utterancesDivEl) {
+          setUtterancesEl(utterancesDivEl);
+          s();
+        }
       }, 60);
     });
 
