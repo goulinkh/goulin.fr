@@ -50,7 +50,11 @@ async function resolvePost(path: string): Promise<BlogPost> {
 }
 
 export async function generateBlurImageData(imageSrc: string) {
-  return (await getPlaiceholder(imageSrc)).base64;
+  try {
+    return (await getPlaiceholder(imageSrc)).base64;
+  } catch {
+    return "";
+  }
 }
 export const allPosts = getAllPosts();
 async function getAllPosts(): Promise<BlogPost[]> {

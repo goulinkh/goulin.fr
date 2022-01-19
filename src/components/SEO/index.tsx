@@ -2,8 +2,13 @@ import Head from "next/head";
 import Script from "next/script";
 import { useEffect, useState } from "react";
 import Favicon from "./Favicon";
-type Props = { title?: string; cover?: string; description?: string };
-const SEO: React.FC<Props> = ({ title, cover, description }) => {
+type Props = {
+  title?: string;
+  cover?: string;
+  description?: string;
+  keywords?: string[];
+};
+const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
   const defaultURL = "https://goulin.fr";
   const [location, setLocation] = useState({
     origin: defaultURL,
@@ -20,7 +25,8 @@ const SEO: React.FC<Props> = ({ title, cover, description }) => {
     description ||
     "Software engineer, coffee hobbyist, manga fan & a gravel bike rider.";
 
-  const keywords =
+  const keywords2 =
+    keywords?.join(", ") ||
     "portfolio, javascript, developer, coffee, cycling, web developer";
   let image = cover ? cover : `/images/personal-photo.png`;
   image = `${location.origin}/${image}`;
@@ -33,7 +39,7 @@ const SEO: React.FC<Props> = ({ title, cover, description }) => {
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="keyword" content={keywords} />
+        <meta name="keyword" content={keywords2} />
 
         <meta property="title" content={title} />
         <meta property="og:type" content="website" />

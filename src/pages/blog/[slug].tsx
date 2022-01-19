@@ -141,6 +141,7 @@ const BlogPostPage = ({
         title={post.title}
         cover={post.cover ? post.cover : undefined}
         description={post.description}
+        keywords={[post.topic, ...post.tags]}
       />
       <Header takeSpace={false} />
       <div className="relative w-full h-72 -z-10">
