@@ -44,14 +44,8 @@ const Avatar = () => {
               background:
                 "linear-gradient(124deg, #c678dd, #9449ab, #e06c75, #1f80bc, #9449ab,#c678dd)",
               backgroundSize: "1000% 1000%",
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%) scale(110%)",
-              borderRadius: "50%",
             }}
+            className="absolute top-1/2 left-1/2 h-full w-full -translate-y-1/2 -translate-x-1/2 scale-110 rounded-full"
           ></div>
         </a>
       </Link>
