@@ -24,9 +24,9 @@ const Avatar = () => {
   return (
     <>
       <Link passHref href="/">
-        <a className="w-14 h-14 hover:motion-safe:animate-disk-rotation relative isolate">
+        <a className="relative isolate h-14 w-14 hover:motion-safe:animate-disk-rotation">
           <div
-            className="relative w-full h-full rounded-full overflow-hidden z-10"
+            className="relative z-10 h-full w-full overflow-hidden rounded-full"
             ref={setTriggerRef}
           >
             <Image

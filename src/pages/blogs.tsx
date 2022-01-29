@@ -1,11 +1,11 @@
+import BlogCard from "../components/common/BlogCard";
+import Header from "../components/common/Header";
+import SEO from "../components/common/SEO";
+import { BlogPost, allPosts, generateFeed } from "../utils/blogs";
+import { usePopperTooltip } from "react-popper-tooltip";
+import Link from "next/link";
 import { CodeIcon, PencilAltIcon, RssIcon } from "@heroicons/react/outline";
 import type { GetStaticProps, NextPage } from "next";
-import Link from "next/link";
-import { usePopperTooltip } from "react-popper-tooltip";
-import BlogCard from "../components/BlogCard";
-import Header from "../components/Header";
-import SEO from "../components/SEO";
-import { allPosts, BlogPost, generateFeed } from "../utils/blogs";
 
 type Props = {
   allBlogPosts: BlogPost[];
@@ -20,27 +20,27 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
 
       <Header />
       <section className="max-w-container mx-auto my-16 ">
-        <div className="flex content-between items-center mb-6">
-          <div className="flex items-center w-fit space-x-2">
+        <div className="mb-6 flex content-between items-center">
+          <div className="flex w-fit items-center space-x-2">
             <PencilAltIcon className="h-6" />
             <h2 className="text-2xl">Blog Posts</h2>
           </div>
 
           <Link passHref href="/rss/feed.xml">
             <a
-              className="ml-auto mr-7 p-1 rounded opacity-75 hover:opacity-100 dark:hover:bg-white/10 hover:bg-black/5"
+              className="ml-auto mr-7 rounded p-1 opacity-75 hover:bg-black/5 hover:opacity-100 dark:hover:bg-white/10"
               ref={setTriggerRef}
             >
               <RssIcon className="h-6" />
             </a>
           </Link>
         </div>
-        <h3 className="text-lg my-6 flex items-center space-x-2">
+        <h3 className="my-6 flex items-center space-x-2 text-lg">
           <CodeIcon className="w-5" />
           <span>Technology</span>
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 2x:grid-cols-3 gap-5">
+        <div className="2x:grid-cols-3 grid grid-cols-1 gap-5 md:grid-cols-2">
           {allBlogPosts
             .filter((p) => p.topic === "tech")
             .slice(0, maxPerTopic)
@@ -50,7 +50,7 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
         </div>
         {allBlogPosts.filter((p) => p.topic === "cycling").length > 0 ? (
           <>
-            <h3 className="text-lg my-6 flex items-center space-x-2">
+            <h3 className="my-6 flex items-center space-x-2 text-lg">
               <svg
                 className="w-5"
                 viewBox="0 0 513 512"
@@ -78,7 +78,7 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
               <span>Cycling</span>
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 2x:grid-cols-3 gap-5">
+            <div className="2x:grid-cols-3 grid grid-cols-1 gap-5 md:grid-cols-2">
               {allBlogPosts
                 .filter((p) => p.topic === "cycling")
                 .slice(0, maxPerTopic)
@@ -91,7 +91,7 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
 
         {allBlogPosts.filter((p) => p.topic === "coffee").length > 0 ? (
           <>
-            <h3 className="text-lg my-6 flex items-center space-x-2">
+            <h3 className="my-6 flex items-center space-x-2 text-lg">
               <svg
                 className="w-5 text-amber-800 dark:text-amber-700"
                 viewBox="0 0 24 24"
@@ -112,7 +112,7 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
               <span>Coffee</span>
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 2x:grid-cols-3 gap-5">
+            <div className="2x:grid-cols-3 grid grid-cols-1 gap-5 md:grid-cols-2">
               {allBlogPosts
                 .filter((p) => p.topic === "coffee")
                 .slice(0, maxPerTopic)
@@ -138,19 +138,20 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
 };
 
 export default Blogs;
-export const getStaticProps: GetStaticProps<{ allBlogPosts: BlogPost[] }> =
-  async (_) => {
-    generateFeed();
-    let posts = await allPosts;
+export const getStaticProps: GetStaticProps<{
+  allBlogPosts: BlogPost[];
+}> = async (_) => {
+  generateFeed();
+  let posts = await allPosts;
 
-    posts = posts.sort(
-      (p1, p2) =>
-        new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()
-    );
-    // Latest 4 blog posts
-    return {
-      props: {
-        allBlogPosts: posts,
-      },
-    };
+  posts = posts.sort(
+    (p1, p2) =>
+      new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()
+  );
+  // Latest 4 blog posts
+  return {
+    props: {
+      allBlogPosts: posts,
+    },
   };
+};

@@ -1,5 +1,5 @@
+import { userPreferencesContext } from "../../context/userPreferences";
 import { useContext, useEffect, useState } from "react";
-import { userPreferencesContext } from "../context/userPreferences";
 
 type Theme =
   | "github-light"

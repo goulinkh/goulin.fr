@@ -9,8 +9,8 @@
 }
 body,
 .default {
-  @apply dark:bg-zinc-800 bg-zinc-100;
-  @apply dark:text-zinc-200 text-zinc-800;
+  @apply bg-zinc-100 dark:bg-zinc-800;
+  @apply text-zinc-800 dark:text-zinc-200;
   @apply transition-colors;
 }
 
@@ -20,7 +20,7 @@ body,
 }
 
 .blurry {
-  @apply bg-white/75 dark:bg-black/40 dark:text-zinc-200 border border-black/5 dark:border-white/20 backdrop-blur;
+  @apply border border-black/5 bg-white/75 backdrop-blur dark:border-white/20 dark:bg-black/40 dark:text-zinc-200;
   /* Firefox */
   @-moz-document url-prefix() {
     & {
@@ -30,7 +30,7 @@ body,
 }
 
 .blurry.blurry-2 {
-  @apply bg-zinc-100/75 dark:bg-zinc-800/70 border-gray-300 dark:border-gray-600;
+  @apply border-gray-300 bg-zinc-100/75 dark:border-gray-600 dark:bg-zinc-800/70;
   /* Firefox */
   @-moz-document url-prefix() {
     & {
@@ -40,7 +40,7 @@ body,
 }
 
 .btn {
-  @apply p-1 rounded opacity-75 hover:opacity-100 dark:hover:bg-white/10 hover:bg-black/5;
+  @apply rounded p-1 opacity-75 hover:bg-black/5 hover:opacity-100 dark:hover:bg-white/10;
 }
 
 code::after,

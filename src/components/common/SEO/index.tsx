@@ -1,7 +1,8 @@
+import Favicon from "./Favicon";
 import Head from "next/head";
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import Favicon from "./Favicon";
+
 type Props = {
   title?: string;
   cover?: string;

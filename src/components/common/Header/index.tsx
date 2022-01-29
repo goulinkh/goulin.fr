@@ -1,7 +1,7 @@
-import clsx from "clsx";
-import Link from "../common/Link";
 import Avatar from "./Avatar";
 import ThemeToggle from "./ThemeToggle";
+import Link from "../Link";
+import clsx from "clsx";
 
 const Header: React.FC<{ takeSpace?: boolean }> = ({ takeSpace = true }) => {
   return (
@@ -13,14 +13,14 @@ const Header: React.FC<{ takeSpace?: boolean }> = ({ takeSpace = true }) => {
     >
       <div className="max-w-container mx-auto py-2">
         <header className="blurry rounded-xl  py-2 px-6">
-          <nav className="flex items-center flex-wrap sm:flex-nowrap">
+          <nav className="flex flex-wrap items-center sm:flex-nowrap">
             <Avatar />
             <span className="pl-10"></span>
             <Link href="/blogs" className="mr-5">
               Blogs
             </Link>
             <Link href="/about">About</Link>
-            <div className="flex ml-auto items-center">
+            <div className="ml-auto flex items-center">
               <ThemeToggle />
             </div>
           </nav>

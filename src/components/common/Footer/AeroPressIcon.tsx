@@ -20,7 +20,9 @@ const AeroPressIcon = ({ className }: { className: string }) => {
           })}
         >
           <span>
-            <span className="p-[.2rem] rounded bg-red-600 text-white">AeroPress</span>{" "}
+            <span className="rounded bg-red-600 p-[.2rem] text-white">
+              AeroPress
+            </span>{" "}
             coffee maker
           </span>
         </div>

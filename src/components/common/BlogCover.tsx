@@ -1,5 +1,5 @@
-import Image from "next/image";
 import RandomGradient from "./RandomGradient";
+import Image from "next/image";
 
 type Props = {
   cover: string | null;

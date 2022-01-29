@@ -1,5 +1,5 @@
 .tooltip-container {
-  @apply flex flex-col px-2 py-1.5 shadow rounded-xl relative text-sm;
+  @apply relative flex flex-col rounded-xl px-2 py-1.5 text-sm shadow;
   @apply animate-fade-out;
 }
 

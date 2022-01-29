@@ -1,10 +1,10 @@
+import BlogCard from "../components/common/BlogCard";
+import Header from "../components/common/Header";
+import SEO from "../components/common/SEO";
+import { BlogPost, allPosts } from "../utils/blogs";
+import { usePopperTooltip } from "react-popper-tooltip";
 import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
 import type { GetStaticProps, NextPage } from "next";
-import { usePopperTooltip } from "react-popper-tooltip";
-import BlogCard from "../components/BlogCard";
-import Header from "../components/Header";
-import SEO from "../components/SEO";
-import { allPosts, BlogPost } from "../utils/blogs";
 
 type Props = {
   latestBlogPosts: BlogPost[];
@@ -17,14 +17,14 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
     <>
       <SEO />
       <Header />
-      <section className="max-w-container mx-auto py-16 space-y-4 flex flex-col relative isolate">
-        <h1 className="text-3xl backdrop-blur-sm mx-auto w-fit">
+      <section className="max-w-container relative isolate mx-auto flex flex-col space-y-4 py-16">
+        <h1 className="mx-auto w-fit text-3xl backdrop-blur-sm">
           Goulin Khoge
         </h1>
-        <div className="opacity-75 flex items-center justify-center backdrop-blur-sm mx-auto w-fit">
-          <LocationMarkerIcon className="h-5 w-5 mr-2" /> France, Toulouse
+        <div className="mx-auto flex w-fit items-center justify-center opacity-75 backdrop-blur-sm">
+          <LocationMarkerIcon className="mr-2 h-5 w-5" /> France, Toulouse
         </div>
-        <p className="backdrop-blur-sm mx-auto w-fit">
+        <p className="mx-auto w-fit backdrop-blur-sm">
           <span ref={popper1.setTriggerRef}>Software engineer,</span>{" "}
           <span ref={popper2.setTriggerRef}>coffee hobbyist</span>, manga fan &
           a gravel bike rider.
@@ -70,7 +70,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
           >
             <span>
               Current setup:{" "}
-              <span className="p-[.2rem] rounded bg-red-600 text-white">
+              <span className="rounded bg-red-600 p-[.2rem] text-white">
                 AeroPress
               </span>{" "}
               coffee maker
@@ -78,17 +78,17 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
           </div>
         )}
         <div
-          className="absolute top-0 w-full h-full text-cyan-800 -z-10
-         bg-repeat-round opacity-5 invert-0 dark:invert"
+          className="absolute top-0 -z-10 h-full w-full bg-repeat-round
+         text-cyan-800 opacity-5 invert-0 dark:invert"
           style={{ backgroundImage: "url('/assets/svg/pattern.svg')" }}
         ></div>
       </section>
       <section className="max-w-container mx-auto my-16 ">
-        <div className="flex items-center mb-6">
-          <PencilAltIcon className="h-6 mr-2" />
+        <div className="mb-6 flex items-center">
+          <PencilAltIcon className="mr-2 h-6" />
           <h2 className="text-2xl">My latest blogs</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 2x:grid-cols-3 gap-5">
+        <div className="2x:grid-cols-3 grid grid-cols-1 gap-5 md:grid-cols-2">
           {latestBlogPosts.map((blogPost, i) => (
             <BlogCard key={i} blogPost={blogPost} />
           ))}
@@ -99,17 +99,18 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
 };
 
 export default Home;
-export const getStaticProps: GetStaticProps<{ latestBlogPosts: BlogPost[] }> =
-  async (_) => {
-    let posts = await allPosts;
-    posts = posts.sort(
-      (p1, p2) =>
-        new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()
-    );
-    // Latest 4 blog posts
-    return {
-      props: {
-        latestBlogPosts: posts.slice(0, 4),
-      },
-    };
+export const getStaticProps: GetStaticProps<{
+  latestBlogPosts: BlogPost[];
+}> = async (_) => {
+  let posts = await allPosts;
+  posts = posts.sort(
+    (p1, p2) =>
+      new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()
+  );
+  // Latest 4 blog posts
+  return {
+    props: {
+      latestBlogPosts: posts.slice(0, 4),
+    },
   };
+};
