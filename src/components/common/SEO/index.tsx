@@ -53,6 +53,20 @@ const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
         <meta name="twitter:title" content={titleTag} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="https://assets.ubuntu.com/v1/0c7b8dc0-Ubuntu-R-subset.woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="https://assets.ubuntu.com/v1/4d80ab6d-ubuntu-b-webfont.woff"
+          crossOrigin="anonymous"
+        />
       </Head>
       <Script
         defer

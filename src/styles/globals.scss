@@ -1,7 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Ubuntu:wght@400;700&display=swap");
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("https://assets.ubuntu.com/v1/0c7b8dc0-Ubuntu-R-subset.woff2")
+    format("woff2");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: url("https://assets.ubuntu.com/v1/4d80ab6d-ubuntu-b-webfont.woff")
+    format("woff");
+  font-weight: bold;
+}
 
 @import "./popper.scss";
 .dark {
