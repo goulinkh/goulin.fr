@@ -19,7 +19,7 @@
     "eslint-config-next": "12.0.7",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
-    "next": "12.0.7",
+    "next": "12.0.9",
     "next-mdx-remote": "^3.0.8",
     "plaiceholder": "^2.2.0",
     "postcss": "^8.4.5",
