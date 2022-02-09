@@ -1,0 +1,127 @@
+main {
+  --color-prettylights-syntax-comment: #a0a1a7;
+  --color-prettylights-syntax-brackethighlighter-angle: #a0a1a7;
+  --color-prettylights-syntax-constant: #e1aa76;
+  --color-prettylights-syntax-entity: #46a6b2;
+  --color-prettylights-syntax-meta-diff-range: #46a6b2;
+  --color-prettylights-syntax-storage-modifier-import: #b668cd;
+  --color-prettylights-syntax-markup-italic: #b668cd;
+  --color-prettylights-syntax-markup-bold: #b668cd;
+  --color-prettylights-syntax-markup-ignored-text: #b668cd;
+  --color-prettylights-syntax-entity-tag: #f07c85;
+  --color-prettylights-syntax-string-regexp: #b668cd;
+  --color-prettylights-syntax-keyword: #b668cd;
+  --color-prettylights-syntax-string: #88b369;
+  --color-prettylights-syntax-constant-other-reference-link: #88b369;
+  --color-prettylights-syntax-variable: #b668cd;
+
+  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+  --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+  --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+  --color-prettylights-syntax-carriage-return-bg: #cf222e;
+  --color-prettylights-syntax-markup-list: #3b2300;
+  --color-prettylights-syntax-markup-heading: #0550ae;
+  --color-prettylights-syntax-markup-deleted-text: #82071e;
+  --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
+  --color-prettylights-syntax-markup-inserted-text: #116329;
+  --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+  --color-prettylights-syntax-markup-changed-text: #953800;
+  --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+  --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+  --color-prettylights-syntax-brackethighlighter-angle: rgb(90, 90, 93);
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
+  --color-btn-text: rgb(63, 63, 69);
+  --color-btn-bg: #f6f8fa;
+  --color-btn-border: rgb(27 31 36 / 15%);
+  --color-btn-shadow: 0 1px 0 rgb(27 31 36 / 4%);
+  --color-btn-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 25%);
+  --color-btn-hover-bg: #f3f4f6;
+  --color-btn-hover-border: rgb(27 31 36 / 15%);
+  --color-btn-active-bg: hsl(220deg 14% 93% / 100%);
+  --color-btn-active-border: rgb(27 31 36 / 15%);
+  --color-btn-selected-bg: hsl(220deg 14% 94% / 100%);
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: #2da44e;
+  --color-btn-primary-border: rgb(27 31 36 / 15%);
+  --color-btn-primary-shadow: 0 1px 0 rgb(27 31 36 / 10%);
+  --color-btn-primary-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
+  --color-btn-primary-hover-bg: #2c974b;
+  --color-btn-primary-hover-border: rgb(27 31 36 / 15%);
+  --color-btn-primary-selected-bg: hsl(137deg 55% 36% / 100%);
+  --color-btn-primary-selected-shadow: inset 0 1px 0 rgb(0 45 17 / 20%);
+  --color-btn-primary-disabled-text: rgb(255 255 255 / 80%);
+  --color-btn-primary-disabled-bg: #94d3a2;
+  --color-btn-primary-disabled-border: rgb(27 31 36 / 15%);
+  --color-fg-default: rgb(63, 63, 69);
+  --color-fg-muted: rgb(90, 90, 93);
+  --color-fg-subtle: #6e7781;
+  --color-canvas-default: #fff;
+  --color-canvas-overlay: #fff;
+  --color-canvas-inset: #f6f8fa;
+  --color-canvas-subtle: #f6f8fa;
+  --color-border-default: #d0d7de;
+  --color-border-muted: hsl(210deg 18% 87% / 100%);
+  --color-neutral-muted: rgb(175 184 193 / 20%);
+  --color-accent-fg: #0969da;
+  --color-accent-emphasis: #0969da;
+  --color-accent-muted: rgb(84 174 255 / 40%);
+  --color-accent-subtle: #ddf4ff;
+  --color-success-fg: #1a7f37;
+  --color-danger-fg: #cf222e;
+  --color-primer-shadow-inset: inset 0 1px 0 rgb(208 215 222 / 20%);
+  --color-primer-shadow-focus: 0 0 0 3px rgb(9 105 218 / 30%);
+  --color-scale-gray-1: #eaeef2;
+  --color-scale-blue-1: #b6e3ff;
+
+  /*! Extensions from @primer/css/alerts/flash.scss */
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+
+  color-scheme: light;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("https://assets.ubuntu.com/v1/0c7b8dc0-Ubuntu-R-subset.woff2")
+    format("woff2");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: url("https://assets.ubuntu.com/v1/4d80ab6d-ubuntu-b-webfont.woff")
+    format("woff");
+  font-weight: bold;
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+}
+
+body {
+  font-size: 16px !important;
+  font-family: Ubuntu, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji" !important;
+}
+
+.gsc-comment-box-textarea {
+  background-color: rgb(255 255 255 / 0.05);
+}
+
+.gsc-comment-header {
+  padding: 0.7rem 1rem;
+}
+
+.gsc-comment {
+  font-size: 1rem !important;
+}
+.markdown .highlight pre,
+.markdown pre {
+  background-color: rgb(250, 250, 250);
+  border-radius: 10px;
+  font-family: Fira Code, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1.3rem;
+}
