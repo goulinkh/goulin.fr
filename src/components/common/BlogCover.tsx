@@ -15,7 +15,7 @@ const BlogCover: React.FC<Props> = ({ cover, coverBlurData, slug }) => {
       layout="fill"
       objectFit="cover"
       blurDataURL={coverBlurData}
-      placeholder="blur"
+      placeholder={coverBlurData ? "blur" : "empty"}
     />
   ) : (
     <RandomGradient unique={slug} />
