@@ -11,34 +11,34 @@ topic: tech
 
 When I started learning about how the web works, I learnt that there are 2 types of web servers, a static server where it only serves you the resource that you are asking for and a dynamic server which usually does some logic with your favourite programming language and then returns a result based on the context.
 
-At a first glance, dynamic servers seems to be the solution to all the problems, where it's very flexible. You can do whatever you want, an e-commerce website, a todo app, a blogpost website and you can do it the way you want, with Python, Javascript or even C if you like to pay attention to details 🕵️‍♂️
+At a first glance, dynamic servers seems to be the solution to all the problems, as they are very flexible. You can do whatever you want, an e-commerce website, a todo app, a blogpost website and you can do it the way you want, with Python, Javascript or even C if you like to pay attention to details 🕵️‍♂️
 
 But why do we mention static servers if we can do everything with dynamic web servers?
 
-Well, usually your website assets (fonts, icons, CSS files, etc ...) tend to be static files that don't change often so it's easier to deploy this type of content with an efficient HTTP server such as NGINX where you usually have a layer of cache even a CDN if your website is global.
+Well, usually your website assets (fonts, icons, CSS files, etc ...) tend to be static files that don't change often so it's easier to deploy this type of content with an efficient HTTP server such as NGINX where you usually have a layer of cache, even a CDN if your website is global.
 
 ## Minimalism and tech
 
-Recently I got into minimalism which is a way of living with **only** the things that you absolutely need. I tried to relate to minimalism in web development so I thought about trying to get rid of dynamic servers and only use static servers to get the job done!
+Recently I got into minimalism which is a way of living with **only** the things that you absolutely need. I tried to relate to minimalism in web development so I thought about trying to replace dynamic servers with something simpler: static servers.
 
-Surprisingly, it was a quite interesting, so technically you can make an e-commerce website, a todo app and of course a blogpost website statically!
+It was quite interesting, technically you can make an e-commerce website, a todo app and of course a blogpost website statically!
 
-The basic idea is to build all the results our website could send to the user a head of time and when the user ask for the resource, it's already built a while ago and sent immediately to the client.
+The basic idea is to build all the results that our website could send to the clinet a head of time, when the client ask for the resource later, as the results are already built in advance they are sent immediately to the client.
 
 ## let's do some practice
 
 ### Dynamic server approach
 
-Let's take as an example building a personal blog website. A classic way to build this is by having a MySQL database and an PHP server where you have 2 main views:
+Let's take as example: building a personal blog website. A classic way to build this website is by having a SQL database with an PHP server where you have 2 main views:
 
 - an admin view where once you are logged in you can publish your blogs then it's saved in the relational database
 - a public view where people can read your blogs, where on each blog view the server pulls the data from the database and then renders the view.
 
 ### Static server approach
 
-A way to have the same result but with only static server is to initialise a git in the website folder, have a project structure that looks like this:
+A way to have the same result but with only using a static server is to initialise a git in the website folder, have a project structure that looks like this:
 
-```ini
+```
 blogs
 	- 20181023.html
 	- 20181106.html
@@ -50,11 +50,11 @@ css
 - about.html
 ```
 
-Let's break this solution a bit down.
+Let's break this solution down:
 
-First the admin page, when you write a new blog post, you can write it in HTML (or convert it to HTML if the blogger doesn't have a technical background). To publish the blog you push your changes to a git server such as Github or Gitlab and then use some amazing static serving platforms such Netlify and Vercel where they handle the deployment automatically on each push to the git server, you can also have everything locally and upload the new version of the website manually if you want to.
+First the admin page, when you write a new blog post, you can write it in HTML (or convert it to HTML if the blogger doesn't have a technical background). To publish the blog you push your changes to a git server such as Github or Gitlab and then use some amazing static serving platforms such as Netlify and Vercel where they handle the deployment automatically on each push to the git server, you can also have everything locally and upload the new version of the website manually if you want to.
 
-The advantages of this approach are:
+The advantages of using this approach are:
 
 1. Less boiler code to write and maintain
 2. Faster performance as blogs are ready and are sent immediately to send to the client
@@ -73,7 +73,7 @@ I hope you can see how simple and yet power full this solution is!
 
 Jamstack, an architecture that enables you to build complex problems with static servers.
 
-I envite you to take a look at their website where they explain everything you will need to develop, maintain and deploy you project with static servers.
+I envite you to take a look at their website where they explain everything that you may need to develop, maintain and deploy you project with static servers.
 
 The basic idea is to write your website using a programming language and perform a pre-rendering process where you generate all the pages during this process. Once this is done, your site is ready to be served as a bunch of static files that the browser can understand.
 
@@ -81,7 +81,7 @@ There are trendy site generators that have a huge community such as Hugo (Go lan
 
 If we make our blog post with on of these site generators for example Next.js, it will look like this:
 
-```ini
+```
 ├─ components
 │  ├─ Post.jsx             # Post component
 │  └─ Footer.jsx           # Footer component
@@ -95,7 +95,7 @@ If we make our blog post with on of these site generators for example Next.js, i
    └─ 20181023.md
 ```
 
-In this example, we will run the pre-rendering process using the command:
+In this example, we will run the build process using the command:
 
 ```bash
 # Build all the pages
@@ -104,10 +104,10 @@ npm run build
 npm run start
 ```
 
-If we want to update that button in the navbar, that we had to update in all the HTML pages, we only need to change it in the `Header` component!
+If we want to update that button in the navbar (that we had to update in all the HTML pages), we only need to change it in the `Header` component!
 
 ## Limitation of a fully static websites
 
-That sounds too good to be true, why big tech companies like Amazon don't adopt such a way of serving content, to serve their products to the clients?
+That sounds too good to be true! why big tech companies like Amazon don't adopt such a way of serving content, to serve their products to the clients?
 
 Professional websites like Amazon.com have massive databases with billions of entries (billions of products in case of Amazon), if you try to build a statics HTML file for each one of these entries you will need a lot of disk space to store all those HTML files in.
