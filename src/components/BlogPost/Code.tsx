@@ -1,5 +1,3 @@
-import { userPreferencesContext } from "../../context/userPreferences";
-import { copyTextToClipboard } from "../../utils/common";
 import { CheckIcon, ClipboardIcon, CodeIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
 import React, { useContext, useEffect, useState } from "react";
@@ -9,6 +7,8 @@ import {
   atomOneDark,
   atomOneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { userPreferencesContext } from "../../context/userPreferences";
+import { copyTextToClipboard } from "../../utils/common";
 
 const CodeCopyPastBtn: React.FC<{ content: string }> = ({ content }) => {
   const successShowTime = 2000;
@@ -68,13 +68,13 @@ const Code: React.FC<any> = ({ className, ...props }) => {
   const inlineCode = !className;
   const codeToShow = inlineCode ? props.children : props.children.slice(0, -1);
   const language = match?.[1];
-  return language ? (
+  return (
     <div className="group relative">
       <CodeCopyPastBtn content={props.children} />
-      <CodeLanguage language={language} />
+      {language ? <CodeLanguage language={language} /> : null}
       <SyntaxHighlighter
         className="not-prose rounded-lg border border-gray-200 !p-4 !font-mono shadow dark:border-gray-600"
-        language={language}
+        language={language || "ini"}
         PreTag={inlineCode ? "pre" : "span"}
         CodeTag={inlineCode ? "code" : "span"}
         {...props}
@@ -83,8 +83,6 @@ const Code: React.FC<any> = ({ className, ...props }) => {
         {codeToShow}
       </SyntaxHighlighter>
     </div>
-  ) : (
-    <code className={className} {...props} />
   );
 };
 
