@@ -1,7 +1,7 @@
 import BlogCard from "../components/common/BlogCard";
 import Header from "../components/common/Header";
 import SEO from "../components/common/SEO";
-import { BlogPost, allPosts } from "../utils/blogs";
+import { BlogPost, getAllPosts } from "../utils/blogs";
 import { usePopperTooltip } from "react-popper-tooltip";
 import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
 import type { GetStaticProps, NextPage } from "next";
@@ -102,7 +102,7 @@ export default Home;
 export const getStaticProps: GetStaticProps<{
   latestBlogPosts: BlogPost[];
 }> = async (_) => {
-  let posts = await allPosts;
+  let posts = await getAllPosts();
   posts = posts.sort(
     (p1, p2) =>
       new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()

@@ -21,7 +21,7 @@
 }
 body,
 .default {
-  @apply bg-zinc-100 dark:bg-zinc-800;
+  @apply bg-zinc-100 dark:bg-zinc-900;
   @apply text-zinc-800 dark:text-zinc-200;
   @apply transition-colors;
 }
@@ -46,7 +46,7 @@ body,
   /* Firefox */
   @-moz-document url-prefix() {
     & {
-      @apply bg-zinc-100 dark:bg-zinc-800;
+      @apply bg-zinc-100 dark:bg-zinc-900;
     }
   }
 }

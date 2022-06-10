@@ -1,7 +1,7 @@
 import BlogCard from "../components/common/BlogCard";
 import Header from "../components/common/Header";
 import SEO from "../components/common/SEO";
-import { BlogPost, allPosts, generateFeed } from "../utils/blogs";
+import { BlogPost, generateFeed, getAllPosts } from "../utils/blogs";
 import { usePopperTooltip } from "react-popper-tooltip";
 import Link from "next/link";
 import { CodeIcon, PencilAltIcon, RssIcon } from "@heroicons/react/outline";
@@ -142,7 +142,7 @@ export const getStaticProps: GetStaticProps<{
   allBlogPosts: BlogPost[];
 }> = async (_) => {
   generateFeed();
-  let posts = await allPosts;
+  let posts = await getAllPosts();
 
   posts = posts.sort(
     (p1, p2) =>

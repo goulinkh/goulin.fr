@@ -2,7 +2,7 @@ import { deepClone } from "./common";
 import { Feed } from "feed";
 import matter from "gray-matter";
 import { getPlaiceholder } from "plaiceholder";
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import p, { join } from "path";
 
 const blogsPath = join(process.cwd(), "blogs");
@@ -18,6 +18,8 @@ export type BlogPost = {
   relatedPosts: BlogPost[];
   topic: "tech" | "cycling" | "coffee";
   content: string;
+  draft: boolean;
+  variables: any;
 };
 
 async function resolvePost(path: string): Promise<BlogPost> {
@@ -45,6 +47,14 @@ async function resolvePost(path: string): Promise<BlogPost> {
     relatedPosts: [],
     topic: data["topic"],
     content: `# ${data["title"]}\n${content}`,
+    draft: data["draft"] === true ? true : false,
+    variables: {},
+  };
+  frontmatter.variables = {
+    ...data,
+    ...frontmatter,
+    content: null,
+    variables: null,
   };
   return frontmatter;
 }
@@ -56,12 +66,12 @@ export async function generateBlurImageData(imageSrc: string) {
     return "";
   }
 }
-export const allPosts = getAllPosts();
-async function getAllPosts(): Promise<BlogPost[]> {
+export async function getAllPosts(draft = false): Promise<BlogPost[]> {
   const paths = readdirSync(blogsPath);
-  const posts = await Promise.all(
+  let posts = await Promise.all(
     paths.map(async (path) => await resolvePost(join(blogsPath, path)))
   );
+  if (!draft) posts = posts.filter((post) => !post.draft);
   const tags: { [key: string]: BlogPost[] } = {};
   posts.forEach((post) =>
     post.tags.forEach((tag) => {
@@ -76,7 +86,8 @@ async function getAllPosts(): Promise<BlogPost[]> {
           .filter(
             (relatedPost) =>
               relatedPost !== post &&
-              !post.relatedPosts.find((p) => relatedPost.slug === p.slug)
+              !post.relatedPosts.find((p) => relatedPost.slug === p.slug) &&
+              !relatedPost.draft
           )
           .map((newRelatedPost) => deepClone(newRelatedPost))
       )
@@ -86,7 +97,7 @@ async function getAllPosts(): Promise<BlogPost[]> {
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost> {
-  const allPosts = await getAllPosts();
+  const allPosts = await getAllPosts(true);
   return allPosts.filter((post) => post.slug === slug)[0];
 }
 

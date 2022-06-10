@@ -4,6 +4,11 @@ module.exports = {
   content: ["./src/**/*.{jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        blue: {
+          500: "#0070f3",
+        },
+      },
       fontFamily: {
         sans: ["Ubuntu", ...defaultTheme.fontFamily.sans],
         mono: ["Fira Code", ...defaultTheme.fontFamily.mono],

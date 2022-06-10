@@ -1,3 +1,5 @@
+import { userPreferencesContext } from "../../context/userPreferences";
+import { copyTextToClipboard } from "../../utils/common";
 import { CheckIcon, ClipboardIcon, CodeIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
 import React, { useContext, useEffect, useState } from "react";
@@ -7,8 +9,6 @@ import {
   atomOneDark,
   atomOneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import { userPreferencesContext } from "../../context/userPreferences";
-import { copyTextToClipboard } from "../../utils/common";
 
 const CodeCopyPastBtn: React.FC<{ content: string }> = ({ content }) => {
   const successShowTime = 2000;
@@ -56,7 +56,7 @@ const CodeCopyPastBtn: React.FC<{ content: string }> = ({ content }) => {
 };
 const CodeLanguage: React.FC<{ language: string }> = ({ language }) => {
   return (
-    <div className="pointer-events-none absolute bottom-4 right-5 flex items-center space-x-1 font-mono text-sm text-sky-500 dark:text-sky-400">
+    <div className="pointer-events-none absolute bottom-4 right-5 flex items-center space-x-1 font-mono text-sm text-blue-500 dark:text-blue-500">
       <CodeIcon className="w-4" /> <span>{language}</span>
     </div>
   );

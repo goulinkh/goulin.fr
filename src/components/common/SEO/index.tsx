@@ -67,6 +67,12 @@ const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
           href="https://assets.ubuntu.com/v1/4d80ab6d-ubuntu-b-webfont.woff"
           crossOrigin="anonymous"
         />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/fira_code.min.css"
+          integrity="sha512-MbysAYimH1hH2xYzkkMHB6MqxBqfP0megxsCLknbYqHVwXTCg9IqHbk+ZP/vnhO8UEW6PaXAkKe2vQ+SWACxxA=="
+          crossOrigin="anonymous"
+        />
       </Head>
       <Script
         defer

@@ -1,4 +1,4 @@
-import { allPosts } from "../../utils/blogs";
+import { getAllPosts } from "../../utils/blogs";
 import { NextApiRequest, NextApiResponse } from "next";
 import { SitemapStream, streamToPromise } from "sitemap";
 
@@ -22,7 +22,7 @@ export default async function postsSitemap(
       });
     });
     // Create each URL row
-    (await allPosts).forEach((post) => {
+    (await getAllPosts()).forEach((post) => {
       smStream.write({
         url: `/blog/${post.slug}`,
         changefreq: "monthly",

@@ -12,8 +12,8 @@ const BlogCard: React.FC<Props> = ({ blogPost, small = false }) => {
       <a className="isolate h-fit overflow-hidden rounded-2xl transition-shadow hover:shadow-lg dark:hover:shadow-2xl">
         <div
           className={clsx("relative w-full overflow-hidden", {
-            "h-40": small,
-            "h-60": !small,
+            "h-52": small,
+            "h-80": !small,
           })}
         >
           <BlogCover

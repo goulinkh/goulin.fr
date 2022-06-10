@@ -3,7 +3,10 @@ import ThemeToggle from "./ThemeToggle";
 import Link from "../Link";
 import clsx from "clsx";
 
-const Header: React.FC<{ takeSpace?: boolean }> = ({ takeSpace = true }) => {
+const Header: React.FC<{ takeSpace?: boolean; isDraft?: boolean }> = ({
+  takeSpace = true,
+  isDraft = false,
+}) => {
   return (
     <div
       className={clsx("fixed top-0 z-10 w-full", {
@@ -20,7 +23,12 @@ const Header: React.FC<{ takeSpace?: boolean }> = ({ takeSpace = true }) => {
               Blogs
             </Link>
             <Link href="/about">About</Link>
-            <div className="ml-auto flex items-center">
+            <div className="ml-auto flex items-center gap-6">
+              {isDraft ? (
+                <span className="rounded-md bg-yellow-200/60 px-2 py-1 text-yellow-700 dark:bg-yellow-200/20 dark:text-yellow-400">
+                  Draft
+                </span>
+              ) : null}
               <ThemeToggle />
             </div>
           </nav>
