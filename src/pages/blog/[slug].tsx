@@ -40,11 +40,7 @@ const BlogPostPage = ({
       />
       <Header takeSpace={false} isDraft={post.draft} />
       <div className="relative -z-10 h-72 max-h-[50vh] w-full lg:h-96">
-        <BlogCover
-          cover={post.cover}
-          coverBlurData={post.coverPreviewBlurData}
-          slug={post.slug}
-        />
+        <BlogCover post={post} />
       </div>
       <section
         className="max-w-container prose-h5:text-zinc-700 dark:prose-h5:text-zinc-400 prose-h6:text-zinc-700 dark:prose-h6:text-zinc-400 prose prose-zinc mx-auto my-16 prose-h1:text-blue-500 prose-h2:text-zinc-700 prose-h3:text-zinc-700 prose-h4:text-zinc-700 prose-code:font-mono prose-code:text-blue-900 dark:prose-invert dark:prose-h1:text-blue-500 dark:prose-h2:text-zinc-300 dark:prose-h3:text-zinc-300 dark:prose-h4:text-zinc-300

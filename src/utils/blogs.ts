@@ -8,6 +8,7 @@ import p, { join } from "path";
 const blogsPath = join(process.cwd(), "blogs");
 export type BlogPost = {
   cover: string | null;
+  darkCover: string | null;
   path: string;
   slug: string;
   title: string;
@@ -33,6 +34,9 @@ async function resolvePost(path: string): Promise<BlogPost> {
   };
   const frontmatter: BlogPost = {
     cover: data["cover"] ? "/assets/blogs/images/" + data["cover"] : null,
+    darkCover: data["darkCover"]
+      ? "/assets/blogs/images/" + data["darkCover"]
+      : null,
     coverPreviewBlurData: data["cover"]
       ? await generateBlurImageData(
           join(`/assets/blogs/images/${data["cover"]}`)

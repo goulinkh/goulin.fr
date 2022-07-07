@@ -16,11 +16,7 @@ const BlogCard: React.FC<Props> = ({ blogPost, small = false }) => {
             "h-80": !small,
           })}
         >
-          <BlogCover
-            cover={blogPost.cover}
-            coverBlurData={blogPost.coverPreviewBlurData}
-            slug={blogPost.slug}
-          />
+          <BlogCover post={blogPost} />
         </div>
         <article
           className={clsx(

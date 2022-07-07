@@ -1,24 +1,26 @@
 import RandomGradient from "./RandomGradient";
+import { userPreferencesContext } from "../../context/userPreferences";
+import { BlogPost } from "../../utils/blogs";
 import Image from "next/image";
+import { useContext } from "react";
 
 type Props = {
-  cover: string | null;
-  coverBlurData: string;
-  slug: string;
+  post: BlogPost;
 };
 
-const BlogCover: React.FC<Props> = ({ cover, coverBlurData, slug }) => {
-  return cover ? (
+const BlogCover: React.FC<Props> = ({ post }) => {
+  const [theme] = useContext(userPreferencesContext).theme;
+  return post.cover ? (
     <Image
-      src={cover}
+      src={theme === "dark" && post.darkCover ? post.darkCover : post.cover}
       alt="Article's cover photo"
       layout="fill"
       objectFit="cover"
-      blurDataURL={coverBlurData}
-      placeholder={coverBlurData ? "blur" : "empty"}
+      blurDataURL={post.coverPreviewBlurData}
+      placeholder={post.coverPreviewBlurData ? "blur" : "empty"}
     />
   ) : (
-    <RandomGradient unique={slug} />
+    <RandomGradient unique={post.slug} />
   );
 };
 
