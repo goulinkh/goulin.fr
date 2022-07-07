@@ -1,11 +1,10 @@
 ---
 title: "Bring Wikipedia page previews to the web: part 1 - implementing the frontend"
 cover: "image2.jpg"
-publishDate: 2022-05-30T23:31:24.365Z
+publishDate: 2022-07-07T01:40:28.748Z
 description: 'Wikipedia''s page previews are awesome, it helps to avoid "open in a new tab" nightmare, let''s implement it.'
 tags: web-dev, backend, web-scaping
 topic: tech
-draft: true
 githubLink: "https://www.github.com/goulinkh/link-previews"
 ---
 
@@ -109,7 +108,7 @@ The main tasks of the frontend script are:
    - Setup a listener when the user hover over the element and show the preview UI element on trigger
    - Setup the opposite listenner where it hides the preview popup when the user move the mouse out of the element
 
-For the sake of simplicity we will be looking for all the anchor tag elements without filtering, I wrote some customizable filters options in the <a href={githubLink}>final result project</a>:
+For the sake of simplicity we will be looking for all the anchor tag elements without advanced filtering:
 
 ```javascript
 function selectQueryLinks() {
@@ -170,6 +169,8 @@ elements.forEach((element) => {
 
 The final step on the frontend side is the preview popup, in other words the actual preview that the user will see, to keep it simple and avoid sharing a lot of code in this blog, I've added the final frontend script code along with preview popup in <a href={`${githubLink}/blob/main/demo/link-previews.js`}>this repo</a>.
 
-<TLDR />: You can see the final result live at this <a href="#">demo website</a>.
+<TLDR />: You can see the final result live at this <a href="https://link-previews-drab.vercel.app/">
+  demo website
+</a>.
 
 And voilà, the frontend side is done, in part 2 will look into building a REST service that does some web scrapping to get the metadata along with taking a screenshot of the requested website.
