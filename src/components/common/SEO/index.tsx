@@ -54,6 +54,12 @@ const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
         <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={titleTag}
+          href="/rss/feed.xml"
+        />
+        <link
           rel="preload"
           as="font"
           type="font/woff2"

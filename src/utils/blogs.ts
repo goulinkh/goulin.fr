@@ -1,4 +1,5 @@
 import { deepClone } from "./common";
+import showdown from "showdown";
 import { Feed } from "feed";
 import matter from "gray-matter";
 import { getPlaiceholder } from "plaiceholder";
@@ -128,7 +129,9 @@ export async function generateFeed() {
     },
     author: me,
   });
+  const converter = new showdown.Converter();
   posts.forEach((post) => {
+    const contentInHTML = converter.makeHtml(post.content);
     feed.addItem({
       title: post.title,
       id: `https://goulin.fr/blog/${post.slug}`,
@@ -137,7 +140,7 @@ export async function generateFeed() {
       description: post.description,
       author: [me],
       image: post.cover ? "https://goulin.fr" + post.cover : undefined,
-      content: post.description,
+      content: contentInHTML,
     });
   });
   mkdirSync("./public/rss", { recursive: true });
