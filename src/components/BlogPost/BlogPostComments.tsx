@@ -1,5 +1,5 @@
 import { userPreferencesContext } from "../../context/userPreferences";
-import { Giscus } from "@giscus/react";
+import Giscus from "@giscus/react";
 import { useContext, useEffect, useState } from "react";
 
 export default function BlogPostComments() {
