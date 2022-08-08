@@ -1,8 +1,20 @@
 import { CalendarIcon, UserIcon } from "@heroicons/react/outline";
+import clsx from "clsx";
 
-const Author = ({ publishDate }: { publishDate: Date }) => {
+const Author = ({
+  publishDate,
+  className,
+}: {
+  publishDate: Date;
+  className?: string;
+}) => {
   return (
-    <div className="my-6 flex items-center space-x-3 text-xs opacity-75 md:text-sm">
+    <div
+      className={clsx(
+        className,
+        "my-6 flex items-center space-x-3 text-xs opacity-75 md:text-sm"
+      )}
+    >
       <div className="flex items-center space-x-1">
         <UserIcon className="w-4" />
         <span>Written by Goulin Khoge</span>
@@ -10,7 +22,7 @@ const Author = ({ publishDate }: { publishDate: Date }) => {
       <span>•</span>
       <div className="flex items-center space-x-1">
         <CalendarIcon className="w-4" />
-        <span>
+        <span title={publishDate.toLocaleString()}>
           {publishDate.toLocaleDateString("en", {
             year: "numeric",
             month: "long",

@@ -32,11 +32,11 @@ body,
 }
 
 .blurry {
-  @apply border border-black/5 bg-white/75 backdrop-blur dark:border-white/20 dark:bg-black/40 dark:text-zinc-200;
+  @apply border border-black/5 bg-white/60 backdrop-blur dark:border-white/20 dark:bg-black/40 dark:text-zinc-200;
   /* Firefox */
   @-moz-document url-prefix() {
     & {
-      @apply dark:bg-black/90;
+      @apply dark:bg-black/80;
     }
   }
 }
