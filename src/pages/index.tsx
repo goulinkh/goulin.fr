@@ -17,7 +17,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
     <>
       <SEO />
       <Header />
-      <section className="max-w-container relative isolate mx-auto flex flex-col space-y-4 py-16">
+      <section className="max-w-container relative isolate mx-auto flex flex-col space-y-4 overflow-hidden py-16">
         <h1 className="mx-auto w-fit text-3xl backdrop-blur-sm">
           Goulin Khoge
         </h1>

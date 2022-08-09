@@ -4,12 +4,17 @@ import clsx from "clsx";
 import Link from "next/link";
 import React from "react";
 
-type Props = { blogPost: BlogPost; small?: boolean };
+type Props = { blogPost: BlogPost; small?: boolean; className?: string };
 
-const BlogCard: React.FC<Props> = ({ blogPost, small = false }) => {
+const BlogCard: React.FC<Props> = ({ blogPost, small = false, className }) => {
   return (
     <Link passHref href={`/blog/${blogPost.slug}`}>
-      <a className="isolate h-fit overflow-hidden rounded-2xl transition-shadow hover:shadow-lg dark:hover:shadow-2xl">
+      <a
+        className={clsx(
+          className,
+          "isolate flex flex-col overflow-hidden rounded-2xl shadow-sm transition-shadow hover:shadow-lg dark:hover:shadow-2xl"
+        )}
+      >
         <div
           className={clsx("relative w-full overflow-hidden", {
             "h-52": small,
@@ -20,7 +25,7 @@ const BlogCard: React.FC<Props> = ({ blogPost, small = false }) => {
         </div>
         <article
           className={clsx(
-            "blurry blurry-2 relative z-10 -mt-5 flex flex-col flex-nowrap gap-3 overflow-hidden rounded-2xl py-8 px-4",
+            "blurry blurry-2 relative z-10 -mt-5 flex flex-1 flex-col flex-nowrap gap-3 overflow-hidden rounded-2xl py-8 px-4",
             { "md:h-72 lg:h-52 xl:h-48": !small }
           )}
         >

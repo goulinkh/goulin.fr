@@ -15,17 +15,17 @@ const Header: React.FC<{ takeSpace?: boolean; isDraft?: boolean }> = ({
       })}
     >
       <div className="max-w-container mx-auto py-2">
-        <header className="blurry rounded-xl  py-2 px-6">
+        <header className="blurry rounded-xl py-2 px-6 shadow">
           <nav className="flex flex-wrap items-center sm:flex-nowrap">
             <Avatar />
-            <span className="pl-10"></span>
-            <Link href="/blogs" className="mr-5">
+            <span className="pl-5 sm:pl-10"></span>
+            <Link href="/blogs" className="mr-1 sm:mr-5">
               Blogs
             </Link>
             <Link href="/about">About</Link>
-            <div className="ml-auto flex items-center gap-6">
+            <div className="ml-auto flex items-center gap-2 sm:gap-6">
               {isDraft ? (
-                <span className="rounded-md bg-yellow-200/60 px-2 py-1 text-yellow-700 dark:bg-yellow-200/20 dark:text-yellow-400">
+                <span className="rounded-md bg-yellow-200/60 px-1 py-0.5 text-yellow-700 dark:bg-yellow-200/20 dark:text-yellow-400 sm:px-2 sm:py-1">
                   Draft
                 </span>
               ) : null}

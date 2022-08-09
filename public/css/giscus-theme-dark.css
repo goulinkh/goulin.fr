@@ -55,7 +55,7 @@ main {
   --color-btn-primary-selected-bg: #238636;
   --color-btn-primary-selected-shadow: 0 0 transparent;
   --color-btn-primary-disabled-text: rgb(240 246 252 / 50%);
-  --color-btn-primary-disabled-bg: rgb(35 134 54 / 60%);
+  --color-btn-primary-disabled-bg: rgba(12, 29, 15, 0.6);
   --color-btn-primary-disabled-border: rgb(240 246 252 / 10%);
   --color-fg-default: #c9d1d9;
   --color-fg-muted: #8b949e;
@@ -64,7 +64,7 @@ main {
   --color-canvas-overlay: rgb(22 27 34 / 90%);
   --color-canvas-inset: transparent;
   /* --color-canvas-subtle: transparent; */
-  --color-border-default: rgb(255 255 255 / 0.2);
+  --color-border-default: rgb(255 255 255 / 0.1);
   --color-border-muted: #21262d;
   --color-neutral-muted: rgb(110 118 129 / 40%);
   --color-neutral-subtle: rgb(110 118 129 / 10%);
@@ -130,7 +130,9 @@ body {
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji" !important;
 }
-
+.gsc-comment-box-tabs button.border-b-0.color-text-primary {
+  border-bottom: 1px solid rgb(34 34 37) !important;
+}
 .gsc-comment-box-textarea {
   background-color: rgb(255 255 255 / 0.05);
 }
