@@ -4,6 +4,7 @@ const withMDX = require("@next/mdx")({
 
 /** @type {import('next').NextConfig} */
 module.exports = withMDX({
+  images: { domains: ["photos.komoot.de"] },
   reactStrictMode: true,
   // Prefer loading of ES Modules over CommonJS
   experimental: { esmExternals: true },

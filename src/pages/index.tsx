@@ -1,6 +1,9 @@
+import BikeTourCard from "../components/common/BikeTourCard";
 import BlogCard from "../components/common/BlogCard";
 import Header from "../components/common/Header";
 import SEO from "../components/common/SEO";
+import BikeIcon from "../components/icons/BikeIcon";
+import { BikeTour, Komoot } from "../utils/komoot";
 import { BlogPost, getAllPosts } from "../utils/blogs";
 import { usePopperTooltip } from "react-popper-tooltip";
 import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
@@ -8,8 +11,10 @@ import type { GetStaticProps, NextPage } from "next";
 
 type Props = {
   latestBlogPosts: BlogPost[];
+  tours: BikeTour[];
 };
-const Home: NextPage<Props> = ({ latestBlogPosts }) => {
+const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
+  console.log("tours", tours);
   const popper1 = usePopperTooltip();
   const popper2 = usePopperTooltip();
 
@@ -88,14 +93,35 @@ const Home: NextPage<Props> = ({ latestBlogPosts }) => {
           <PencilAltIcon className="mr-2 h-6" />
           <h2 className="text-2xl">My latest blogs</h2>
         </div>
-        <div className="2x:grid-cols-3 grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-12">
           {latestBlogPosts.map((blogPost, i) => (
             <BlogCard key={i} blogPost={blogPost} />
           ))}
         </div>
       </section>
+      <section className="max-w-container mx-auto my-16">
+        <div className="mb-6 flex items-center">
+          <BikeIcon className="mr-2 h-6" />
+          <h2 className="text-2xl">Bike tours</h2>
+        </div>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-12">
+          {tours.map((tour, i) => (
+            <BikeTourCard key={i} tour={tour} />
+          ))}
+        </div>
+      </section>
     </>
   );
+};
+
+const fetchTours = async () => {
+  const komoot = new Komoot();
+  const userId = await komoot.login({
+    email: process.env.KOMOOT_EMAIL || "",
+    password: process.env.KOMOOT_PASSWORD || "",
+  });
+  const tours = await komoot.fetchTours(userId);
+  return await Promise.all(tours.map((i) => komoot.customTourDetails(i)));
 };
 
 export default Home;
@@ -111,6 +137,8 @@ export const getStaticProps: GetStaticProps<{
   return {
     props: {
       latestBlogPosts: posts.slice(0, 4),
+      tours: await fetchTours(),
     },
+    revalidate: 60 * 60,
   };
 };

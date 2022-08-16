@@ -23,7 +23,6 @@ export default async function postsSitemap(
     });
     // Create each URL row
     (await getAllPosts()).forEach((post) => {
-      console.log(post.content);
       smStream.write({
         url: `/blog/${post.slug}`,
         changefreq: "monthly",
@@ -46,7 +45,6 @@ export default async function postsSitemap(
     // Display output to user
     res.end(sitemapOutput);
   } catch (e) {
-    console.log(e);
     res.send(JSON.stringify(e));
   }
 }
