@@ -4,6 +4,14 @@ const withMDX = require("@next/mdx")({
 
 /** @type {import('next').NextConfig} */
 module.exports = withMDX({
+  async headers() {
+    return [
+      {
+        source: "/giscus/:path*",
+        headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
+      },
+    ];
+  },
   images: { domains: ["photos.komoot.de"] },
   reactStrictMode: true,
   // Prefer loading of ES Modules over CommonJS

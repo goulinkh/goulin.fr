@@ -30,11 +30,11 @@ const BlogCard: React.FC<Props> = ({ blogPost, small = false, className }) => {
           )}
         >
           <h1 className="text-xl">{blogPost.title}</h1>
-          <p className={clsx("opacity-75", { hidden: small })}>
+          {/* <p className={clsx("opacity-75", { hidden: small })}>
             {blogPost.description.length > 200
               ? blogPost.description.slice(0, 220).replace(/\s*.?$/, "") + "..."
               : blogPost.description}
-          </p>
+          </p> */}
         </article>
       </a>
     </Link>

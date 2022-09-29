@@ -11,15 +11,18 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Ubuntu", ...defaultTheme.fontFamily.sans],
-        mono: ["Fira Code", ...defaultTheme.fontFamily.mono],
+        mono: [
+          "ui-monospace",
+          "SFMono-Regular",
+          "SF Mono",
+          "Ubuntu Mono",
+          "Menlo",
+          "Consolas",
+          "Liberation Mono",
+          "monospace",
+        ],
       },
-
       keyframes: {
-        "disk-rotation": {
-          "0%": { transform: "rotate(0deg) scale(1.1)" },
-          "100%": { transform: "rotate(360deg) scale(1.1)" },
-        },
-
         "fade-out": {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },

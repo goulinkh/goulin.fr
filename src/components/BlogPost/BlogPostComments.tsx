@@ -10,12 +10,12 @@ export default function BlogPostComments() {
   useEffect(() => {
     setGiscusThemeSrc(
       theme === "dark"
-        ? location.origin + "/css/giscus-theme-dark.css"
-        : location.origin + "/css/giscus-theme-light.css"
+        ? location.origin + "/giscus/theme-dark.css"
+        : location.origin + "/giscus/theme-light.css"
     );
   }, [theme]);
   return (
-    <section className="blurry blurry-2 rounded-lg px-2 py-4 shadow">
+    <section className="blurry blurry-2 rounded-lg px-2 py-4">
       <Giscus
         repo="goulinkh/goulin.fr"
         repoId="MDEwOlJlcG9zaXRvcnkxNzMxNTg0MDY="

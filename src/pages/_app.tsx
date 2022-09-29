@@ -3,7 +3,7 @@ import { UserPreferencesProvider } from "../context/userPreferences";
 import type { AppProps } from "next/app";
 import "../styles/globals.scss";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: any) {
   return (
     <UserPreferencesProvider>
       <Component {...pageProps} />

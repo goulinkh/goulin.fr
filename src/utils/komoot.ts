@@ -1,12 +1,12 @@
 import { atob } from "buffer";
 import makeFetchCookie from "fetch-cookie";
-import fs, { fstat, writeFileSync } from "fs";
+import fs from "fs";
 
 const CookieJar = makeFetchCookie.toughCookie.CookieJar;
 
-import fetch from "node-fetch";
 import toGeoJSON from "@mapbox/togeojson";
 import { geoMercator } from "d3-geo";
+import fetch from "node-fetch";
 
 const DOMParser = require("xmldom").DOMParser;
 export type BikeTour = {
@@ -66,6 +66,7 @@ export class Komoot {
       "./cookie.json",
       JSON.stringify(this.cookieJar)
     );
+
     return response as Response;
   };
   getUserId() {
@@ -114,7 +115,7 @@ export class Komoot {
   }
 
   async fetchTours(userId: string, page = 0, perPage = 24): Promise<any[]> {
-    const url = `https://www.komoot.com/api/v007/users/2127024967400/tours/?sport_types=&type=tour_recorded&sort_field=date&sort_direction=desc&name=&status=private&hl=en&page=${page}&limit=${perPage}`;
+    const url = `https://www.komoot.com/api/v007/users/${userId}/tours/?sport_types=&type=tour_recorded&sort_field=date&sort_direction=desc&name=&status=private&hl=en&page=${page}&limit=${perPage}`;
     let response = await this.get(url, "application/hal+json,application/json");
     let payload = await response.json();
     if (payload.status && payload.status > 200) {
@@ -125,7 +126,6 @@ export class Komoot {
     if (page + 1 < totalPages) {
       totalTours = totalTours.concat(await this.fetchTours(userId, page + 1));
     }
-    writeFileSync("tours.json", JSON.stringify(totalTours));
     return totalTours.filter((tour: any) => tour.status === "public");
   }
 
@@ -144,7 +144,6 @@ export class Komoot {
           isCover: image._embedded.reference.cover !== null,
         }));
     const coverImage = images.find((image) => image.isCover) || images[0];
-    // const coverImageDate = await (await fetch(coverImage.src)).blob();
     const geoJson = toGeoJSON.gpx(gpx);
     const geoToScreen = geoMercator().fitExtent(
       [

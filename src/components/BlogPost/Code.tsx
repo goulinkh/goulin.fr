@@ -1,6 +1,10 @@
 import { userPreferencesContext } from "../../context/userPreferences";
 import { copyTextToClipboard } from "../../utils/common";
-import { CheckIcon, ClipboardIcon, CodeIcon } from "@heroicons/react/outline";
+import {
+  CheckIcon,
+  ClipboardIcon,
+  CodeBracketIcon,
+} from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import React, { useContext, useEffect, useState } from "react";
 import { usePopperTooltip } from "react-popper-tooltip";
@@ -57,7 +61,7 @@ const CodeCopyPastBtn: React.FC<{ content: string }> = ({ content }) => {
 const CodeLanguage: React.FC<{ language: string }> = ({ language }) => {
   return (
     <div className="pointer-events-none absolute bottom-4 right-5 flex items-center space-x-1 font-mono text-sm text-blue-500 dark:text-blue-500">
-      <CodeIcon className="w-4" /> <span>{language}</span>
+      <CodeBracketIcon className="w-4" /> <span>{language}</span>
     </div>
   );
 };
@@ -73,7 +77,7 @@ const Code: React.FC<any> = ({ className, ...props }) => {
       <CodeCopyPastBtn content={props.children} />
       {language ? <CodeLanguage language={language} /> : null}
       <SyntaxHighlighter
-        className="not-prose rounded-lg border border-gray-200 !p-4 !font-mono shadow dark:border-gray-600"
+        className="not-prose rounded-lg border border-gray-200 !p-4 !font-mono text-sm shadow dark:border-gray-600"
         language={language || "ini"}
         PreTag={inlineCode ? "pre" : "span"}
         CodeTag={inlineCode ? "code" : "span"}

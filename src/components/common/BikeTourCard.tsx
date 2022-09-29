@@ -1,7 +1,11 @@
 import { BikeTour } from "../../utils/komoot";
+import {
+  ArrowTrendingUpIcon,
+  ClockIcon,
+  FireIcon,
+} from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Image from "next/image";
-import { ClockIcon, FireIcon, TrendingUpIcon } from "@heroicons/react/outline";
 
 const toHHMMSS = (sec_num: number) => {
   let hours: any = Math.floor(sec_num / 3600);
@@ -189,7 +193,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
                 </span>
               </li>
               <li className="w -full flex flex-row items-center gap-1">
-                <TrendingUpIcon className="h-3.5" />
+                <ArrowTrendingUpIcon className="h-3.5" />
                 <span className="text-zinc-200/60">Elevation</span>
                 <hr className="flex-1 border-dotted border-zinc-200/30" />
                 <span className="font-mono text-xs text-zinc-100">

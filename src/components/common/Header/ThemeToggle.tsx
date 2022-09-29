@@ -1,5 +1,5 @@
 import { userPreferencesContext } from "../../../context/userPreferences";
-import { MoonIcon, SunIcon } from "@heroicons/react/outline";
+import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { useContext } from "react";
 import { usePopperTooltip } from "react-popper-tooltip";
 

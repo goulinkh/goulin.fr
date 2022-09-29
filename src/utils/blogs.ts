@@ -1,10 +1,10 @@
 import { deepClone } from "./common";
-import showdown from "showdown";
 import { Feed } from "feed";
 import matter from "gray-matter";
 import { getPlaiceholder } from "plaiceholder";
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import showdown from "showdown";
 import p, { join } from "path";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 
 const blogsPath = join(process.cwd(), "blogs");
 export type BlogPost = {
@@ -18,12 +18,13 @@ export type BlogPost = {
   coverPreviewBlurData: string;
   tags: string[];
   relatedPosts: BlogPost[];
-  topic: "tech" | "cycling" | "coffee";
+  topic: Topic;
   content: string;
   draft: boolean;
   variables: any;
 };
 
+export type Topic = "tech" | "cycling" | "  ";
 async function resolvePost(path: string): Promise<BlogPost> {
   const slug = p.basename(path).replace(/\.mdx$/, "");
 
@@ -51,7 +52,7 @@ async function resolvePost(path: string): Promise<BlogPost> {
     tags: (data["tags"] || "").split(",").map((tag: string) => tag.trim()),
     relatedPosts: [],
     topic: data["topic"],
-    content: `# ${data["title"]}\n${content}`,
+    content,
     draft: data["draft"] === true ? true : false,
     variables: {},
   };

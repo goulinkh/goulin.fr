@@ -1,4 +1,3 @@
-import AeroPressIcon from "./AeroPressIcon";
 import Link from "../Link";
 
 const Footer = () => {
@@ -19,10 +18,6 @@ const Footer = () => {
             <Link href="https://twitter.com/GoulinKH">Twitter</Link>
           </li>
         </ul>
-        <div className="flex items-center">
-          <span className="col-span-3">Current Coffee mood: </span>
-          <AeroPressIcon className="col-span-1 w-10" />
-        </div>
       </div>
     </div>
   );

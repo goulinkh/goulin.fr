@@ -1,7 +1,10 @@
 import Favicon from "./Favicon";
+import { Topic } from "../../../utils/blogs";
 import Head from "next/head";
 import Script from "next/script";
 import { useEffect, useState } from "react";
+
+export const topics: Topic[] = ["cycling", "tech"];
 
 type Props = {
   title?: string;
@@ -23,13 +26,16 @@ const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
     : "Goulin Khoge's personal page";
   title = title ? `${title} - Goulin Khoge` : "Goulin Khoge";
   description =
-    description ||
-    "Software engineer, coffee hobbyist, manga fan & a gravel bike rider.";
-
-  const keywords2 =
-    keywords?.join(", ") ||
-    "portfolio, javascript, developer, coffee, cycling, web developer";
-  let image = cover ? cover : `/images/personal-photo.png`;
+    description || "Software engineer, manga fan & a gravel bike rider.";
+  const keywords2 = [
+    ...(keywords || []),
+    ...topics,
+    "portfolio",
+    " javascript",
+    " developer",
+    " web developer",
+  ].join(", ");
+  let image = cover ? cover : `/images/personal-photo.jpeg`;
   image = `${location.origin}/${image}`;
 
   useEffect(() => {
@@ -71,12 +77,6 @@ const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
           as="font"
           type="font/woff2"
           href="https://assets.ubuntu.com/v1/4d80ab6d-ubuntu-b-webfont.woff"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/fira_code.min.css"
-          integrity="sha512-MbysAYimH1hH2xYzkkMHB6MqxBqfP0megxsCLknbYqHVwXTCg9IqHbk+ZP/vnhO8UEW6PaXAkKe2vQ+SWACxxA=="
           crossOrigin="anonymous"
         />
       </Head>

@@ -1,0 +1,26 @@
+---
+title: Add bluetooth headset battery's percentage in Ubuntu
+description: Showing the remaining battery of my Bluetooth headset in the status bar on Ubuntu 22.04
+cover: image3.png
+publishDate: 2022-09-29T12:17:26.563Z
+tags: linux, hacks, guide
+topic: tech
+---
+
+## ⚠️ Disclaimer
+
+This solution worked for me on Ubuntu 22.04. Follow this guide carefully as it could break the Bluetooth on your system.
+
+## Solution
+
+1. Edit the following file as root: `/etc/bluetooth/main.conf`
+2. Add `Experimental=true` at the beginning of the file. It should look like this:
+
+```conf
+[General]
+Experimental=true
+```
+
+3. Save the file and quit the editor
+4. Install this GNOME extension: https://extensions.gnome.org//extension/3991/bluetooth-battery/
+5. Edit the settings so they look like this, especially the `% Source` column: ![](/assets/blogs/images/image3-1.png)

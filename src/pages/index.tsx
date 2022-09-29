@@ -1,12 +1,13 @@
+import Avatar from "../components/common/Avatar";
 import BikeTourCard from "../components/common/BikeTourCard";
 import BlogCard from "../components/common/BlogCard";
 import Header from "../components/common/Header";
 import SEO from "../components/common/SEO";
 import BikeIcon from "../components/icons/BikeIcon";
-import { BikeTour, Komoot } from "../utils/komoot";
 import { BlogPost, getAllPosts } from "../utils/blogs";
+import { BikeTour, Komoot } from "../utils/komoot";
 import { usePopperTooltip } from "react-popper-tooltip";
-import { LocationMarkerIcon, PencilAltIcon } from "@heroicons/react/outline";
+import { MapPinIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import type { GetStaticProps, NextPage } from "next";
 
 type Props = {
@@ -14,25 +15,23 @@ type Props = {
   tours: BikeTour[];
 };
 const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
-  console.log("tours", tours);
   const popper1 = usePopperTooltip();
-  const popper2 = usePopperTooltip();
 
   return (
     <>
       <SEO />
       <Header />
       <section className="max-w-container relative isolate mx-auto flex flex-col space-y-4 overflow-hidden py-16">
+        <Avatar className="mx-auto my-5" />
         <h1 className="mx-auto w-fit text-3xl backdrop-blur-sm">
           Goulin Khoge
         </h1>
         <div className="mx-auto flex w-fit items-center justify-center opacity-75 backdrop-blur-sm">
-          <LocationMarkerIcon className="mr-2 h-5 w-5" /> France, Toulouse
+          <MapPinIcon className="mr-2 h-5 w-5" /> France, Toulouse
         </div>
         <p className="mx-auto w-fit backdrop-blur-sm">
-          <span ref={popper1.setTriggerRef}>Software engineer,</span>{" "}
-          <span ref={popper2.setTriggerRef}>coffee hobbyist</span>, manga fan &
-          a gravel bike rider.
+          <span ref={popper1.setTriggerRef}>Software engineer,</span> manga fan
+          & a gravel bike rider.
         </p>
         {popper1.visible && (
           <div
@@ -66,22 +65,6 @@ const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
             </span>
           </div>
         )}
-        {popper2.visible && (
-          <div
-            ref={popper2.setTooltipRef}
-            {...popper2.getTooltipProps({
-              className: "tooltip-container default blurry blurry-2",
-            })}
-          >
-            <span>
-              Current setup:{" "}
-              <span className="rounded bg-red-600 p-[.2rem] text-white">
-                AeroPress
-              </span>{" "}
-              coffee maker
-            </span>
-          </div>
-        )}
         <div
           className="absolute top-0 -z-10 h-full w-full bg-repeat-round
          text-cyan-800 opacity-5 invert-0 dark:invert"
@@ -90,7 +73,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
       </section>
       <section className="max-w-container mx-auto my-16 ">
         <div className="mb-6 flex items-center">
-          <PencilAltIcon className="mr-2 h-6" />
+          <PencilSquareIcon className="mr-2 h-6" />
           <h2 className="text-2xl">My latest blogs</h2>
         </div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-12">
@@ -99,35 +82,40 @@ const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
           ))}
         </div>
       </section>
-      <section className="max-w-container mx-auto my-16">
-        <div className="mb-6 flex items-center">
-          <BikeIcon className="mr-2 h-6" />
-          <h2 className="text-2xl">Bike tours</h2>
-        </div>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-12">
-          {tours.map((tour, i) => (
-            <BikeTourCard key={i} tour={tour} />
-          ))}
-        </div>
-      </section>
+      {tours.length ? (
+        <section className="max-w-container mx-auto my-16">
+          <div className="mb-6 flex items-center">
+            <BikeIcon className="mr-2 h-6" />
+            <h2 className="text-2xl">Bike tours</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-12">
+            {tours.map((tour, i) => (
+              <BikeTourCard key={i} tour={tour} />
+            ))}
+          </div>
+        </section>
+      ) : null}
     </>
   );
-};
-
-const fetchTours = async () => {
-  const komoot = new Komoot();
-  const userId = await komoot.login({
-    email: process.env.KOMOOT_EMAIL || "",
-    password: process.env.KOMOOT_PASSWORD || "",
-  });
-  const tours = await komoot.fetchTours(userId);
-  return await Promise.all(tours.map((i) => komoot.customTourDetails(i)));
 };
 
 export default Home;
 export const getStaticProps: GetStaticProps<{
   latestBlogPosts: BlogPost[];
 }> = async (_) => {
+  const fetchTours = async () => {
+    const komoot = new Komoot();
+    try {
+      const userId = await komoot.login({
+        email: process.env.KOMOOT_EMAIL || "",
+        password: process.env.KOMOOT_PASSWORD || "",
+      });
+      const tours = await komoot.fetchTours(userId);
+      return await Promise.all(tours.map((i) => komoot.customTourDetails(i)));
+    } catch {
+      return [];
+    }
+  };
   let posts = await getAllPosts();
   posts = posts.sort(
     (p1, p2) =>
