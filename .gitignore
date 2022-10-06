@@ -1,5 +1,6 @@
 cookie.json
 /public/rss
+sitemap.xml
 
 # dependencies
 /node_modules

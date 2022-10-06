@@ -1,4 +1,5 @@
 import { deepClone } from "./common";
+import { generateSitemap } from "./sitemap";
 import { Feed } from "feed";
 import matter from "gray-matter";
 import { getPlaiceholder } from "plaiceholder";
@@ -7,6 +8,10 @@ import p, { join } from "path";
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 
 const blogsPath = join(process.cwd(), "blogs");
+
+// Call once on build time
+generateSitemap();
+
 export type BlogPost = {
   cover: string | null;
   darkCover: string | null;

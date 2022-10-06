@@ -4,6 +4,9 @@ const withMDX = require("@next/mdx")({
 
 /** @type {import('next').NextConfig} */
 module.exports = withMDX({
+  async rewrites() {
+    return [{ source: "/sitemap.xml", destination: "/api/sitemap" }];
+  },
   async headers() {
     return [
       {
