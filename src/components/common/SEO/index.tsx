@@ -83,7 +83,7 @@ const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
       <Script
         defer
         data-domain="goulin.fr"
-        src="https://insights.api.goulin.fr/js/insights.js"
+        src="https://insights.goulin.fr/js/insights.js"
       />
       <Favicon />
     </>
