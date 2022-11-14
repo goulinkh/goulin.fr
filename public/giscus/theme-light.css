@@ -104,6 +104,9 @@ body {
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji" !important;
 }
+.gsc-main {
+  background: rgb(244, 244, 246);
+}
 
 .gsc-comment-box-textarea {
   background-color: rgb(255 255 255 / 0.05);

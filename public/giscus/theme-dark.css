@@ -96,6 +96,10 @@ main .pagination-loader-container {
   animation: gradient 21s ease infinite;
 }
 
+.gsc-main {
+  background: rgb(34, 34, 37);
+}
+
 @keyframes gradient {
   0% {
     background-position: 2% 0%;

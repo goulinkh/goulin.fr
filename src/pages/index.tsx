@@ -106,13 +106,11 @@ export const getStaticProps: GetStaticProps<{
   const fetchTours = async () => {
     const komoot = new Komoot();
     try {
-      const userId = await komoot.login({
-        email: process.env.KOMOOT_EMAIL || "",
-        password: process.env.KOMOOT_PASSWORD || "",
-      });
+      const userId = process.env.KOMOOT_USER_ID || "";
       const tours = await komoot.fetchTours(userId);
       return await Promise.all(tours.map((i) => komoot.customTourDetails(i)));
-    } catch {
+    } catch (e) {
+      console.log("e", e);
       return [];
     }
   };

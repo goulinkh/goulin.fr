@@ -13,14 +13,20 @@ This solution worked for me on Ubuntu 22.04. Follow this guide carefully as it c
 
 ## Solution
 
-1. Edit the following file as root: `/etc/bluetooth/main.conf`
+1. Edit the following file as root: 
+```
+/etc/bluetooth/main.conf
+```
 2. Add `Experimental=true` at the beginning of the file. It should look like this:
 
 ```conf
 [General]
 Experimental=true
 ```
-
-3. Save the file and quit the editor
-4. Install this GNOME extension: https://extensions.gnome.org//extension/3991/bluetooth-battery/
-5. Edit the settings so they look like this, especially the `% Source` column: ![](/assets/blogs/images/image3-1.png)
+3. Reload the Bluetooth service:
+```bash
+sudo systemctl restart bluetooth.service
+```
+4. Save the file and quit the editor
+5. Install this GNOME extension: https://extensions.gnome.org//extension/3991/bluetooth-battery/
+6. Edit the settings so they look like this, especially the `% Source` column: ![](/assets/blogs/images/image3-1.png)

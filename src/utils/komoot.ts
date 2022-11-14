@@ -1,9 +1,3 @@
-import { atob } from "buffer";
-import makeFetchCookie from "fetch-cookie";
-import fs from "fs";
-
-const CookieJar = makeFetchCookie.toughCookie.CookieJar;
-
 import toGeoJSON from "@mapbox/togeojson";
 import { geoMercator } from "d3-geo";
 import fetch from "node-fetch";
@@ -30,92 +24,25 @@ export type BikeTour = {
 };
 
 export class Komoot {
-  cookieJar: typeof CookieJar;
-  fetch: any;
-  constructor() {
-    if (
-      fs.existsSync("./cookie.json") &&
-      process.env.NODE_ENV === "development"
-    ) {
-      this.cookieJar = CookieJar.deserializeSync(
-        JSON.parse(fs.readFileSync("./cookie.json").toString("utf-8"))
-      );
-    } else {
-      this.cookieJar = new CookieJar();
-    }
-    this.fetch = makeFetchCookie(fetch, this.cookieJar);
-  }
-
   private get: (url: string, type?: string) => Promise<Response> = async (
     url: string,
     type = "application/json"
   ) => {
-    const response = await this.fetch(url, {
-      // @ts-ignore
+    const response = await fetch(url, {
       headers: {
         accept: type,
         "accept-language": "en",
         onlyprops: "true",
+        "User-Agent":
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
       },
-      body: null,
       method: "GET",
-      // @ts-ignore
-      credentials: "include",
     });
-    await fs.promises.writeFile(
-      "./cookie.json",
-      JSON.stringify(this.cookieJar)
-    );
-
     return response as Response;
   };
-  getUserId() {
-    try {
-      return JSON.parse(
-        atob(
-          this.cookieJar.store.idx["www.komoot.com"]["/"]["kmt_session"].value
-        )
-      ).profile.username;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  async login({ email, password }: { email: string; password: string }) {
-    let userId = this.getUserId();
-    if (userId) {
-      return userId;
-    }
-    let response = (await this.fetch("https://account.komoot.com/v1/signin", {
-      method: "POST",
-      // @ts-ignore
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })) as Response;
-    let payload = await response.json();
-
-    const loginSuccessfully = payload.type === "logged_in" && !payload.error;
-    if (!loginSuccessfully)
-      throw new Error(
-        `Failed to login to Komoot, action: ${payload.type} errors: ${payload.error}`
-      );
-
-    // a silly request to init the cookies in www.komoot.com (needed to know the user id)
-    response = await this.get(
-      `https://www.komoot.com/user/null/tours?type=recorded`
-    );
-    userId = this.getUserId();
-    if (!userId)
-      throw new Error(
-        "Failed to get the user id, wrong login (most likely) or komoot did un update to the auth service."
-      );
-    return userId;
-  }
 
   async fetchTours(userId: string, page = 0, perPage = 24): Promise<any[]> {
-    const url = `https://www.komoot.com/api/v007/users/${userId}/tours/?sport_types=&type=tour_recorded&sort_field=date&sort_direction=desc&name=&status=private&hl=en&page=${page}&limit=${perPage}`;
+    const url = `https://www.komoot.com/api/v007/users/${userId}/tours/?sport_types=&type=tour_recorded&sort_field=date&sort_direction=desc&name=&status=public&hl=en&page=${page}&limit=${perPage}`;
     let response = await this.get(url, "application/hal+json,application/json");
     let payload = await response.json();
     if (payload.status && payload.status > 200) {
@@ -152,9 +79,9 @@ export class Komoot {
       ],
       geoJson
     );
-    const svgPath =
-      "M " +
-      geoJson.features[0].geometry.coordinates.map(geoToScreen).join(" L ");
+    const svgPath = `M ${geoJson.features[0].geometry.coordinates
+      .map(geoToScreen)
+      .join(" L ")}`;
     const routePathSvg =
       /* HTML */
       `<svg
