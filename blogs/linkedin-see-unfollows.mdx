@@ -1,0 +1,112 @@
+---
+title: See people who gave me unfollow on LinkendIn
+description: A good way to see whether you are sharing too much content on LinkendIn that is not relevant.
+cover: image4.png
+publishDate: 2022-11-24T10:34:55.071Z
+tags: web-dev, web-scaping
+topic: tech
+---
+
+## Context
+
+I discovered by chance a view in LinkedIn that shows the list of people who are following you, you can find it in: My profile -> Activity -> N followers, or by going to www.linkedin.com/feed/followers:
+
+<Image
+  image="image4-1.png"
+  alt="An example of followers page"
+  width={1534}
+  height={1438}
+  small
+  legend
+/>
+
+I also know that there is a page where you can see your connections, so I noticed that the people who are following me are fewer than the people that I'm connected with (2)!
+
+<Image
+  image="image4-2.png"
+  alt="A screenshot of my profile"
+  width={537}
+  height={515}
+  small
+/>
+
+## Getting the list of connections and followers in JSON
+
+Having only 2 people who gave me an "unfollow" probably means that I'm not that pushy in terms of sharing and resharing content! However, I'm still curious to know who these people are 🥸
+
+I wrote a script that I run when viewing [my profile](https://www.linkedin.com/search/results/people/?network=%5B%22F%22%5D&origin=MEMBER_PROFILE_CANNED_SEARCH&sid=y!_), which gives me the list of people that I'm connected with:
+
+```js
+const connections = [];
+const wait = (t) => new Promise((s) => setTimeout(s, t));
+const queryConnections = () =>
+  [
+    ...document.querySelectorAll(
+      ".entity-result__content span > a > span > span:nth-child(1)"
+    ),
+  ].map((e) => e.textContent.trim());
+const getMyConnections = async () => {
+  for (let i = 0; i < 11; i++) {
+    window.scrollTo(0, document.body.scrollHeight);
+    connections.push(...queryConnections());
+    await wait(500);
+    document.querySelector(".ember-view button[aria-label='Next']").click();
+    await wait(1500 + Math.floor(Math.random() * 2000));
+  }
+  connections.push(...queryConnections());
+};
+getMyConnections().then(console.log(connections));
+```
+
+The next step is to get the other list, using the same strategy. I wrote another script that I run in [the followers' view](https://www.linkedin.com/feed/followers) of the current working URL, which gives me the list of people that are following me:
+
+```js
+const wait = (t) => new Promise((s) => setTimeout(s, t));
+const gotoEndOfPage = async () => {
+  while (document.querySelector(".scaffold-finite-scroll__load-button")) {
+    window.scrollTo(0, document.body.scrollHeight);
+    await wait(2000);
+  }
+};
+const getMyFollowers = async () => {
+  await gotoEndOfPage();
+  return [
+    ...document.querySelectorAll(
+      ".feed-following-list .follows-recommendation-card__name"
+    ),
+  ].map((e) => e.textContent.trim());
+};
+let followers;
+getMyFollowers().then((r) => {
+  followers = r;
+  console.log(followers);
+});
+```
+
+Now let's see which of our colleagues aren't interested in what we say 🤯
+
+```js
+// const connections = [...]
+// const followers = [...]
+followersSet = new Set(followers);
+loosers = connections.filter((person) => !followersSet.has(person));
+console.log(
+  "connections to remove:\n",
+  loosers.map((e) => `\t- john doe`).join("\n")
+);
+```
+
+<br />
+
+<Image
+  image="image4-3.png"
+  alt="Final results"
+  width={649}
+  height={137}
+  small
+  legend
+/>
+
+## Final thoughts
+
+Jokes aside, there are a lot of reasons a person may unfollow you on LinkedIn. Don't take it too personally.
