@@ -3,8 +3,7 @@ import Link from "../Link";
 const Footer = () => {
   return (
     <div className="max-w-container mx-auto mb-6 space-y-3">
-      <hr />
-      <ul className="flex items-center space-x-3">
+      <ul className="flex items-center space-x-3 text-sm">
         <li>
           <Link href="https://github.com/goulinkh">Github</Link>
         </li>

@@ -31,7 +31,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
     <a href={`https://www.komoot.com/tour/${tour.id}`}>
       <div
         className={clsx(
-          "blurry blurry-2 h-[500px] overflow-hidden rounded-lg",
+          "blurry blurry-2 m-auto h-[400px] w-[300px] overflow-hidden rounded-lg lg:m-[none]",
           className
         )}
       >
@@ -44,7 +44,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
             objectFit="cover"
           />
           <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-b from-black/20 via-transparent to-black/60" />
-          <div className="absolute top-[10%] left-[10%] h-[80%] w-[80%] rotate-12 overflow-hidden">
+          <div className="absolute top-[20%] left-[20%] h-[50%] w-[50%] rotate-12 overflow-hidden">
             {/* eslint-disable-next-line jsx-a11y/alt-text */}
             <Image
               src={`data:image/svg+xml;base64,${new Buffer(

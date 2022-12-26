@@ -1,5 +1,5 @@
-import Head from "next/head";
 import useMedia from "../../../hooks/use-media";
+import Head from "next/head";
 
 const Favicon = () => {
   const isDark = useMedia("(prefers-color-scheme: dark)");

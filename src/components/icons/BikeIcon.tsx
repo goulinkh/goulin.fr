@@ -1,5 +1,3 @@
-import clsx from "clsx";
-
 const BikeIcon = ({ className }: { className?: string }) => (
   <svg
     className={className ? className : "w-5"}

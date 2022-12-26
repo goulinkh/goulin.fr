@@ -1,0 +1,48 @@
+.card {
+  .description {
+    line-height: 24px;
+  }
+  --color: 0, 255, 255;
+  .icon {
+    transition: 0.3s ease all;
+  }
+  &:hover .icon {
+    color: rgb(var(--color));
+    background-color: rgba(var(--color), 0.05);
+    border-color: rgba(var(--color), 0.1);
+    svg {
+      filter: grayscale(0);
+    }
+  }
+  .pattern {
+    svg {
+      mask-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.8)
+      );
+    }
+  }
+  .bg {
+    --mouse-x: 0px;
+    --mouse-y: 0px;
+    img {
+      opacity: 0;
+      transition: none;
+    }
+  }
+  &:hover .bg img {
+    transition: 0.3s opacity ease;
+    border-color: rgb(var(--color));
+    opacity: 1;
+    mask-image: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    mask-size: 350px 350px;
+    mask-repeat: no-repeat;
+    mask-position: calc(var(--mouse-x) - 175px) calc(var(--mouse-y) - 175px);
+  }
+}

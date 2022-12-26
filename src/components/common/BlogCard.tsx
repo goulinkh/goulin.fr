@@ -18,7 +18,7 @@ const BlogCard: React.FC<Props> = ({ blogPost, small = false, className }) => {
         <div
           className={clsx("relative w-full overflow-hidden", {
             "h-52": small,
-            "h-80": !small,
+            "h-60": !small,
           })}
         >
           <BlogCover post={blogPost} />
@@ -26,10 +26,10 @@ const BlogCard: React.FC<Props> = ({ blogPost, small = false, className }) => {
         <article
           className={clsx(
             "blurry blurry-2 relative z-10 -mt-5 flex flex-1 flex-col flex-nowrap gap-3 overflow-hidden rounded-2xl py-8 px-4",
-            { "md:h-72 lg:h-52 xl:h-48": !small }
+            { "h-20": !small }
           )}
         >
-          <h1 className="text-xl">{blogPost.title}</h1>
+          <h1 className="">{blogPost.title}</h1>
           {/* <p className={clsx("opacity-75", { hidden: small })}>
             {blogPost.description.length > 200
               ? blogPost.description.slice(0, 220).replace(/\s*.?$/, "") + "..."

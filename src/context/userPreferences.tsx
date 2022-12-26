@@ -1,3 +1,4 @@
+import useMedia from "../hooks/use-media";
 import React, {
   createContext,
   FC,
@@ -5,7 +6,6 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import useMedia from "../hooks/use-media";
 
 type Theme = "light" | "dark";
 
