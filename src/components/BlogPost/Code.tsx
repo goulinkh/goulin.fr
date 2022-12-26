@@ -77,7 +77,7 @@ const Code: React.FC<any> = ({ className, ...props }) => {
       <CodeCopyPastBtn content={props.children} />
       {language ? <CodeLanguage language={language} /> : null}
       <SyntaxHighlighter
-        className="not-prose rounded-lg border border-gray-200 !p-4 !font-mono text-sm shadow dark:border-gray-600"
+        className="not-prose rounded-lg border border-black/5 !p-4 !font-mono text-sm shadow dark:border-white/5"
         language={language || "ini"}
         PreTag={inlineCode ? "pre" : "span"}
         CodeTag={inlineCode ? "code" : "span"}

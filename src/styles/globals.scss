@@ -22,8 +22,8 @@
 }
 body,
 .default {
-  @apply bg-zinc-100 dark:bg-zinc-900;
-  @apply text-zinc-800 dark:text-zinc-200;
+  @apply bg-white dark:bg-zinc-900;
+  @apply text-black dark:text-zinc-100;
   @apply transition-colors;
 }
 
@@ -33,23 +33,19 @@ body,
 }
 
 .blurry {
-  @apply border border-black/5 bg-white/60 backdrop-blur dark:border-white/20 dark:bg-black/40 dark:text-zinc-200;
-  /* Firefox */
-  @-moz-document url-prefix() {
-    & {
-      @apply dark:bg-black/80;
-    }
-  }
+  @apply border border-black/10 bg-white/60 backdrop-blur dark:border-white/10 dark:bg-black/40 dark:text-zinc-200;
+}
+
+.blurry-2:hover {
+  @apply border-black/20 dark:border-white/20;
 }
 
 .blurry.blurry-2 {
-  @apply border-gray-300 bg-zinc-100/75 dark:border-gray-600 dark:bg-zinc-800/70;
-  /* Firefox */
-  @-moz-document url-prefix() {
-    & {
-      @apply bg-zinc-100 dark:bg-zinc-900;
-    }
-  }
+  @apply bg-zinc-100/75  transition-[border] dark:bg-zinc-800/70;
+}
+
+hr {
+  @apply border-black/10 dark:border-white/10;
 }
 
 .btn {

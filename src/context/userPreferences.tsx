@@ -1,18 +1,16 @@
 import React, {
+  createContext,
   FC,
   ReactNode,
-  createContext,
   useEffect,
   useState,
 } from "react";
+import useMedia from "../hooks/use-media";
 
 type Theme = "light" | "dark";
 
 export type UserPreferences = {
-  theme: [
-    "light" | "dark",
-    React.Dispatch<React.SetStateAction<"light" | "dark">>
-  ];
+  theme: [Theme, React.Dispatch<React.SetStateAction<"light" | "dark">>];
 };
 
 export const userPreferencesContext = createContext<UserPreferences>(
@@ -23,18 +21,14 @@ type Props = {
   children: ReactNode;
 };
 
-// when old nav with no prefers-color-scheme and no theme selected
-export const DEFAULT_THEME: Theme = "light";
-
 export const UserPreferencesProvider: FC<Props> = ({ children }) => {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
+  const isDark = useMedia("(prefers-color-scheme: dark)");
+  const [theme, setTheme] = useState<Theme>("dark");
   /* Theme */
   useEffect(() => {
     if (
       localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+      (!("theme" in localStorage) && isDark)
     ) {
       setTheme("dark");
     } else {

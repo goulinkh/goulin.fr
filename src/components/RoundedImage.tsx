@@ -19,8 +19,9 @@ const RoundedImage = ({
   <>
     <div
       className={clsx("mx-auto overflow-hidden rounded-lg shadow-lg", {
-        "max-w-2xl": small,
+        "max-w-full lg:max-w-2xl": small,
       })}
+      style={{ width: small ? width : undefined }}
     >
       <Image
         src={`/assets/blogs/images/${image}`}

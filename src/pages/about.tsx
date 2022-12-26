@@ -16,10 +16,11 @@ const About: NextPage = () => {
           <MapPinIcon className="mr-2 h-5 w-5" /> France, Toulouse
         </div>
         <p className="prose prose-zinc max-w-full text-left dark:prose-invert">
-          I am a software engineer, I mostly do fullstack, DevOps and automation
-          stuff 🤖. Coding has been my passion for{" "}
-          {new Date().getFullYear() - 2016} years and I am always eager to learn
-          more about new technologies and to improve myself.
+          I am a software engineer with a focus on building high-quality web
+          products. I have a strong foundation in software engineering
+          principles and am skilled in fullstack development, DevOps, and
+          automation. I am committed to delivering reliable solutions that
+          exceed user expectations.
           <br />
         </p>
       </section>
