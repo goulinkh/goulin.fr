@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { FC } from "react";
+import Image from "next/image"
+import { FC } from "react"
 
 type Props = {
-  className?: string;
-};
+  className?: string
+}
 
 const Avatar: FC<Props> = ({ className }) => {
   const backgroundAnimation = `
@@ -20,7 +20,7 @@ const Avatar: FC<Props> = ({ className }) => {
         background-position: 0 82%;
       }
     }
-  `;
+  `
 
   return (
     <div className={className}>
@@ -46,7 +46,7 @@ const Avatar: FC<Props> = ({ className }) => {
         ></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Avatar;
+export default Avatar

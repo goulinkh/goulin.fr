@@ -1,2 +1,2 @@
-declare module "@mdx-js/runtime";
-declare module "@mapbox/togeojson";
+declare module "@mdx-js/runtime"
+declare module "@mapbox/togeojson"

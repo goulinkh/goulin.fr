@@ -1,17 +1,17 @@
-import { userPreferencesContext } from "../../../context/userPreferences";
-import { isBrowser } from "../../../hooks/use-media";
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
-import { useContext } from "react";
-import { usePopperTooltip } from "react-popper-tooltip";
+import { userPreferencesContext } from "../../../context/userPreferences"
+import { isBrowser } from "../../../hooks/use-media"
+import { MoonIcon, SunIcon } from "@heroicons/react/24/outline"
+import { useContext } from "react"
+import { usePopperTooltip } from "react-popper-tooltip"
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useContext(userPreferencesContext).theme;
+  const [theme, setTheme] = useContext(userPreferencesContext).theme
   const { getTooltipProps, setTooltipRef, setTriggerRef, visible } =
-    usePopperTooltip();
+    usePopperTooltip()
   const handleToggleClick = () => {
-    theme === "dark" ? setTheme("light") : setTheme("dark");
-  };
-  if (!isBrowser) return null;
+    theme === "dark" ? setTheme("light") : setTheme("dark")
+  }
+  if (!isBrowser) return null
   return (
     <>
       <button
@@ -39,7 +39,7 @@ const ThemeToggle = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ThemeToggle;
+export default ThemeToggle

@@ -22,6 +22,6 @@ const BikeIcon = ({ className }: { className?: string }) => (
       fill="currentColor"
     />
   </svg>
-);
+)
 
-export default BikeIcon;
+export default BikeIcon

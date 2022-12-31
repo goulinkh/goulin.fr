@@ -1,30 +1,28 @@
-import BlogCard from "../components/common/BlogCard";
-import Header from "../components/common/Header";
-import SEO from "../components/common/SEO";
-import BikeIcon from "../components/icons/BikeIcon";
-import { BlogPost, generateFeed, getAllPosts } from "../utils/blogs";
-import { usePopperTooltip } from "react-popper-tooltip";
-import Link from "next/link";
+import BlogCard from "../components/common/BlogCard"
+import Header from "../components/common/Header"
+import SEO from "../components/common/SEO"
+import BikeIcon from "../components/icons/BikeIcon"
+import { BlogPost, generateFeed, getAllPosts } from "../utils/blogs"
+import { usePopperTooltip } from "react-popper-tooltip"
+import Link from "next/link"
 import {
   CodeBracketIcon,
   PencilSquareIcon,
   RssIcon,
-} from "@heroicons/react/24/outline";
-import type { GetStaticProps, NextPage } from "next";
+} from "@heroicons/react/24/outline"
+import type { GetStaticProps, NextPage } from "next"
 
 type Props = {
-  allBlogPosts: BlogPost[];
-};
+  allBlogPosts: BlogPost[]
+}
 const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
-  const maxPerTopic = 4;
+  const maxPerTopic = 4
   const { getTooltipProps, setTooltipRef, setTriggerRef, visible } =
-    usePopperTooltip();
+    usePopperTooltip()
   return (
     <>
       <SEO title="Blog Posts" />
-
-      <Header />
-      <section className="max-w-container mx-auto my-16 ">
+      <section className="max-w-container light-effect mx-auto  my-16">
         <div className="mb-6 flex content-between items-center">
           <div className="flex w-fit items-center space-x-2">
             <PencilSquareIcon className="h-6" />
@@ -82,24 +80,24 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Blogs;
+export default Blogs
 export const getStaticProps: GetStaticProps<{
-  allBlogPosts: BlogPost[];
+  allBlogPosts: BlogPost[]
 }> = async (_) => {
-  generateFeed();
-  let posts = await getAllPosts();
+  generateFeed()
+  let posts = await getAllPosts()
 
   posts = posts.sort(
     (p1, p2) =>
       new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()
-  );
+  )
   // Latest 4 blog posts
   return {
     props: {
       allBlogPosts: posts,
     },
-  };
-};
+  }
+}

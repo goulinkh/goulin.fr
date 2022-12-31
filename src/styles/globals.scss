@@ -17,19 +17,27 @@
 
 @import "./popper.scss";
 
-.light::before {
+.light-effect::before {
   content: "";
   position: absolute;
-  top: -65vh;
-  left: 25vw;
+  top: -60vh;
+  left: 0;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(119, 188, 209, 0.4) 0%,
+    rgba(119, 188, 209, 0.1) 60%,
+    rgba(119, 188, 209, 0) 100%
+  );
+  width: 100%;
+  height: 100vh;
+}
+.dark .light-effect::before {
   background: radial-gradient(
     50% 50% at 50% 50%,
     rgba(119, 188, 209, 0.2) 0%,
     rgba(119, 188, 209, 0.04) 60%,
     rgba(119, 188, 209, 0) 100%
   );
-  width: 100vw;
-  height: 100vh;
 }
 
 .dark {

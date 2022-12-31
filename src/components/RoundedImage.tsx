@@ -1,5 +1,5 @@
-import clsx from "clsx";
-import Image from "next/image";
+import clsx from "clsx"
+import Image from "next/image"
 
 const RoundedImage = ({
   image,
@@ -9,12 +9,12 @@ const RoundedImage = ({
   legend = false,
   small = false,
 }: {
-  image: string;
-  height: number;
-  width: number;
-  alt?: string;
-  legend?: boolean;
-  small?: boolean;
+  image: string
+  height: number
+  width: number
+  alt?: string
+  legend?: boolean
+  small?: boolean
 }) => (
   <>
     <div
@@ -34,6 +34,6 @@ const RoundedImage = ({
     </div>
     {legend ? <figcaption className="text-center">{alt}</figcaption> : null}
   </>
-);
+)
 
-export default RoundedImage;
+export default RoundedImage

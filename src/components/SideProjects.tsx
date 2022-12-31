@@ -1,7 +1,7 @@
-import SideProjectCard from "./common/SideProjectCard";
-import PodcastIcon from "./icons/PodcastIcon";
-import TwitterMastodonIcon from "./icons/TwitterMastodonIcon";
-import VanillaIcon from "./icons/VanillaIcon";
+import SideProjectCard from "./common/SideProjectCard"
+import PodcastIcon from "./icons/PodcastIcon"
+import TwitterMastodonIcon from "./icons/TwitterMastodonIcon"
+import VanillaIcon from "./icons/VanillaIcon"
 
 const SideProjects = () => (
   <section className="max-w-container mx-auto my-16">
@@ -49,5 +49,5 @@ const SideProjects = () => (
       </li>
     </ul>
   </section>
-);
-export default SideProjects;
+)
+export default SideProjects

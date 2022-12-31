@@ -1,9 +1,9 @@
-import clsx from "clsx";
-import { useState } from "react";
+import clsx from "clsx"
+import { useState } from "react"
 
 /* eslint-disable @next/next/no-img-element */
 const LinkPreview = () => {
-  const [hidden, setHidden] = useState(true);
+  const [hidden, setHidden] = useState(true)
   return (
     <div className="not-prose rounded-lg bg-zinc-200/60 p-5 dark:bg-zinc-800">
       <p className="opacity-70">↓ hover over this link</p>
@@ -54,7 +54,7 @@ const LinkPreview = () => {
         </div>
       </a>
     </div>
-  );
-};
+  )
+}
 
-export default LinkPreview;
+export default LinkPreview

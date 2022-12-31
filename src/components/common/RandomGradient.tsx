@@ -1,5 +1,5 @@
-import clsx from "clsx";
-import React from "react";
+import clsx from "clsx"
+import React from "react"
 
 const coolGradients = [
   ["#12c2e9", "#c471ed", "#f64f59"],
@@ -14,14 +14,14 @@ const coolGradients = [
   ["#5614b0", "#dbd65c"],
   ["#833ab4", "#fd1d1d", "#fcb045"],
   ["#562e95", "#319bbe"],
-];
+]
 
 type Props = {
-  unique: string;
-  className?: string;
-};
+  unique: string
+  className?: string
+}
 const RandomGradient: React.FC<Props> = ({ unique, className }) => {
-  const gradientColors = coolGradients[hash(unique, coolGradients.length)];
+  const gradientColors = coolGradients[hash(unique, coolGradients.length)]
   return (
     <div
       className={clsx(className, "h-full w-full")}
@@ -31,15 +31,15 @@ const RandomGradient: React.FC<Props> = ({ unique, className }) => {
         )})`,
       }}
     ></div>
-  );
-};
+  )
+}
 
-export default RandomGradient;
+export default RandomGradient
 
 function hash(msg: string, range: number) {
-  let sum = 0;
+  let sum = 0
   for (let i = 0; i < msg.length; ++i) {
-    sum += msg.charCodeAt(i);
+    sum += msg.charCodeAt(i)
   }
-  return sum % range;
+  return sum % range
 }

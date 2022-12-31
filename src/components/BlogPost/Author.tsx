@@ -1,12 +1,12 @@
-import { CalendarIcon, UserIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
+import { CalendarIcon, UserIcon } from "@heroicons/react/24/outline"
+import clsx from "clsx"
 
 const Author = ({
   publishDate,
   className,
 }: {
-  publishDate: Date;
-  className?: string;
+  publishDate: Date
+  className?: string
 }) => {
   return (
     <div
@@ -31,7 +31,7 @@ const Author = ({
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Author;
+export default Author

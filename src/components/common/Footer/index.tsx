@@ -1,4 +1,4 @@
-import Link from "../Link";
+import Link from "../Link"
 
 const Footer = () => {
   return (
@@ -17,6 +17,6 @@ const Footer = () => {
         </li>
       </ul>
     </div>
-  );
-};
-export default Footer;
+  )
+}
+export default Footer

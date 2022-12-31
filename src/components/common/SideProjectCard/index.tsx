@@ -1,7 +1,7 @@
-import styles from "./index.module.scss";
-import { userPreferencesContext } from "../../../context/userPreferences";
-import clsx from "clsx";
-import Link from "next/link";
+import styles from "./index.module.scss"
+import { userPreferencesContext } from "../../../context/userPreferences"
+import clsx from "clsx"
+import Link from "next/link"
 import {
   CSSProperties,
   MouseEventHandler,
@@ -9,7 +9,7 @@ import {
   SVGProps,
   useContext,
   useRef,
-} from "react";
+} from "react"
 
 const Pattern = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -212,18 +212,18 @@ const Pattern = (props: SVGProps<SVGSVGElement>) => (
       strokeWidth={0.5}
     />
   </svg>
-);
+)
 
-let renderCount = 0;
+let renderCount = 0
 
 type Props = {
-  title: string;
-  logo: ReactElement;
-  description: string;
-  color: string;
-  link: string;
-  backgroundImage: { light: string; dark: string };
-};
+  title: string
+  logo: ReactElement
+  description: string
+  color: string
+  link: string
+  backgroundImage: { light: string; dark: string }
+}
 
 const SideProjectCard: React.FC<Props> = ({
   link,
@@ -233,19 +233,19 @@ const SideProjectCard: React.FC<Props> = ({
   description,
   backgroundImage,
 }) => {
-  const [theme] = useContext(userPreferencesContext).theme;
-  const bgDiv = useRef(null);
+  const [theme] = useContext(userPreferencesContext).theme
+  const bgDiv = useRef(null)
   const hoverEffect: MouseEventHandler<HTMLElement> = (e) => {
-    if (!bgDiv.current) return;
-    const currentTarget = e.currentTarget as HTMLElement;
-    const rect = currentTarget.getBoundingClientRect();
+    if (!bgDiv.current) return
+    const currentTarget = e.currentTarget as HTMLElement
+    const rect = currentTarget.getBoundingClientRect()
     const x = e.clientX - rect.left,
-      y = e.clientY - rect.top;
-    const bg = bgDiv.current as HTMLElement;
-    bg.style.setProperty("--mouse-x", `${x}px`);
-    bg.style.setProperty("--mouse-y", `${y}px`);
-  };
-  renderCount++;
+      y = e.clientY - rect.top
+    const bg = bgDiv.current as HTMLElement
+    bg.style.setProperty("--mouse-x", `${x}px`)
+    bg.style.setProperty("--mouse-y", `${y}px`)
+  }
+  renderCount++
   return (
     <Link href={link}>
       <article
@@ -306,7 +306,7 @@ const SideProjectCard: React.FC<Props> = ({
         </div>
       </article>
     </Link>
-  );
-};
+  )
+}
 
-export default SideProjectCard;
+export default SideProjectCard

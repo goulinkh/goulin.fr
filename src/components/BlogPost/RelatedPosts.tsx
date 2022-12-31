@@ -1,9 +1,9 @@
-import { BlogPost } from "../../utils/blogs";
-import BlogCard from "../common/BlogCard";
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import { BlogPost } from "../../utils/blogs"
+import BlogCard from "../common/BlogCard"
+import { PencilSquareIcon } from "@heroicons/react/24/outline"
 
 const RelatedPosts = ({ relatedPosts }: { relatedPosts: BlogPost[] }) => {
-  if (!relatedPosts.length) return null;
+  if (!relatedPosts.length) return null
   return (
     <div className="my-16">
       <div className="mb-6 flex items-center">
@@ -16,6 +16,6 @@ const RelatedPosts = ({ relatedPosts }: { relatedPosts: BlogPost[] }) => {
         ))}
       </div>
     </div>
-  );
-};
-export default RelatedPosts;
+  )
+}
+export default RelatedPosts

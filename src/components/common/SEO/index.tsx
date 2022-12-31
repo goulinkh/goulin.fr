@@ -1,32 +1,32 @@
-import Favicon from "./Favicon";
-import { Topic } from "../../../utils/blogs";
-import Head from "next/head";
-import Script from "next/script";
-import { useEffect, useState } from "react";
+import Favicon from "./Favicon"
+import { Topic } from "../../../utils/blogs"
+import Head from "next/head"
+import Script from "next/script"
+import { useEffect, useState } from "react"
 
-export const topics: Topic[] = ["cycling", "tech"];
+export const topics: Topic[] = ["cycling", "tech"]
 
 type Props = {
-  title?: string;
-  cover?: string;
-  description?: string;
-  keywords?: string[];
-};
+  title?: string
+  cover?: string
+  description?: string
+  keywords?: string[]
+}
 const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
-  const defaultURL = "https://goulin.fr";
+  const defaultURL = "https://goulin.fr"
   const [location, setLocation] = useState({
     origin: defaultURL,
     href: defaultURL,
-  });
+  })
   useEffect(() => {
-    setLocation(location);
-  }, []);
+    setLocation(location)
+  }, [])
   const titleTag = title
     ? `${title} - Goulin Khoge`
-    : "Goulin Khoge's personal page";
-  title = title ? `${title} - Goulin Khoge` : "Goulin Khoge";
+    : "Goulin Khoge's personal page"
+  title = title ? `${title} - Goulin Khoge` : "Goulin Khoge"
   description =
-    description || "Software engineer, manga fan & a gravel bike rider.";
+    description || "Software engineer, manga fan & a gravel bike rider."
   const keywords2 = [
     ...(keywords || []),
     ...topics,
@@ -34,13 +34,13 @@ const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
     " javascript",
     " developer",
     " web developer",
-  ].join(", ");
-  let image = cover ? cover : `/images/personal-photo.jpeg`;
-  image = `${location.origin}/${image}`;
+  ].join(", ")
+  let image = cover ? cover : `/images/personal-photo.jpeg`
+  image = `${location.origin}/${image}`
 
   useEffect(() => {
-    document.documentElement.lang = "en";
-  });
+    document.documentElement.lang = "en"
+  })
   return (
     <>
       <Head>
@@ -87,6 +87,6 @@ const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
       />
       <Favicon />
     </>
-  );
-};
-export default SEO;
+  )
+}
+export default SEO

@@ -1,30 +1,30 @@
-import { BikeTour } from "../../utils/komoot";
+import { BikeTour } from "../../utils/komoot"
 import {
   ArrowTrendingUpIcon,
   ClockIcon,
   FireIcon,
-} from "@heroicons/react/24/outline";
-import clsx from "clsx";
-import Image from "next/image";
+} from "@heroicons/react/24/outline"
+import clsx from "clsx"
+import Image from "next/image"
 
 const toHHMMSS = (sec_num: number) => {
-  let hours: any = Math.floor(sec_num / 3600);
-  let minutes: any = Math.floor((sec_num - hours * 3600) / 60);
-  let seconds: any = sec_num - hours * 3600 - minutes * 60;
+  let hours: any = Math.floor(sec_num / 3600)
+  let minutes: any = Math.floor((sec_num - hours * 3600) / 60)
+  let seconds: any = sec_num - hours * 3600 - minutes * 60
 
   if (hours < 10) {
-    hours = "0" + hours;
+    hours = "0" + hours
   }
   if (minutes < 10) {
-    minutes = "0" + minutes;
+    minutes = "0" + minutes
   }
   if (seconds < 10) {
-    seconds = "0" + seconds;
+    seconds = "0" + seconds
   }
-  return hours + ":" + minutes + ":" + seconds;
-};
+  return hours + ":" + minutes + ":" + seconds
+}
 
-type Props = { tour: BikeTour; className?: string };
+type Props = { tour: BikeTour; className?: string }
 
 const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
   return (
@@ -205,7 +205,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
         </div>
       </div>
     </a>
-  );
-};
+  )
+}
 
-export default BikeTourCard;
+export default BikeTourCard

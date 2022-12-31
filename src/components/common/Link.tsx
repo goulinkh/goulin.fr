@@ -1,17 +1,32 @@
-import clsx from "clsx";
-import L from "next/link";
-import { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
+import clsx from "clsx"
+import L from "next/link"
+import { AnchorHTMLAttributes, DetailedHTMLProps, Ref } from "react"
 
-const Link: React.FC<
-  DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
-> = ({ href, children, className, ...props }) => {
+export type LinkProps = DetailedHTMLProps<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+> & { linkRef?: Ref<HTMLAnchorElement> }
+const Link: React.FC<LinkProps> = ({
+  href,
+  children,
+  className,
+  linkRef,
+  ...props
+}) => {
   return (
     <L href={href!} passHref>
-      <a className={clsx("p-1 opacity-75 hover:opacity-100", className)}>
+      <a
+        ref={linkRef}
+        className={clsx(
+          "p-1 opacity-75 before:bg-black/10 hover:opacity-100 before:dark:bg-white/10",
+          className
+        )}
+        {...props}
+      >
         {children}
       </a>
     </L>
-  );
-};
+  )
+}
 
-export default Link;
+export default Link

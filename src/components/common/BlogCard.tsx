@@ -1,10 +1,10 @@
-import BlogCover from "./BlogCover";
-import { BlogPost } from "../../utils/blogs";
-import clsx from "clsx";
-import Link from "next/link";
-import React from "react";
+import BlogCover from "./BlogCover"
+import { BlogPost } from "../../utils/blogs"
+import clsx from "clsx"
+import Link from "next/link"
+import React from "react"
 
-type Props = { blogPost: BlogPost; small?: boolean; className?: string };
+type Props = { blogPost: BlogPost; small?: boolean; className?: string }
 
 const BlogCard: React.FC<Props> = ({ blogPost, small = false, className }) => {
   return (
@@ -38,7 +38,7 @@ const BlogCard: React.FC<Props> = ({ blogPost, small = false, className }) => {
         </article>
       </a>
     </Link>
-  );
-};
+  )
+}
 
-export default BlogCard;
+export default BlogCard

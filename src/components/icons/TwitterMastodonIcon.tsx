@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import { SVGProps } from "react"
 
 const TwitterMastodonIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -20,6 +20,6 @@ const TwitterMastodonIcon = (props: SVGProps<SVGSVGElement>) => (
       fill="white"
     />
   </svg>
-);
+)
 
-export default TwitterMastodonIcon;
+export default TwitterMastodonIcon
