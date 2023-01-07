@@ -42,7 +42,7 @@ const Avatar: FC<Props> = ({ className }) => {
               "linear-gradient(124deg, #c678dd, #9449ab, #e06c75, #1f80bc, #9449ab, #c678dd)",
             backgroundSize: "1000% 1000%",
           }}
-          className="absolute top-1/2 left-1/2 h-full w-full -translate-y-1/2 -translate-x-1/2 scale-105 rounded-full"
+          className="absolute top-1/2 left-1/2 h-full w-full -translate-y-1/2 -translate-x-1/2 scale-105 rounded-full opacity-70"
         ></div>
       </div>
     </div>

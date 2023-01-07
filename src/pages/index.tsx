@@ -3,10 +3,11 @@ import BikeTourCard from "../components/common/BikeTourCard"
 import BlogCard from "../components/common/BlogCard"
 import SEO from "../components/common/SEO"
 import BikeIcon from "../components/icons/BikeIcon"
+import Location from "../components/Location"
 import SideProjects from "../components/SideProjects"
 import { BlogPost, getAllPosts } from "../utils/blogs"
 import { BikeTour, Komoot } from "../utils/komoot"
-import { MapPinIcon, PencilSquareIcon } from "@heroicons/react/24/outline"
+import { PencilSquareIcon } from "@heroicons/react/24/outline"
 import type { GetStaticProps, NextPage } from "next"
 
 type Props = {
@@ -23,9 +24,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
           <h1 className="mx-auto w-fit text-3xl backdrop-blur-sm">
             Goulin Khoge
           </h1>
-          <div className="mx-auto flex w-fit items-center justify-center opacity-75 backdrop-blur-sm">
-            <MapPinIcon className="mr-2 h-5 w-5" /> France, Toulouse
-          </div>
+          <Location />
           <p className="mx-auto w-fit backdrop-blur-sm">
             Software engineer, manga fan & a road bike rider.
           </p>
