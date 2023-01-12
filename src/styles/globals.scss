@@ -35,7 +35,8 @@
   background: radial-gradient(
     50% 50% at 50% 50%,
     rgba(119, 188, 209, 0.2) 0%,
-    rgba(119, 188, 209, 0.1) 60%,
+    rgba(119, 188, 209, 0.05) 60%,
+    rgba(119, 188, 209, 0.01) 90%,
     rgba(119, 188, 209, 0) 100%
   );
 }
@@ -56,7 +57,11 @@ body,
 }
 
 .blurry {
-  @apply border border-black/10 bg-white/60 backdrop-blur dark:border-white/10 dark:bg-black/40 dark:text-zinc-200;
+  @apply dark-border bg-white/60 backdrop-blur dark:bg-black/40 dark:text-zinc-200;
+}
+
+.dark-border {
+  @apply border border-black/10 dark:border-white/10;
 }
 
 .blurry-2:hover {

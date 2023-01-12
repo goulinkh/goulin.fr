@@ -16,7 +16,7 @@ const ThemeToggle = () => {
     <>
       <button
         onClick={handleToggleClick}
-        className="btn"
+        className="btn blurry !rounded-2xl !p-2"
         ref={setTriggerRef}
         aria-label={`Switch to the ${
           theme === "dark" ? "light" : "dark"

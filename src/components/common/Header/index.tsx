@@ -1,5 +1,6 @@
 import styles from "./header.module.scss"
 import ThemeToggle from "./ThemeToggle"
+import Avatar from "../Avatar"
 import Link from "../Link"
 import clsx from "clsx"
 import { useRouter } from "next/router"
@@ -28,7 +29,7 @@ const LinkWithEffect: FC<
     <Link
       linkRef={linkRef}
       {...props}
-      className={clsx(className, "px-4", {
+      className={clsx(className, "px-1 sm:px-4", {
         [styles.active]: router.pathname === props.href,
       })}
     >
@@ -36,6 +37,18 @@ const LinkWithEffect: FC<
     </Link>
   )
 }
+
+const ToggleTheme = ({ isDraft = false }) => (
+  <div className="flex items-center px-4">
+    {isDraft ? (
+      <span className="rounded-md bg-yellow-200/60 px-1 py-0.5 text-yellow-700 dark:bg-yellow-200/20 dark:text-yellow-400 sm:px-2 sm:py-1">
+        Draft
+      </span>
+    ) : null}
+    <ThemeToggle />
+  </div>
+)
+
 type LightEffect = {
   x: number
   y: number
@@ -68,62 +81,61 @@ const Header: React.FC<{ takeSpace?: boolean; isDraft?: boolean }> = ({
       element: target,
     })
   }
+
   return (
     <div
-      className={clsx("fixed top-0 z-10 w-full", {
-        sticky: takeSpace,
-        fixed: !takeSpace,
-      })}
+      className={clsx(
+        "max-w-container fixed top-0 z-10 mx-auto flex w-full content-between items-center",
+        {
+          sticky: takeSpace,
+          fixed: !takeSpace,
+        }
+      )}
     >
-      <div className="max-w-container mx-auto py-2">
-        <header
-          className={clsx(styles.header, "blurry flex items-center rounded-xl")}
+      <Avatar />
+      <header
+        className={clsx(
+          styles.header,
+          "blurry mx-auto my-2 flex w-fit items-center overflow-hidden rounded-3xl !border-none"
+        )}
+      >
+        <nav
+          style={
+            {
+              "--x": `${lightEffectPosition.x}px`,
+              "--y": `${lightEffectPosition.y}px`,
+              "--width": `${lightEffectPosition.width}px`,
+              "--height": `${lightEffectPosition.height}px`,
+            } as CSSProperties
+          }
+          className="dark-border relative flex flex-nowrap items-center overflow-hidden rounded-3xl border py-2 px-2 text-xs sm:flex-wrap sm:text-base"
         >
-          <nav
-            style={
-              {
-                "--x": `${lightEffectPosition.x}px`,
-                "--y": `${lightEffectPosition.y}px`,
-                "--width": `${lightEffectPosition.width}px`,
-                "--height": `${lightEffectPosition.height}px`,
-              } as CSSProperties
-            }
-            className="relative flex flex-wrap items-center overflow-hidden py-2 px-6 sm:flex-nowrap"
+          <LinkWithEffect
+            href="/"
+            className="mr-1 sm:mr-5"
+            onClick={handleLinkActive}
           >
-            <LinkWithEffect
-              href="/"
-              className="mr-1 sm:mr-5"
-              onClick={handleLinkActive}
-            >
-              Home
-            </LinkWithEffect>
-            <LinkWithEffect
-              href="/blogs"
-              className="mr-1 sm:mr-5"
-              onClick={handleLinkActive}
-            >
-              Blogs
-            </LinkWithEffect>
-            <LinkWithEffect href="/about" onClick={handleLinkActive}>
-              About
-            </LinkWithEffect>
-            <div
-              className={clsx(
-                `pointer-events-none absolute inset-0 -z-20 h-[50%] w-full translate-y-[80%]`,
-                styles.lightEffect
-              )}
-            ></div>
-          </nav>
-          <div className="ml-auto flex items-center px-4">
-            {isDraft ? (
-              <span className="rounded-md bg-yellow-200/60 px-1 py-0.5 text-yellow-700 dark:bg-yellow-200/20 dark:text-yellow-400 sm:px-2 sm:py-1">
-                Draft
-              </span>
-            ) : null}
-            <ThemeToggle />
-          </div>
-        </header>
-      </div>
+            Home
+          </LinkWithEffect>
+          <LinkWithEffect
+            href="/blogs"
+            className="mr-1 sm:mr-5"
+            onClick={handleLinkActive}
+          >
+            Writing
+          </LinkWithEffect>
+          <LinkWithEffect href="/about" onClick={handleLinkActive}>
+            About
+          </LinkWithEffect>
+          <div
+            className={clsx(
+              `pointer-events-none absolute inset-0 -z-20 h-[50%] w-full translate-y-[80%]`,
+              styles.lightEffect
+            )}
+          ></div>
+        </nav>
+      </header>
+      <ToggleTheme isDraft={isDraft} />
     </div>
   )
 }

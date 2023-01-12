@@ -24,7 +24,7 @@ const Avatar: FC<Props> = ({ className }) => {
 
   return (
     <div className={className}>
-      <div className="relative isolate h-32 w-32">
+      <div className="relative isolate h-10 w-10">
         <div className="relative z-10 h-full w-full overflow-hidden rounded-full">
           <Image
             src="/images/personal-photo.jpeg"
@@ -39,7 +39,7 @@ const Avatar: FC<Props> = ({ className }) => {
           style={{
             animation: "rainbow 13s ease infinite",
             background:
-              "linear-gradient(124deg, #c678dd, #9449ab, #e06c75, #1f80bc, #9449ab, #c678dd)",
+              "linear-gradient(124deg, rgb(119, 188, 209), #9449ab, #e06c75, #1f80bc, #9449ab, rgb(119, 188, 209))",
             backgroundSize: "1000% 1000%",
           }}
           className="absolute top-1/2 left-1/2 h-full w-full -translate-y-1/2 -translate-x-1/2 scale-105 rounded-full opacity-70"

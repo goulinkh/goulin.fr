@@ -309,7 +309,7 @@ const SideProjectCard: React.FC<Props> = ({
         <div className="z-50">
           <div
             className={clsx(
-              `w-fit rounded-full border border-black/10 bg-black/5 p-2 dark:border-white/10 dark:bg-white/5`,
+              `w-fit rounded-full border border-black/10 bg-white p-2 dark:border-white/10 dark:bg-zinc-700`,
               styles.icon
             )}
           >
@@ -344,7 +344,7 @@ const SideProjectCard: React.FC<Props> = ({
         <div
           className={clsx(
             styles.bg,
-            "absolute top-0 left-0 z-10 h-[100%] w-[100%]"
+            "absolute top-0 left-0 z-0 h-[100%] w-[100%]"
           )}
           aria-hidden
           ref={bgDiv}

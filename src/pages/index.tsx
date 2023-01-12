@@ -1,4 +1,3 @@
-import Avatar from "../components/common/Avatar"
 import BikeTourCard from "../components/common/BikeTourCard"
 import BlogCard from "../components/common/BlogCard"
 import SEO from "../components/common/SEO"
@@ -19,8 +18,7 @@ const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
     <>
       <SEO />
       <section className="light-effect">
-        <div className="max-w-container relative isolate mx-auto flex flex-col space-y-4 overflow-hidden py-8">
-          <Avatar className="mx-auto my-5" />
+        <div className="max-w-container relative isolate mx-auto flex flex-col space-y-4 overflow-hidden py-24">
           <h1 className="mx-auto w-fit text-3xl backdrop-blur-sm">
             Goulin Khoge
           </h1>
