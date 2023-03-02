@@ -85,14 +85,16 @@ const Header: React.FC<{ takeSpace?: boolean; isDraft?: boolean }> = ({
   return (
     <div
       className={clsx(
-        "max-w-container fixed top-0 z-10 mx-auto flex w-full content-between items-center",
+        "max-w-container fixed top-0 z-30 mx-auto flex w-full select-none content-between items-center",
         {
           sticky: takeSpace,
           fixed: !takeSpace,
         }
       )}
     >
-      <Avatar />
+      <Link href="/">
+        <Avatar />
+      </Link>
       <header
         className={clsx(
           styles.header,

@@ -48,7 +48,7 @@ body,
 .default {
   @apply bg-white dark:bg-zinc-900;
   @apply text-black dark:text-zinc-100;
-  @apply transition-colors;
+  @apply px-3 transition-colors;
 }
 
 .max-w-container {

@@ -9,7 +9,7 @@ const About: NextPage = () => {
       <SEO title="About me" />
       <section className="max-w-container light-effect mx-auto my-16 flex flex-col space-y-4">
         <h1 className="mx-auto text-3xl">Goulin Khoge</h1>
-        <Location />
+        <Location className="mx-auto" />
         <p className="prose prose-zinc max-w-full dark:prose-invert">
           I am a software engineer with a focus on building high-quality web
           products. I have a strong foundation in software engineering

@@ -1,11 +1,14 @@
 import BikeTourCard from "../components/common/BikeTourCard"
 import BlogCard from "../components/common/BlogCard"
+import MP3Player from "../components/common/MP3Player"
 import SEO from "../components/common/SEO"
 import BikeIcon from "../components/icons/BikeIcon"
 import Location from "../components/Location"
 import SideProjects from "../components/SideProjects"
+import { BikeTour, publicBikeTours } from "../lib/komoot"
+import { Song } from "../lib/spotify"
 import { BlogPost, getAllPosts } from "../utils/blogs"
-import { BikeTour, Komoot } from "../utils/komoot"
+import useSWR from "swr"
 import { PencilSquareIcon } from "@heroicons/react/24/outline"
 import type { GetStaticProps, NextPage } from "next"
 
@@ -13,20 +16,38 @@ type Props = {
   latestBlogPosts: BlogPost[]
   tours: BikeTour[]
 }
+
+const fetcher = (url: string) =>
+  fetch(url)
+    .then((res) => res.json())
+    .then((payload: any) => {
+      if (payload.error) throw new Error(payload.error)
+      return payload
+    })
+
 const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
+  const { data: song, error } = useSWR<Song>(
+    "/api/spotify/current-song",
+    fetcher
+  )
   return (
     <>
       <SEO />
-      <section className="light-effect">
-        <div className="max-w-container relative isolate mx-auto flex flex-col space-y-4 overflow-hidden py-24">
+      <section className="light-effect max-w-container mx-auto grid items-center justify-center md:grid-cols-2">
+        <div className=" relative isolate mx-auto flex flex-col space-y-4 overflow-hidden py-24">
           <h1 className="mx-auto w-fit text-3xl backdrop-blur-sm">
             Goulin Khoge
           </h1>
-          <Location />
+          <Location className="mx-auto" />
           <p className="mx-auto w-fit backdrop-blur-sm">
             Software engineer, manga fan & a road bike rider.
           </p>
         </div>
+        <MP3Player
+          song={song}
+          error={error}
+          className="z-20 mx-auto w-[90%] md:w-[350px]"
+        />
       </section>
       <SideProjects />
       <section className="max-w-container mx-auto my-16 ">
@@ -61,27 +82,16 @@ export default Home
 export const getStaticProps: GetStaticProps<{
   latestBlogPosts: BlogPost[]
 }> = async (_) => {
-  const fetchTours = async () => {
-    const komoot = new Komoot()
-    try {
-      const userId = process.env.KOMOOT_USER_ID || ""
-      const tours = await komoot.fetchTours(userId)
-      return await Promise.all(tours.map((i) => komoot.customTourDetails(i)))
-    } catch (e) {
-      console.log("e", e)
-      return []
-    }
-  }
   let posts = await getAllPosts()
   posts = posts.sort(
     (p1, p2) =>
       new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()
   )
-  // Latest 4 blog posts
+  // Latest 4 items
   return {
     props: {
       latestBlogPosts: posts.slice(0, 4),
-      tours: await fetchTours(),
+      tours: (await publicBikeTours()).slice(0, 4),
     },
     revalidate: 60 * 60,
   }

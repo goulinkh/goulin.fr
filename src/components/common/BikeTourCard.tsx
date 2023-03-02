@@ -1,4 +1,4 @@
-import { BikeTour } from "../../utils/komoot"
+import { BikeTour } from "../../lib/komoot"
 import {
   ArrowTrendingUpIcon,
   ClockIcon,

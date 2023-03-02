@@ -1,7 +1,6 @@
 import styles from "./index.module.scss"
 import { userPreferencesContext } from "../../../context/userPreferences"
 import clsx from "clsx"
-import Link from "next/link"
 import {
   CSSProperties,
   MouseEventHandler,
@@ -297,7 +296,7 @@ const SideProjectCard: React.FC<Props> = ({
   }
   renderCount++
   return (
-    <Link href={link}>
+    <a href={link}>
       <article
         onMouseMove={hoverEffect}
         className={clsx(
@@ -352,10 +351,11 @@ const SideProjectCard: React.FC<Props> = ({
           <img
             src={`/images/${backgroundImage[theme]}`}
             className="h-[100%] w-[100%] rounded-lg border border-transparent"
+            alt="Project screenshot"
           />
         </div>
       </article>
-    </Link>
+    </a>
   )
 }
 
