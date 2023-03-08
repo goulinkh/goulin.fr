@@ -33,20 +33,18 @@ const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
   return (
     <>
       <SEO />
-      <section className="light-effect max-w-container mx-auto grid items-center justify-center md:grid-cols-2">
-        <div className=" relative isolate mx-auto flex flex-col space-y-4 overflow-hidden py-24">
-          <h1 className="mx-auto w-fit text-3xl backdrop-blur-sm">
-            Goulin Khoge
-          </h1>
-          <Location className="mx-auto" />
-          <p className="mx-auto w-fit backdrop-blur-sm">
+      <section className="light-effect max-w-container mx-auto flex flex-wrap items-center justify-center lg:justify-between">
+        <div className=" relative isolate flex flex-col space-y-4 overflow-hidden py-24">
+          <h1 className="w-fit text-3xl backdrop-blur-sm">Goulin Khoge</h1>
+          <Location />
+          <p className="w-fit backdrop-blur-sm">
             Software engineer, manga fan & a road bike rider.
           </p>
         </div>
         <MP3Player
           song={song}
           error={error}
-          className="z-20 mx-auto w-[90%] md:w-[350px]"
+          className="z-20 w-[90%] sm:w-[350px]"
         />
       </section>
       <SideProjects />
