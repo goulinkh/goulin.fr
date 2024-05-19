@@ -330,20 +330,20 @@ const SideProjectCard: React.FC<Props> = ({
         <div
           className={clsx(
             styles.pattern,
-            "absolute top-0 left-0 z-30 h-[150%] w-[150%]"
+            "absolute left-0 top-0 z-30 h-[150%] w-[150%]"
           )}
           aria-hidden
         >
           <Pattern
             className={clsx("w-full -rotate-6 dark:opacity-70 ", {
-              "-ml-16 -mb-5": renderCount % 2 === 0,
+              "-mb-5 -ml-16": renderCount % 2 === 0,
             })}
           />
         </div>
         <div
           className={clsx(
             styles.bg,
-            "absolute top-0 left-0 z-0 h-[100%] w-[100%]"
+            "absolute left-0 top-0 z-0 h-[100%] w-[100%]"
           )}
           aria-hidden
           ref={bgDiv}

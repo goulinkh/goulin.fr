@@ -25,7 +25,7 @@ const BlogCard: React.FC<Props> = ({ blogPost, small = false, className }) => {
         </div>
         <article
           className={clsx(
-            "blurry blurry-2 relative z-10 -mt-5 flex flex-1 flex-col flex-nowrap gap-3 overflow-hidden rounded-2xl py-8 px-4",
+            "blurry blurry-2 relative z-10 -mt-5 flex flex-1 flex-col flex-nowrap gap-3 overflow-hidden rounded-2xl px-4 py-8",
             { "h-20": !small }
           )}
         >

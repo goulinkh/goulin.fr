@@ -43,8 +43,8 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
             layout="fill"
             objectFit="cover"
           />
-          <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-b from-black/20 via-transparent to-black/60" />
-          <div className="absolute top-[20%] left-[20%] h-[50%] w-[50%] rotate-12 overflow-hidden">
+          <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+          <div className="absolute left-[20%] top-[20%] h-[50%] w-[50%] rotate-12 overflow-hidden">
             {/* eslint-disable-next-line jsx-a11y/alt-text */}
             <Image
               src={`data:image/svg+xml;base64,${new Buffer(
@@ -54,7 +54,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
               layout="fill"
             />
           </div>
-          <div className="absolute top-0 left-0 flex h-full max-h-full w-full max-w-full flex-col justify-between p-4 text-sm text-zinc-200">
+          <div className="absolute left-0 top-0 flex h-full max-h-full w-full max-w-full flex-col justify-between p-4 text-sm text-zinc-200">
             <div>
               <div className="text-zinc-100/50">
                 {new Date(tour.date).toLocaleDateString(undefined, {

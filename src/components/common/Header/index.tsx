@@ -110,7 +110,7 @@ const Header: React.FC<{ takeSpace?: boolean; isDraft?: boolean }> = ({
               "--height": `${lightEffectPosition.height}px`,
             } as CSSProperties
           }
-          className="dark-border relative flex flex-nowrap items-center overflow-hidden rounded-3xl border py-2 px-2 text-xs sm:flex-wrap sm:text-base"
+          className="dark-border relative flex flex-nowrap items-center overflow-hidden rounded-3xl border px-2 py-2 text-xs sm:flex-wrap sm:text-base"
         >
           <LinkWithEffect
             href="/"

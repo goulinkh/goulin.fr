@@ -62,13 +62,13 @@ const Home: NextPage<Props> = ({ latestBlogPosts, tours, toursPublicUrl }) => {
       </section>
       {tours.length ? (
         <section className="max-w-container mx-auto my-16">
-          <div className="mb-6 flex items-center group" aria-label="Bike tours">
+          <div className="group mb-6 flex items-center" aria-label="Bike tours">
             <BikeIcon className="mr-2 h-6" />
             <h2 className="font-bold">Latest Bike tours</h2>
-            <div className="transition-all transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
+            <div className="-translate-x-2 transform opacity-0 transition-all group-focus-within:translate-x-0 group-focus-within:opacity-100 group-hover:translate-x-0 group-hover:opacity-100">
               <a
                 href={toursPublicUrl}
-                className="text-cyan-600 light:focus:text-cyan-800 dark:focus:text-cyan-400 flex items-center gap-1 ml-4"
+                className="light:focus:text-cyan-800 ml-4 flex items-center gap-1 text-cyan-600 dark:focus:text-cyan-400"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -25,7 +25,7 @@ const CodeCopyPastBtn: React.FC<{ content: string }> = ({ content }) => {
   return (
     <div
       className={clsx(
-        "absolute top-3 right-4 transition-opacity group-hover:opacity-100",
+        "absolute right-4 top-3 transition-opacity group-hover:opacity-100",
         { "opacity-0": !copied }
       )}
     >

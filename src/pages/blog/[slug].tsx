@@ -48,7 +48,7 @@ const BlogPostPage = ({
         className="max-w-container mx-auto"
       />
       <section
-        className="max-w-container prose prose-zinc mx-auto mt-8 mb-16 prose-h1:text-blue-500 prose-h2:text-zinc-700 prose-h3:text-zinc-700 prose-h4:text-zinc-700 prose-h5:text-zinc-700 prose-h6:text-zinc-700 prose-a:decoration-zinc-700/40 hover:prose-a:decoration-zinc-700 prose-code:font-mono prose-code:text-blue-900 dark:prose-invert dark:prose-h1:text-blue-500 dark:prose-h2:text-zinc-300 dark:prose-h3:text-zinc-300 dark:prose-h4:text-zinc-300 dark:prose-h5:text-zinc-400 dark:prose-h6:text-zinc-400 dark:prose-a:decoration-zinc-300/40
+        className="max-w-container prose prose-zinc mx-auto mb-16 mt-8 dark:prose-invert prose-h1:text-blue-500 prose-h2:text-zinc-700 prose-h3:text-zinc-700 prose-h4:text-zinc-700 prose-h5:text-zinc-700 prose-h6:text-zinc-700 prose-a:decoration-zinc-700/40 hover:prose-a:decoration-zinc-700 prose-code:font-mono prose-code:text-blue-900 dark:prose-h1:text-blue-500 dark:prose-h2:text-zinc-300 dark:prose-h3:text-zinc-300 dark:prose-h4:text-zinc-300 dark:prose-h5:text-zinc-400 dark:prose-h6:text-zinc-400 dark:prose-a:decoration-zinc-300/40
         dark:hover:prose-a:decoration-zinc-300
         dark:prose-code:text-blue-200
         "
