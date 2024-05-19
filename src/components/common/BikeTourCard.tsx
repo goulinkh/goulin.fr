@@ -57,7 +57,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
           <div className="absolute top-0 left-0 flex h-full max-h-full w-full max-w-full flex-col justify-between p-4 text-sm text-zinc-200">
             <div>
               <div className="text-zinc-100/50">
-                {new Date().toLocaleDateString(undefined, {
+                {new Date(tour.date).toLocaleDateString(undefined, {
                   day: "numeric",
                   month: "short",
                   year: "numeric",

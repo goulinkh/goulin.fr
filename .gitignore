@@ -1,3 +1,4 @@
+.env
 cookie.json
 /public/rss
 sitemap.xml
