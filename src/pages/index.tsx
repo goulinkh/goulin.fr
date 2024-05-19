@@ -9,12 +9,13 @@ import { BikeTour, publicBikeTours } from "../lib/komoot"
 import { Song } from "../lib/spotify"
 import { BlogPost, getAllPosts } from "../utils/blogs"
 import useSWR from "swr"
-import { PencilSquareIcon } from "@heroicons/react/24/outline"
+import { ArrowRightIcon, PencilSquareIcon } from "@heroicons/react/24/outline"
 import type { GetStaticProps, NextPage } from "next"
 
 type Props = {
   latestBlogPosts: BlogPost[]
   tours: BikeTour[]
+  toursPublicUrl: string
 }
 
 const fetcher = (url: string) =>
@@ -25,7 +26,7 @@ const fetcher = (url: string) =>
       return payload
     })
 
-const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
+const Home: NextPage<Props> = ({ latestBlogPosts, tours, toursPublicUrl }) => {
   const { data: song, error } = useSWR<Song>(
     "/api/spotify/current-song",
     fetcher
@@ -61,9 +62,19 @@ const Home: NextPage<Props> = ({ latestBlogPosts, tours }) => {
       </section>
       {tours.length ? (
         <section className="max-w-container mx-auto my-16">
-          <div className="mb-6 flex items-center">
+          <div className="mb-6 flex items-center group" aria-label="Bike tours">
             <BikeIcon className="mr-2 h-6" />
             <h2 className="font-bold">Latest Bike tours</h2>
+            <div className="transition-all transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
+              <a
+                href={toursPublicUrl}
+                className="text-cyan-600 light:focus:text-cyan-800 dark:focus:text-cyan-400 flex items-center gap-1 ml-4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View all <ArrowRightIcon className="h-3" />
+              </a>
+            </div>
           </div>
           <div className="flex flex-wrap justify-center gap-3 md:justify-between lg:gap-8">
             {tours.slice(0, 3).map((tour, i) => (
@@ -90,6 +101,8 @@ export const getStaticProps: GetStaticProps<{
     props: {
       latestBlogPosts: posts.slice(0, 4),
       tours: (await publicBikeTours()).slice(0, 4),
+      toursPublicUrl:
+        "https://www.komoot.com/user/" + process.env.KOMOOT_USER_ID,
     },
     revalidate: 60 * 60,
   }
