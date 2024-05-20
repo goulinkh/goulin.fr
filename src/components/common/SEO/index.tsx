@@ -35,7 +35,7 @@ const SEO: React.FC<Props> = ({ title, cover, description, keywords }) => {
     " developer",
     " web developer",
   ].join(", ")
-  let image = cover ? cover : `/images/personal-photo.jpeg`
+  let image = cover ? cover : `https://github.com/goulinkh.png`
   image = `${location.origin}/${image}`
 
   useEffect(() => {

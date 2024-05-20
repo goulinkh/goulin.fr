@@ -45,7 +45,10 @@
   height: var(--height);
   width: var(--width);
   transition: 0.25s transform ease;
-  transform: translate(calc(var(--x)), calc(calc(var(--y)) - 60%));
+  transform: translate(calc(var(--x)), calc(calc(var(--y)) - 1.18em));
+  @media (max-width: 768px) {
+    transform: translate(calc(var(--x)), calc(calc(var(--y)) - 1.3em));
+  }
   background-color: rgba(0, 0, 0, 0.03);
   border-radius: 18px;
 }

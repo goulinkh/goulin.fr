@@ -31,7 +31,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
     <a href={`https://www.komoot.com/tour/${tour.id}`}>
       <div
         className={clsx(
-          "blurry blurry-2 m-auto h-[400px] w-[300px] overflow-hidden rounded-lg lg:m-[none]",
+          "blurry blurry-2 m-auto h-[500px] w-full overflow-hidden rounded-lg md:h-[400px] md:w-[310px] lg:m-[none]",
           className
         )}
       >

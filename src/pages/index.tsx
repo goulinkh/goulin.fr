@@ -1,10 +1,10 @@
+import Location from "../components/Location"
+import SideProjects from "../components/SideProjects"
 import BikeTourCard from "../components/common/BikeTourCard"
 import BlogCard from "../components/common/BlogCard"
 import MP3Player from "../components/common/MP3Player"
 import SEO from "../components/common/SEO"
 import BikeIcon from "../components/icons/BikeIcon"
-import Location from "../components/Location"
-import SideProjects from "../components/SideProjects"
 import { BikeTour, publicBikeTours } from "../lib/komoot"
 import { Song } from "../lib/spotify"
 import { BlogPost, getAllPosts } from "../utils/blogs"
@@ -68,17 +68,17 @@ const Home: NextPage<Props> = ({ latestBlogPosts, tours, toursPublicUrl }) => {
             <div className="-translate-x-2 transform opacity-0 transition-all group-focus-within:translate-x-0 group-focus-within:opacity-100 group-hover:translate-x-0 group-hover:opacity-100">
               <a
                 href={toursPublicUrl}
-                className="light:focus:text-cyan-800 ml-4 flex items-center gap-1 text-cyan-600 dark:focus:text-cyan-400"
+                className="light:focus:text-cyan-800 ml-4 flex items-center gap-1 text-sm text-cyan-600 dark:hover:text-cyan-400 dark:focus:text-cyan-400"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View all <ArrowRightIcon className="h-3" />
+                View all <ArrowRightIcon className="h-3" strokeWidth="3" />
               </a>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-3 md:justify-between lg:gap-8">
+          <div className="flex-wrap justify-center md:flex md:justify-between md:gap-3 lg:gap-6">
             {tours.slice(0, 3).map((tour, i) => (
-              <BikeTourCard key={i} tour={tour} />
+              <BikeTourCard key={i} tour={tour} className="mb-4 md:mb-0" />
             ))}
           </div>
         </section>

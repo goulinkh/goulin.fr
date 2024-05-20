@@ -29,7 +29,7 @@ const LinkWithEffect: FC<
     <Link
       linkRef={linkRef}
       {...props}
-      className={clsx(className, "px-1 sm:px-4", {
+      className={clsx(className, "flex items-center px-2 md:px-4", {
         [styles.active]: router.pathname === props.href,
       })}
     >
@@ -81,6 +81,22 @@ const Header: React.FC<{ takeSpace?: boolean; isDraft?: boolean }> = ({
       element: target,
     })
   }
+
+  // on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      const target = lightEffectPosition.element
+      if (target) {
+        setLightEffectPosition({
+          ...lightEffectPosition,
+          width: target.offsetWidth,
+          height: target.offsetHeight,
+        })
+      }
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [lightEffectPosition])
 
   return (
     <div

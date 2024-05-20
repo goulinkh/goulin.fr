@@ -1,11 +1,11 @@
 const withMDX = require("@next/mdx")({
   extension: /\.mdx$/,
-});
+})
 
 /** @type {import('next').NextConfig} */
 module.exports = withMDX({
   async rewrites() {
-    return [{ source: "/sitemap.xml", destination: "/api/sitemap" }];
+    return [{ source: "/sitemap.xml", destination: "/api/sitemap" }]
   },
   async headers() {
     return [
@@ -13,9 +13,9 @@ module.exports = withMDX({
         source: "/giscus/:path*",
         headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
       },
-    ];
+    ]
   },
-  images: { domains: ["photos.komoot.de"] },
+  images: { domains: ["photos.komoot.de", "github.com"] },
   reactStrictMode: true,
   // Prefer loading of ES Modules over CommonJS
   experimental: { esmExternals: true },
@@ -27,9 +27,9 @@ module.exports = withMDX({
       config.resolve.fallback = {
         fs: false,
         path: false,
-      };
+      }
     }
 
-    return config;
+    return config
   },
-});
+})

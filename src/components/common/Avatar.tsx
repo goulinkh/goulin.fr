@@ -27,7 +27,7 @@ const Avatar: FC<Props> = ({ className }) => {
       <div className="relative isolate h-10 w-10">
         <div className="relative z-10 h-full w-full overflow-hidden rounded-full">
           <Image
-            src="/images/personal-photo.jpeg"
+            src="https://github.com/goulinkh.png"
             alt="Goulin's personal photo"
             layout="fill"
             objectFit="cover"
