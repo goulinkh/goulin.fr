@@ -1,6 +1,5 @@
 import toGeoJSON from "@mapbox/togeojson"
 import { geoMercator } from "d3-geo"
-import fetch from "node-fetch"
 
 const komootUserId = process.env.KOMOOT_USER_ID
 

@@ -10,7 +10,7 @@ import TLDR from "../../components/TLDR"
 import { userPreferencesContext } from "../../context/userPreferences"
 import LinkPreview from "../../demo/LinkPreview"
 import { BlogPost, getAllPosts, getBlogPost } from "../../utils/blogs"
-import React, { useContext, useEffect } from "react"
+import React, { ReactNode, useContext, useEffect } from "react"
 import { serialize } from "next-mdx-remote/serialize"
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote"
 import { GetStaticProps } from "next"
@@ -65,12 +65,12 @@ const BlogPostPage = ({
           components={{
             pre: React.Fragment as any,
             code: Code as any,
-            h1: H1,
-            h2: H2,
-            h3: H3,
-            h4: H4,
-            h5: H5,
-            h6: H6,
+            h1: H1 as () => ReactNode,
+            h2: H2 as () => ReactNode,
+            h3: H3 as () => ReactNode,
+            h4: H4 as () => ReactNode,
+            h5: H5 as () => ReactNode,
+            h6: H6 as () => ReactNode,
             TLDR: TLDR,
             Image: RoundedImage,
             // demo

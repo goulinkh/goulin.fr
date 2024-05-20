@@ -52,6 +52,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
               ).toString("base64")}`}
               objectFit="contain"
               layout="fill"
+              alt="Route path"
             />
           </div>
           <div className="absolute left-0 top-0 flex h-full max-h-full w-full max-w-full flex-col justify-between p-4 text-sm text-zinc-200">
