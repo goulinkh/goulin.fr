@@ -38,7 +38,7 @@ ${pages
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
     ${page.lastmod ? `<lastmod>${page.lastmod.toJSON()}</lastmod>` : ""}
-  </url>`
+  </url>`,
   )
   .join("\n")}
 </urlset>

@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 
 export default async function spotifyOAuth2CB(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const { code } = req.query
   if (!code || Array.isArray(code)) {

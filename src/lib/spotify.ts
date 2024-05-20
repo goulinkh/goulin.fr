@@ -50,7 +50,7 @@ export async function accessToken(code?: string) {
   await redis.setex(
     key("spotify.access_token"),
     config.accessTokenTTL,
-    access_token
+    access_token,
   )
   await redis.set(key("spotify.refresh_token"), refresh_token)
 }
@@ -72,7 +72,7 @@ async function refreshToken() {
   await redis.setex(
     key("spotify.access_token"),
     config.accessTokenTTL,
-    access_token
+    access_token,
   )
   spotifyApi.setAccessToken(access_token)
   if (refresh_token) {
@@ -141,7 +141,7 @@ function extractCurrentPlaying(current: SpotifyApi.CurrentlyPlayingResponse) {
 async function lastPlayed() {
   await refreshToken()
   const last = extractLastSong(
-    (await spotifyApi.getMyRecentlyPlayedTracks({ limit: 1 })).body.items[0]
+    (await spotifyApi.getMyRecentlyPlayedTracks({ limit: 1 })).body.items[0],
   )
   return last
 }

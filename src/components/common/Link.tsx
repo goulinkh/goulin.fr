@@ -14,12 +14,12 @@ const Link: React.FC<LinkProps> = ({
   ...props
 }) => {
   return (
-    <L href={href!} passHref>
+    <L legacyBehavior href={href!} passHref>
       <a
         ref={linkRef}
         className={clsx(
           "p-1 opacity-75 before:bg-black/10 hover:opacity-100 before:dark:bg-white/10",
-          className
+          className,
         )}
         {...props}
       >

@@ -32,7 +32,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
       <div
         className={clsx(
           "blurry blurry-2 m-auto h-[500px] w-full overflow-hidden rounded-lg md:h-[400px] md:w-[310px] lg:m-[none]",
-          className
+          className,
         )}
       >
         <div className="relative h-full w-full ">
@@ -48,7 +48,7 @@ const BikeTourCard: React.FC<Props> = ({ tour, className }) => {
             {/* eslint-disable-next-line jsx-a11y/alt-text */}
             <Image
               src={`data:image/svg+xml;base64,${new Buffer(
-                tour.routePathSvg
+                tour.routePathSvg,
               ).toString("base64")}`}
               objectFit="contain"
               layout="fill"

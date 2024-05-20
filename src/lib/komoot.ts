@@ -41,7 +41,7 @@ async function get(url: string, type: string = "application/json") {
 async function fetchTours(
   userId: string,
   page = 0,
-  perPage = 24
+  perPage = 24,
 ): Promise<any[]> {
   const url = `https://www.komoot.com/api/v007/users/${userId}/tours/?sport_types=&type=tour_recorded&sort_field=date&sort_direction=desc&name=&status=public&hl=en&page=${page}&limit=${perPage}`
   let payload: any = await (
@@ -79,7 +79,7 @@ async function extractBikeTour(tour: any) {
       [0, 0],
       [1000, 1000],
     ],
-    geoJson
+    geoJson,
   )
   const svgPath = `M ${geoJson.features[0].geometry.coordinates
     .map(geoToScreen)

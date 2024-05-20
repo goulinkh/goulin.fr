@@ -301,7 +301,7 @@ const SideProjectCard: React.FC<Props> = ({
         onMouseMove={hoverEffect}
         className={clsx(
           styles.card,
-          "relative isolate w-80 cursor-pointer overflow-hidden rounded-lg border border-black/10 bg-zinc-100/50 p-4 hover:border-transparent dark:border-white/10 dark:bg-zinc-800/50 dark:hover:border-transparent"
+          "relative isolate w-80 cursor-pointer overflow-hidden rounded-lg border border-black/10 bg-zinc-100/50 p-4 hover:border-transparent dark:border-white/10 dark:bg-zinc-800/50 dark:hover:border-transparent",
         )}
         style={{ "--color": color } as CSSProperties}
       >
@@ -309,7 +309,7 @@ const SideProjectCard: React.FC<Props> = ({
           <div
             className={clsx(
               `w-fit rounded-full border border-black/10 bg-white p-2 dark:border-white/10 dark:bg-zinc-700`,
-              styles.icon
+              styles.icon,
             )}
           >
             {logo}
@@ -320,7 +320,7 @@ const SideProjectCard: React.FC<Props> = ({
             <p
               className={clsx(
                 styles.description,
-                "text-black/60 dark:text-white/60"
+                "text-black/60 dark:text-white/60",
               )}
             >
               {description}
@@ -330,7 +330,7 @@ const SideProjectCard: React.FC<Props> = ({
         <div
           className={clsx(
             styles.pattern,
-            "absolute left-0 top-0 z-30 h-[150%] w-[150%]"
+            "absolute left-0 top-0 z-30 h-[150%] w-[150%]",
           )}
           aria-hidden
         >
@@ -343,7 +343,7 @@ const SideProjectCard: React.FC<Props> = ({
         <div
           className={clsx(
             styles.bg,
-            "absolute left-0 top-0 z-0 h-[100%] w-[100%]"
+            "absolute left-0 top-0 z-0 h-[100%] w-[100%]",
           )}
           aria-hidden
           ref={bgDiv}

@@ -17,7 +17,7 @@ const LinkPreview = () => {
         <div
           className={clsx(
             "pointer-events-none absolute left-0 top-[125%] z-20 flex h-[calc(100vw-50px)] w-[calc(100vw-50px)] flex-row overflow-hidden rounded-lg border border-zinc-300 bg-white shadow-lg transition-all dark:border-zinc-600 dark:bg-zinc-700 md:h-[200px] md:w-[600px]",
-            { "opacity-0": hidden }
+            { "opacity-0": hidden },
           )}
         >
           <div className="flex flex-col content-start items-start gap-[10px] whitespace-nowrap text-left md:p-[10px]">

@@ -29,7 +29,7 @@ const fetcher = (url: string) =>
 const Home: NextPage<Props> = ({ latestBlogPosts, tours, toursPublicUrl }) => {
   const { data: song, error } = useSWR<Song>(
     "/api/spotify/current-song",
-    fetcher
+    fetcher,
   )
   return (
     <>
@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps<{
   let posts = await getAllPosts()
   posts = posts.sort(
     (p1, p2) =>
-      new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()
+      new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime(),
   )
   // Latest 4 items
   return {

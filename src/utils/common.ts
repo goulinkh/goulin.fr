@@ -20,7 +20,7 @@ export function deepClone<T extends Object>(obj: T, hash = new WeakMap()): T {
   // Optional: support for some standard constructors (extend as desired)
   if (obj instanceof Map)
     Array.from(obj, ([key, val]) =>
-      result.set(deepClone(key, hash), deepClone(val, hash))
+      result.set(deepClone(key, hash), deepClone(val, hash)),
     )
   else if (obj instanceof Set)
     Array.from(obj, (key) => result.add(deepClone(key, hash)))
@@ -29,6 +29,6 @@ export function deepClone<T extends Object>(obj: T, hash = new WeakMap()): T {
   // Clone and assign enumerable own properties recursively
   return Object.assign(
     result,
-    ...Object.keys(obj).map((key) => ({ [key]: deepClone(obj[key], hash) }))
+    ...Object.keys(obj).map((key) => ({ [key]: deepClone(obj[key], hash) })),
   )
 }

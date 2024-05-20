@@ -27,7 +27,7 @@ const RandomGradient: React.FC<Props> = ({ unique, className }) => {
       className={clsx(className, "h-full w-full")}
       style={{
         backgroundImage: `linear-gradient(to right, ${gradientColors.join(
-          ", "
+          ", ",
         )})`,
       }}
     ></div>

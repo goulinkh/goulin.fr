@@ -21,7 +21,7 @@ const Favicon = () => {
         rel="icon"
         type="image/svg+xml"
         href={`data:image/svg+xml;base64,${Buffer.from(svgIcon).toString(
-          "base64"
+          "base64",
         )}`}
       />
     </Head>

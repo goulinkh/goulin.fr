@@ -12,7 +12,7 @@ const Author = ({
     <div
       className={clsx(
         className,
-        "my-6 flex items-center space-x-3 text-xs opacity-75 md:text-sm"
+        "my-6 flex items-center space-x-3 text-xs opacity-75 md:text-sm",
       )}
     >
       <div className="flex items-center space-x-1">

@@ -105,7 +105,7 @@ const Header: React.FC<{ takeSpace?: boolean; isDraft?: boolean }> = ({
         {
           sticky: takeSpace,
           fixed: !takeSpace,
-        }
+        },
       )}
     >
       <Link href="/">
@@ -114,7 +114,7 @@ const Header: React.FC<{ takeSpace?: boolean; isDraft?: boolean }> = ({
       <header
         className={clsx(
           styles.header,
-          "blurry mx-auto my-2 flex w-fit items-center overflow-hidden rounded-3xl !border-none"
+          "blurry mx-auto my-2 flex w-fit items-center overflow-hidden rounded-3xl !border-none",
         )}
       >
         <nav
@@ -148,7 +148,7 @@ const Header: React.FC<{ takeSpace?: boolean; isDraft?: boolean }> = ({
           <div
             className={clsx(
               `pointer-events-none absolute inset-0 -z-20 h-[50%] w-full translate-y-[80%]`,
-              styles.lightEffect
+              styles.lightEffect,
             )}
           ></div>
         </nav>

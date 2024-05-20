@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 
 export default async function spotifyCurrentSong(
   _req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   try {
     const song = await currentPlayingSong()

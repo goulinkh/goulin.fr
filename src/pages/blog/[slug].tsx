@@ -89,7 +89,7 @@ const BlogPostPage = ({
 export default BlogPostPage
 
 export const getStaticProps: GetStaticProps<{ post: BlogPost }> = async (
-  context
+  context,
 ) => {
   const post = await getBlogPost((context.params as { slug: string }).slug)
 

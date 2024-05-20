@@ -46,7 +46,7 @@ async function resolvePost(path: string): Promise<BlogPost> {
       : null,
     coverPreviewBlurData: data["cover"]
       ? await generateBlurImageData(
-          join(`/assets/blogs/images/${data["cover"]}`)
+          join(`/assets/blogs/images/${data["cover"]}`),
         )
       : "",
     description: data["description"] || fail("description"),
@@ -80,7 +80,7 @@ export async function generateBlurImageData(imageSrc: string) {
 export async function getAllPosts(draft = false): Promise<BlogPost[]> {
   const paths = readdirSync(blogsPath)
   let posts = await Promise.all(
-    paths.map(async (path) => await resolvePost(join(blogsPath, path)))
+    paths.map(async (path) => await resolvePost(join(blogsPath, path))),
   )
   if (!draft) posts = posts.filter((post) => !post.draft)
   const tags: { [key: string]: BlogPost[] } = {}
@@ -88,7 +88,7 @@ export async function getAllPosts(draft = false): Promise<BlogPost[]> {
     post.tags.forEach((tag) => {
       if (!tags[tag]) tags[tag] = []
       tags[tag].push(post)
-    })
+    }),
   )
   posts.forEach((post) =>
     Object.keys(tags).forEach((tag) =>
@@ -98,11 +98,11 @@ export async function getAllPosts(draft = false): Promise<BlogPost[]> {
             (relatedPost) =>
               relatedPost !== post &&
               !post.relatedPosts.find((p) => relatedPost.slug === p.slug) &&
-              !relatedPost.draft
+              !relatedPost.draft,
           )
-          .map((newRelatedPost) => deepClone(newRelatedPost))
-      )
-    )
+          .map((newRelatedPost) => deepClone(newRelatedPost)),
+      ),
+    ),
   )
   return posts
 }

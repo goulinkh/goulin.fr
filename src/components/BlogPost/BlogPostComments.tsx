@@ -9,7 +9,7 @@ export default function BlogPostComments() {
     setGiscusThemeSrc(
       theme === "dark"
         ? location.origin + "/giscus/theme-dark.css"
-        : location.origin + "/giscus/theme-light.css"
+        : location.origin + "/giscus/theme-light.css",
     )
   }, [theme])
   return (

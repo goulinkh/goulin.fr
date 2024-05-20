@@ -29,7 +29,7 @@ const Blogs: NextPage<Props> = ({ allBlogPosts }) => {
             <h2 className="text-2xl">Blog Posts</h2>
           </div>
 
-          <Link passHref href="/rss/feed.xml">
+          <Link legacyBehavior passHref href="/rss/feed.xml">
             <a
               className="ml-auto mr-7 rounded p-1 opacity-75 hover:bg-black/5 hover:opacity-100 dark:hover:bg-white/10"
               ref={setTriggerRef}
@@ -92,7 +92,7 @@ export const getStaticProps: GetStaticProps<{
 
   posts = posts.sort(
     (p1, p2) =>
-      new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime()
+      new Date(p2.publishDate).getTime() - new Date(p1.publishDate).getTime(),
   )
   // Latest 4 blog posts
   return {

@@ -8,11 +8,11 @@ type Props = { blogPost: BlogPost; small?: boolean; className?: string }
 
 const BlogCard: React.FC<Props> = ({ blogPost, small = false, className }) => {
   return (
-    <Link passHref href={`/blog/${blogPost.slug}`}>
+    <Link legacyBehavior passHref href={`/blog/${blogPost.slug}`}>
       <a
         className={clsx(
           className,
-          "isolate flex flex-col overflow-hidden rounded-2xl shadow-sm transition-shadow hover:shadow-lg dark:hover:shadow-2xl"
+          "isolate flex flex-col overflow-hidden rounded-2xl shadow-sm transition-shadow hover:shadow-lg dark:hover:shadow-2xl",
         )}
       >
         <div
@@ -26,7 +26,7 @@ const BlogCard: React.FC<Props> = ({ blogPost, small = false, className }) => {
         <article
           className={clsx(
             "blurry blurry-2 relative z-10 -mt-5 flex flex-1 flex-col flex-nowrap gap-3 overflow-hidden rounded-2xl px-4 py-8",
-            { "h-20": !small }
+            { "h-20": !small },
           )}
         >
           <h1 className="">{blogPost.title}</h1>

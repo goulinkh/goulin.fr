@@ -8,7 +8,7 @@ export type UserPreferences = {
 }
 
 export const userPreferencesContext = createContext<UserPreferences>(
-  null as unknown as UserPreferences
+  null as unknown as UserPreferences,
 )
 
 type Props = {
@@ -32,7 +32,7 @@ export const UserPreferencesProvider: FC<Props> = ({ children }) => {
   useEffect(() => {
     document.documentElement.classList.add(theme)
     document.documentElement.classList.remove(
-      theme === "dark" ? "light" : "dark"
+      theme === "dark" ? "light" : "dark",
     )
     localStorage.theme = theme
   }, [theme])
