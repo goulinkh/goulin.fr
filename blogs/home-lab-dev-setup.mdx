@@ -1,0 +1,152 @@
+---
+title: "Optimizing My Development Workflow: A Guide to Remote Setup with Home Lab"
+description: "Dive into my journey of creating the ultimate remote development environment using a home lab. This comprehensive guide covers everything from overcoming ARM architecture limitations to setting up LXD containers and securing remote access with Tailscale. Learn how I transformed my workflow, increased productivity, and gained the flexibility to code from anywhere. Whether you're a seasoned developer or just starting out, discover how to build a powerful, secure, and efficient home lab that adapts to your needs."
+tags: remote-development, home-lab, lxd, tailscale, vscode, linux, guide
+topic: tech
+publishDate: 2024-09-06T08:18:28.368Z
+cover: home-lab-dev-setup.webp
+---
+
+## Introduction
+
+As developers, we often find ourselves switching between operating systems, facing compatibility issues, or longing for a more flexible development environment. In this post, I'll share my journey of setting up a remote development environment using a home lab, and how it has transformed my workflow.
+
+## The Challenge: Architecture Limitations
+
+While using MacOS with Apple Silicon (ARM-based CPU), I frequently encountered limitations when debugging Python libraries or building OCI images incompatible with ARM architecture. Despite the existence of Rosetta for x86 simulation, the terminal environment quickly became messy and difficult to manage.
+## The Solution: A Home Lab Server
+
+To overcome these challenges, I decided to build a home lab with carefully selected PC components running Ubuntu Server 24.04 LTS. This server serves multiple purposes:
+
+1. Hosting my favorite movies and TV shows
+2. Running a VaultWarden instance for personal password management
+3. Providing a versatile development environment
+## Remote Development with VS Code
+
+My typical development workflow involves:
+
+- Writing and modifying code
+- Compiling or building projects
+- Deploying work for testing
+- Opening web projects in a browser (for web development)
+
+Visual Studio Code makes remote development via SSH remarkably smooth, offering:
+
+- One-click port forwarding
+- Easy file transfers between local and remote machines
+- Seamless development experience with supported extensions
+## Ensuring Safety: Isolated Dev Environments
+
+To protect against potentially harmful code execution and to facilitate experimentation, isolated development environments are crucial. While there are multiple options available, I chose LXD containers for their balance of isolation and resource efficiency.
+
+### Comparison of Isolation Solutions
+
+QEMU virtual machines offer the strongest isolation by emulating entire systems, but they come with higher resource overhead and slower startup times. Both Docker and LXD containers use the same Linux kernel features for isolation, making them more lightweight and efficient compared to full VMs.
+
+The key difference between Docker and LXD lies in their intended use cases. Docker containers are designed primarily for running single applications, whereas LXD containers provide a system container-like experience, allowing multiple applications to run within a single container. This makes LXD feel more like a full OS environment.
+
+After considering these factors, I chose LXD containers for my setup due to their balance of isolation and flexibility, particularly their ability to easily run multiple applications in a system-like environment. To start an LXD container:
+```bash
+lxc launch ubuntu:24.04 test-container
+lxc exec test-container -- sudo --login --user ubuntu
+```
+This setup allows me to create isolated environments that feel like full systems, making it easy to experiment with different configurations and run multiple services without the overhead of full virtual machines.
+## Secure Remote Access with Tailscale
+
+Tailscale provides secure remote access to the home lab server without exposing ports on the home's public IP. It's the Swiss Army knife of networking.
+
+### What is Tailscale?
+
+Tailscale creates a private cloud (tailnet) connecting:
+
+- PCs (Linux, MacOS & Windows)
+- Smartphones (iOS & Android)
+- VMs and containers (Linux)
+
+### Key Features
+#### Tailscale SSH
+- Handles networking between source and target machines
+- Sets up SSH keys and security mechanisms
+- Enables secure SSH access without manual key management
+#### Tailscale Funnel
+- Allows secure public access to specific services
+- Eliminates the need for port forwarding or complex firewall rules
+- Provides HTTPS endpoints with automatic certificate management
+### Setup Process
+
+Setting up Tailscale on a new LXD container:
+```bash
+# install Tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
+
+# Login and Run 
+tailscale up --ssh
+```
+### Benefits
+
+Tailscale provides:
+
+1. Accessibility from anywhere
+2. Secure and stable connections
+3. No need for complex firewall rules or VPN configurations
+4. Seamless operation across different platforms and network environments
+
+## Additional Setup Tips
+
+### Quick GitHub Access
+
+For seamless GitHub access:
+
+1. Install the GitHub CLI tool:  [Official installation instructions for Ubuntu](https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt)
+2. Set up credentials using 
+	1. `gh auth login -p https --skip-ssh-key -w`
+	2. Go to: https://github.com/login/device/select_account
+
+### Share an HTTP server
+
+```console
+$ sudo tailscale funnel --bg PORT
+Available on the internet:
+
+https://test-container.tailc123.ts.net/
+|-- proxy http://127.0.0.1:3000
+
+$ curl https://test-container.tailc123.ts.net
+hello, world
+```
+### Physical Server Access
+
+In case of SSH issues, consider setting up a PiKVM for remote physical access to your server. This blog post from Tailscale explain how to setup a remotely accessible PiKVM: [Access PiKVM from anywhere](https://tailscale.com/kb/1292/pikvm).
+
+### Docker Support in LXD Containers
+
+To enable Docker within LXD containers:
+
+1. Create a Docker storage pool:
+```bash
+lxc storage create docker btrfs
+```
+2. Use this function to create Docker-ready containers:
+```bash
+function create-dev-container() {
+	container_name=$1
+	setup_script=$2
+
+	lxc launch ubuntu:24.04 $container_name
+	lxc storage volume create docker $container_name
+	lxc config device add $container_name docker disk source=docker path=/var/lib/docker
+	lxc config set $container_name security.nesting=true \
+		security.syscalls.intercept.mknod=true \
+		security.syscalls.intercept.setxattr=true
+
+	lxc restart $container_name
+
+	# optional: additional tools setup in new container
+	# lxc exec $container_name -- curl -fsSL $setup_script | bash
+}
+```
+## Conclusion
+
+Setting up a remote development environment with a home lab has significantly improved my workflow, offering flexibility, security, and efficiency. By leveraging tools like VS Code, LXD containers, and Tailscale, you can create a powerful, versatile development setup that adapts to your needs.
+
+Whether you're dealing with architecture incompatibilities, seeking a more isolated development environment, or simply want the freedom to work from any device, this setup provides a robust solution. Give it a try, and experience the benefits of remote development for yourself!

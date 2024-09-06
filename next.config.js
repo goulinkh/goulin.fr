@@ -15,7 +15,14 @@ module.exports = withMDX({
       },
     ]
   },
-  images: { domains: ["photos.komoot.de", "github.com"] },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+  },
   reactStrictMode: true,
   // Prefer loading of ES Modules over CommonJS
   experimental: { esmExternals: true },
