@@ -128,21 +128,17 @@ lxc storage create docker btrfs
 ```
 2. Use this function to create Docker-ready containers:
 ```bash
-function create-dev-container() {
-	container_name=$1
-	setup_script=$2
-
-	lxc launch ubuntu:24.04 $container_name
-	lxc storage volume create docker $container_name
-	lxc config device add $container_name docker disk source=docker path=/var/lib/docker
-	lxc config set $container_name security.nesting=true \
-		security.syscalls.intercept.mknod=true \
-		security.syscalls.intercept.setxattr=true
-
-	lxc restart $container_name
-
-	# optional: additional tools setup in new container
-	# lxc exec $container_name -- curl -fsSL $setup_script | bash
+# create lxd container with docker support
+function create-dev-container {
+  container_name=$1
+  setup_script="https://gist.githubusercontent.com/goulinkh/ec7cad52772cc869bcf8802c656a1abf/raw/2d9ac50de6143844274e599d7b24238345ba3c50/setup-dev.sh"
+  lxc launch ubuntu:24.04 $container_name
+  lxc config device add $container_name docker disk pool=docker source=$container_name path=/var/lib/docker
+  lxc config set $container_name security.nesting=true \
+    security.syscalls.intercept.mknod=true \
+    security.syscalls.intercept.setxattr=true
+  lxc restart $container_name
+  lxc exec $container_name -- bash -c "curl -fsSL $setup_script | bash"
 }
 ```
 ## Conclusion
